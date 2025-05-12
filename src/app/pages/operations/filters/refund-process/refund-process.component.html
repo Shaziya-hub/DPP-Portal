@@ -1,0 +1,103 @@
+<div class="common-trx" id="operationComp">
+    <app-common-heading></app-common-heading>
+    <div class="block-20"></div>
+    <div *ngIf="refundFlag==false" class="refund">
+        <div class="row">
+            <div class="col-md-6 col-sm-3 summaryHeading">{{"Refund Summary" | translate}}</div>
+            <!-- <div class="col-md-6 col-sm-3 eligibleHead">{{"Refund eligible through : "}}<span>{{receivedDate}}</span>
+            </div> -->
+        </div>
+
+        <div class="refundsummary">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label class="summaryLabel">{{"Payment Reference" | translate}}</label>
+                </div>
+                <div class="col-sm-12">
+                    <label class="summaryValue">{{rowData?.paymentRef}}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <label class="summaryLabel">{{"Business Service" | translate}}</label>
+                    <div>
+                        <label class="summaryValue">{{rowData?.serviceName}}</label>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <label class="summaryLabel">{{"Payment Method" | translate}}</label>
+                    <div>
+                        <label class="summaryValue">{{rowData?.pmtMethodName}}</label>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <label class="summaryLabel">{{"Payment Amount" | translate}}</label>
+                    <div class="leftPadding">
+                        <label class="summaryValue">{{rowData?.formattedTransAmt}}</label>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <label class="summaryLabel">{{"Payment Date" | translate}}</label>
+                    <div>
+                        <label class="summaryValue">{{rowData?.formattedReceivedDate}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="refundFlag==false" class="wrapper-main">
+            <div class="row">
+                <div class="form-group col col-lg-6 col-sm-6 col-12 custom-form">
+                    <label>{{'Refund Amount' | translate}}</label>
+
+                    <span class="fa fa-info-circle" placement="top" [ngbTooltip]="(refundAmtTooltip | translate)">
+                    </span>
+
+                    <input type="number" name="transAmt" class="form-control field" [(ngModel)]="refundAmt">
+                </div>
+                <div class="form-group col col-lg-6 col-sm-6 col-12 custom-form">
+                    <label>{{'Refund Reason' | translate}}</label>
+                    <input type="text" name="transAmt" class="form-control field" [(ngModel)]="comment">
+                </div>
+            </div>
+            <div class="d-flex">
+                <button type="submit"
+                    class="btn btn-block btn-primary btn-primary-custom col-lg-1 col-md col applyBtnn">
+                    <span class="applyBtnn-label" (click)="iniTiateRefund()">{{'Continue' |
+                        translate}}</span></button>&nbsp;
+                <button type="button"
+                    class="btn btn-block btn-light btn-light-custom col-lg-1 col-md-3 col  cancelBtnn">
+                    <span class="cancelBtnn-label" (click)="cancel()">{{'Cancel' | translate}}</span></button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="refundFlag==true" class="wrapper-main">
+        <div class="row" *ngIf="successMessage != null">
+            <div class="col-md-1" style="width:119px"><img src="assets/icons/check-circle.svg"></div>
+            <div class="col-md-10">
+                <div class="successHead">{{'Request has been submitted successfully.' | translate}}</div>
+                <div class="refHead">{{successMessage[0] | translate}}<span>{{successMessage[1]}}</span></div>
+                <div class="link">{{'You can check the approval status through'}}<a
+                        (click)="navigateTo()">&nbsp;{{"Inbox" | translate}}&nbsp;</a>{{'page'}}</div>
+            </div>
+        </div>
+
+        <div class="row errormsg" *ngIf="errorMessage != null">
+            <div class="col-md-1" style="width:119px"><img src="assets/icons/close-circle.svg"></div>
+            <div class="col-md-10">
+                <div class="successHead errHead">{{'Sorry, your refund request has been rejected.' | translate}}</div>
+                <div class="refHead">{{'Your refund request has been rejected with the below reason. Review the reason
+                    to reinitiate the request if payment is eligible for refund.'| translate}}</div>
+                <div class="refHead refHeadCopy">{{'Rejection reason:' | translate}}</div>
+                <div class="alert alert-danger" role="alert">
+                    <div class="link" *ngFor="let errorMsg of errorMessage">{{errorMsg | translate}}</div>
+                </div>
+                <button type="submit"
+                    class="btn btn-block btn-primary btn-primary-custom col-lg-1 col-md col applyBtnn">
+                    <span class="applyBtnn-label" (click)="cancel()">{{'Go Back' | translate}}</span></button>
+                <!-- <div class="successHead">{{'Sorry, your refund Request has been rejected.' | translate}}<span class="link">{{'click'}}<a (click)="cancel()">{{" here" | translate}}</a>{{' to retry.'}}</span></div>
+                <div class="link">{{errorMessage[0]}}</div>
+                <div class="refHead">{{errorMessage[1] | translate}}</div> -->
+            </div>
+        </div>
+    </div>
+</div>

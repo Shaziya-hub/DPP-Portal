@@ -1,0 +1,18 @@
+<app-filters *ngIf="batchId==null" [pageConfig]="pageConfig" [headerConfig]="headerConfig"
+    (applyFiltersEvent)="applyFilters($event)" [showNoRecords]="showNoRecords" [dataSource]="dataSource"
+    [dataLoading]="dataLoading" [reconciliationPageInfo]="reconciliationPageInfo"
+    [summaryDataSource]="summaryDataSource" [filters]="filters" [logVal]="logVal" [searchFilter]="searchFilter"
+    [cardsUrl]="cardsUrl" (applyPmtCards)="pmtCards($event)" [reasonPharse]="reasonPharse"></app-filters>
+
+<data-grid *ngIf="(dataSource || showNoRecords || serviceNotResponded) && batchId == null" [dataSource]="dataSource"
+    [primaykeydata]="primaykeydata" [responseCount]="responseCount" (applyPmtCards)="pmtCards($event)"
+    [pageConfig]="pageConfig" [headerConfig]="headerConfig" [filters]="filters"
+    (applyFiltersEvent)="applyFilters($event)" (batchIdEvent)="batchIdEvent($event)" [logVal]="logVal"
+    [actionKey]="actionKey" [pageSettings]="pageSettings" [showNoRecords]="showNoRecords"
+    [reconciliationPageInfo]="reconciliationPageInfo" [serviceNotResponded]="serviceNotResponded">
+</data-grid>
+
+<app-reconlogger *ngIf="batchId != null" (batchIdEvent)="batchIdEvent($event)" [batchId]="batchId"
+    (LoggerEvent)="LoggerEvent($event)" [actionKey]="actionKey" (actionKeyEvent)="actionIdEvent($event)"
+    [reconciliationPageInfo]="reconciliationPageInfo">
+</app-reconlogger>

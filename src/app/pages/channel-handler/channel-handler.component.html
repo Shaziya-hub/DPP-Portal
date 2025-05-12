@@ -1,0 +1,65 @@
+
+<!-- <div  class="wrapper-main page-header"> [ngClass]="(searchFilters.orgName == null && mandatoryFlag==true)? 'color-border':'form-control'" -->
+
+    <form #id="ngForm" *ngIf="status != 'SUCCESS'">
+        <div class="wrapper-main padding-20 padding-bottom-45">
+            <div class="row" >
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                     <label class=" label">{{'Organization' | translate}}</label>
+                     <input type="text" [(ngModel)]="searchFilters.orgName" name="orgName" class="form-control" >
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                     <label class=" label">{{'Business Service' | translate}}</label>
+                     <input type="text" [(ngModel)]="searchFilters.serviceName"  name="serviceName" class="form-control" [ngClass]="(searchFilters.serviceName == null && mandatoryFlag==true)? 'color-border':'form-control'">
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                     <label class=" label">{{'Channel' | translate}}</label>
+                     <input type="text" [(ngModel)]="searchFilters.channelName"  name="channelName" class="form-control" [ngClass]="(searchFilters.channelName == null && mandatoryFlag==true)? 'color-border':'form-control'">
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                     <label class=" label">{{'SenderId' | translate}}</label>
+                     <input type="text" [(ngModel)]="searchFilters.senderId"  name="senderId" class="form-control" [ngClass]="(searchFilters.senderId == null && mandatoryFlag==true)? 'color-border':'form-control'">
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                     <label class=" label">{{'Cust Profile Id' | translate}}</label>
+                     <input type="text" [(ngModel)]="searchFilters.cusProfileId"  name="cusProfileId" class="form-control" [ngClass]="(searchFilters.cusProfileId == null && mandatoryFlag==true)? 'color-border':'form-control'">
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                     <label class=" label">{{'Service Type' | translate}}</label>
+                     <input type="text" [(ngModel)]="searchFilters.serviceType"  name="serviceType" class="form-control" [ngClass]="(searchFilters.serviceType == null && mandatoryFlag==true)? 'color-border':'form-control'">
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                     <label class=" label">{{'Transaction Type'  | translate}}</label>
+                     <select class="form-select " name="transType" [(ngModel)]="searchFilters.transType"  aria-label="Default select example" #transType="ngModel">
+                        <option [ngValue]="null" [disabled]="true" >{{dropdownSettings.text | translate}}</option>
+                        <option value="SALE" >SALE</option>
+                        <option value="AUTHORIZE" >AUTHORIZE</option>
+                     </select>
+                </div>
+                
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                     <label class=" label">{{'Invoice Number'  | translate}}</label>
+                     <input type="text" [(ngModel)]="searchFilters.invoiceNumber"  name="invoiceNumber" class="form-control" [ngClass]="(searchFilters.invoiceNumber == null && mandatoryFlag==true)? 'color-border':'form-control'">
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                     <label class=" label">{{'Amount'  | translate}}</label>
+                     <input type="text" [(ngModel)]="searchFilters.ammount"  name="ammount" class="form-control" [ngClass]="(searchFilters.ammount == null && mandatoryFlag==true)? 'color-border':'form-control'">
+                </div>
+
+            </div>
+            <div class="block-12"></div>
+            <div class="d-flex justify-content-end" *ngIf="status != 'SUCCESS'">
+                <button type="button" class="btn btn-block btn-primary btn-primary-custom col-lg-1 col-md-2 left-alignment  col" 
+                (click)="initiatePayment()"    >{{'Initiate Payment' | translate}}</button>
+                <!-- <button type="button" class="btn btn-block btn-primary btn-light-custom col-lg-1  col-md-2 left-alignment col"
+                        >{{'Reset' | translate}}</button> -->
+            </div>
+        </div>
+    </form>
+    
+    <div class="wrapper-main padding-20 padding-bottom-45" *ngIf="status == 'SUCCESS'">
+     <!-- <h1>IFrame</h1> -->
+     <iframe id="body-id" [src]="url"></iframe>
+    </div>
+
+    

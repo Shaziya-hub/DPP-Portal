@@ -1,0 +1,45 @@
+@import "../../../css/01-settings.scss";
+
+.close {
+  background: transparent;
+  color: inherit;
+  min-width: 10px;
+  padding: 0px;
+  height: auto;
+
+  &:focus-visible {
+    outline: 0;
+  }
+
+  span {
+    font-size: 28px;
+    color: $milkwhite;
+  }
+}
+
+.modal-header {
+  padding: 0px 20px 25px 20px;
+  border: 1px solid #D8D8D8;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.modal-title {
+  font-size: 20px;
+  font-family: "FrutigerLTArabic-65Bold";
+  font-style: normal;
+  font-weight: 700;
+}
+
+.confirmClass {
+  font-family: "Frutiger-LT-Arabic-55-Roman";
+  font-weight: 400;
+  padding: 17px 41px 16px 102px;
+}
+
+.cancelBtnn {
+  margin-right: 11px;
+}
+
+.applyBtnn {
+  margin-right: 0px !important;
+}

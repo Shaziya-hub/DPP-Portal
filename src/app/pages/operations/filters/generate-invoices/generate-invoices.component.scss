@@ -1,0 +1,175 @@
+@import "../../../../../css/01-settings.scss";
+
+.alert-success {
+    border-radius: 4px;
+    // background: rgba(229, 48, 18, 0.20);
+    text-align: left;
+    margin: 0px;
+    margin-top: 20px;
+    margin-bottom: 30px !important;
+    max-width: none;
+    padding: 29px;
+    margin-right: 24px;
+
+    .reject-label {
+        color: #e53012;
+        font-family: 'FrutigerLTArabic-65Bold';
+        font-size: 21px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 24px;
+        margin-bottom: 6px;
+    }
+}
+
+.row.transs {
+    margin-left: 10px !important;
+    margin-top: 16px !important;
+}
+
+::ng-deep #container {
+
+    bs-datepicker-container {
+        right: 0px;
+        top: 25% !important;
+        // width: 100%;
+
+        .bs-datepicker-container {
+            padding: 0px !important;
+            height: 361px;
+            width: 420px !important;
+            height: 310px !important;
+        }
+
+        .bs-media-container {
+            display: block !important;
+        }
+
+        .bs-datepicker .bs-datepicker-container .bs-datepicker-body table.months td span {
+            padding: 14px 6px !important;
+        }
+    }
+
+
+
+    bs-month-calendar-view {
+        width: 55%;
+
+        tbody tr:nth-child(odd) {
+            background-color: #FFFFFF !important;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #FFFFFF !important;
+        }
+
+    }
+
+    bs-years-calendar-view {
+        width: 50%;
+    }
+
+
+    .theme-green .bs-datepicker-body table td span.selected {
+        background-color: darkblue !important;
+    }
+
+    .bs-datepicker-body table.days span.in-range:not(.select-start):before {
+        background: deepskyblue;
+    }
+
+    .bs-datepicker .bs-datepicker-container .bs-datepicker-body table td {
+        border: 0px;
+    }
+
+
+}
+
+.col-height {
+    height: 105px;
+}
+
+.btn-light:disabled {
+    background-color: #4e8587;
+    cursor: none;
+}
+
+::ng-deep #singleSelect {
+    .cuppa-dropdown .selected-list .c-btn {
+        position: static !important;
+    }
+
+    .cuppa-dropdown .selected-list .c-btn .clear-all {
+        display: none !important;
+    }
+
+    .cuppa-dropdown .selected-list .c-btn span {
+
+
+        font-family: "Frutiger-LT-Arabic-55-Roman";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 31px;
+
+        color: #cecfd1;
+        padding-top: 4px;
+        opacity: 1 !important;
+
+        span {
+            color: #747c91;
+            opacity: 1 !important;
+        }
+    }
+
+    .cuppa-dropdown .selected-list .c-btn span.c-angle-down {
+        background-color: #FFFFFF !important;
+    }
+
+    .cuppa-dropdown .selected-list .c-btn span.c-angle-up {
+        background-color: #FFFFFF !important;
+    }
+
+
+    .dropdown-list .list-area {
+        padding: 0px !important;
+
+        .list-filter {
+            margin: 15px;
+        }
+    }
+
+    .dropdown-list .list-area .pure-checkbox input[type=checkbox]+label:before {
+        display: none;
+    }
+
+    .dropdown-list .list-area .pure-checkbox input[type=checkbox]+label:after {
+        display: none;
+    }
+
+    .dropdown-list .list-area .pure-checkbox input[type=checkbox]+label {
+        padding-left: 0px !important;
+
+    }
+
+    .dropdown-list ul li {
+        padding-left: 20px !important;
+
+    }
+
+    .dropdown-list .list-area .pure-checkbox.selected-item {
+        background-color: #0d6efd
+    }
+
+    .dropdown-list .list-area .pure-checkbox.selected-item input[type=checkbox]+label {
+        color: white;
+    }
+
+    .dropdown-list ul li:hover {
+        background-color: #0d6efd;
+
+        label {
+            color: #FFFFFF !important;
+        }
+    }
+}

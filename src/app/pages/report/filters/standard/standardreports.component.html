@@ -1,0 +1,86 @@
+<div class="common-trx">
+    <app-common-heading></app-common-heading>
+    <form #standardreportsForm="ngForm" novalidate>
+        <div class="wrapper-main ">
+            <!-- Removing First element as placeholder from the dropdown  -->
+            <div class="row">
+                <div class="form-group col col-lg-3 col-md-6 custom-form ">
+                    <label>{{'Report Type' | translate}}</label>
+                    <select class="form-select" name="report" [(ngModel)]="searchFilters.reportType"
+                        (change)="onChange($event)" [ngClass]="searchFilters.reportType == null?'':'selected'">
+                        <option style="display: none;" [ngValue]="null" [disabled]="true">
+                            {{reportsdropdownSettings.text}}</option>
+                        <option class="form-group col col-lg-3 col-md-6 custom-form col-custom-pd-left col-custom-pd"
+                            *ngFor="let dropdownList of pageConfig?.listOfValues?.standardReportType"
+                            [ngValue]="dropdownList.value">{{dropdownList.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col col-lg-3 col-12 custom-form"
+                    *ngIf="searchFilters.reportType  && url?.pageConfig?.listOfValues?.bizServices">
+                    <label>{{'Business Service' | translate}}</label>
+                    <select class="form-select" name="serviceId" (change)="onServiceChange()"
+                        [ngStyle]="searchFilters.serviceId == null && formSubmitted == true? {'border':'1px solid #dd4b39'}:{}"
+                        [(ngModel)]='searchFilters.serviceId' [ngClass]="searchFilters.serviceId == null?'':'selected'">
+                        <option style="display: none;" [ngValue]='null' [disabled]="true">{{specificSetting.text}}
+                        </option>
+                        <option class="form-group col col-lg-3 col-md-6 custom-form col-custom-pd-left col-custom-pd"
+                            *ngFor="let dropdownList of url?.pageConfig?.listOfValues?.bizServices"
+                            [ngValue]="dropdownList.serviceId">{{dropdownList.serviceName}}</option>
+                    </select>
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form"
+                    *ngIf="searchFilters.reportType  && url?.pageConfig?.listOfValues?.merchants">
+                    <label>{{'Merchant Name' | translate}}</label>
+                    <select class="form-select" name="merchantId" [(ngModel)]='searchFilters.merchantId'
+                        [ngStyle]="searchFilters.merchantId == null && formSubmitted == true  && reset != true? {'border':'1px solid #dd4b39'}:{}"
+                        [ngClass]="searchFilters.merchantId == null?'':'selected'">
+                        <option [ngValue]='null' [disabled]="true">{{merchantSetting.text}}</option>
+                        <option class="form-group col col-lg-3 col-md-6 custom-form col-custom-pd-left col-custom-pd"
+                            *ngFor="let dropdownList of url?.pageConfig?.listOfValues?.merchants"
+                            [ngValue]="dropdownList.merchantId">{{dropdownList.merchantName}}</option>
+                    </select>
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form"
+                    *ngIf="searchFilters.reportType  && url?.pageConfig?.listOfValues?.pmtGateways">
+                    <label>{{'Gateway' | translate}}</label>
+                    <select class="form-select" name="pmtGatewayType" [(ngModel)]='searchFilters.pmtGatewayType'
+                        [ngStyle]="searchFilters.pmtGatewayType == null && formSubmitted == true  && reset != true? {'border':'1px solid #dd4b39'}:{}"
+                        [ngClass]="searchFilters.pmtGatewayType == null?'':'selected'">
+                        <option style="display: none;" [ngValue]='null' [disabled]="true">{{getwaysTypeSettings.text}}
+                        </option>
+                        <option class="form-group col col-lg-3 col-md-6 custom-form col-custom-pd-left col-custom-pd"
+                            *ngFor="let dropdownList of  url?.pageConfig?.listOfValues?.pmtGateways"
+                            [ngValue]="dropdownList.pmtGatewayType">{{dropdownList.pmtGatewayName}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group col col-lg-3 col-12 custom-form"
+                    *ngIf="searchFilters.reportType && url?.pageConfig?.listOfValues?.merchants">
+                    <label>{{'Date Range' | translate}}</label>
+                    <app-dateTimepicker id="reportcontainer" [fromdateInputFlag]="fromdateInputFlag" [reset3]="reset3"
+                        [bsdateRange]="bsdateRange" (dateRange)="dateRangeChange($event)"
+                        [landingDateRange]="landingDateRange"
+                        [bsConfig]="{withTimepicker: true,showWeekNumbers: false, keepDatepickerOpened: true, rangeInputFormat : 'MM/DD/YYYY,HH:mm',dateInputFormat: 'MMMM Do YYYY, HH:mm',monthLabel: 'MMM'}">
+                    </app-dateTimepicker>
+                </div>
+            </div>
+
+            <div class=" d-flex" *ngIf="searchFilters.reportType  && url?.pageConfig?.listOfValues?.bizServices">
+                <button type="button" class="btn btn-block btn-primary  col-lg-1 left-alignment col applyBtnn"
+                    (click)="search()">
+                    <div class="row applyBtnn-label">
+                        <div class="col col-sm-6 fa-searchIcon"><img src='assets/icons/icon-search.svg'></div>
+                        <div class="col col-sm-6 searchLabel">{{'Search' | translate}}</div>
+                    </div>
+                </button>
+                <button type="button" class="btn btn-block btn-light  col-lg-1 left-alignment col cancelBtnn"
+                    (click)="resetForm()">
+                    <div class="cancelBtnn-label">{{'Reset' | translate}}</div>
+                </button>
+            </div>
+        </div>
+    </form>
+
+</div>

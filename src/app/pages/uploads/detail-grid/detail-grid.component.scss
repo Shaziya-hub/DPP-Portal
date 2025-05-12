@@ -1,0 +1,23 @@
+@import "../../../../css/01-settings.scss";
+
+.dx-datagrid-text-content {
+    font-weight: 700;
+    color: black;
+}
+
+.dx-sort {
+    display: block;
+    position: absolute;
+    top: 20px !important;
+}
+
+.no-detailsRecords {
+    margin-left: 45%;
+}
+
+::ng-deep #uploadsDetailGrid {
+    tr.dx-row.dx-column-lines.dx-header-row {
+        background-color: $white;
+    }
+
+}

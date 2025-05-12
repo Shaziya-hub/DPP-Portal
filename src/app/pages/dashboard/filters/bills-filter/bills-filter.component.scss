@@ -1,0 +1,182 @@
+@import '../../../../../css/01-settings.scss';
+
+.chartBox {
+    height: 310px;
+    width: 95%;
+}
+
+.lineChartchartBox {
+    height: 329px;
+    width: 95%;
+}
+
+.doughnutChart {
+    height: 272px;
+    //width: 450px;
+}
+
+.doughnutHeight {
+    height: 353px;
+}
+
+//cards
+.PmtAddtnlStatsCard {
+    height: 164px;
+
+    // margin: 20px 0px;
+    .card-body {
+        margin-top: 15px;
+        ;
+    }
+}
+
+.close {
+    background: transparent;
+    color: inherit;
+    min-width: 10px;
+    padding: 0px;
+    height: auto;
+    margin-top: -1%;
+
+    &:focus-visible {
+        outline: 0;
+    }
+
+    span {
+        font-size: 28px;
+        color: #E1E4E8;
+    }
+}
+
+
+:host ::ng-deep .legend-container1 div {
+    display: none;
+}
+
+:host ::ng-deep .legend-container1 div:nth-child(1) {
+    display: block;
+}
+
+:host ::ng-deep .legend-container1 {
+    display: grid;
+    align-content: center;
+}
+
+.report .card {
+    height: 410px;
+}
+
+
+
+//legend
+:host ::ng-deep .customLegend {
+    //padding: 10px 30px 0px;
+}
+
+:host ::ng-deep .customLegend ul {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+:host ::ng-deep .customLegend ul li {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    //flex-direction: row;
+    margin-left: 3%;
+}
+
+:host ::ng-deep .customLegend ul li .span {
+    display: inline-block;
+    min-height: 10px;
+    min-width: 10px;
+    border-radius: 50%;
+    margin: 0px 10px 0px 9.388px;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 1rem;
+}
+
+:host ::ng-deep .customLegend ul li p {
+    font-family: 'Frutiger-LT-Arabic-55-Roman';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 14px;
+    color: #747C91;
+}
+
+:host ::ng-deep .customLegend ul li .labelValue {
+    width: 50%;
+}
+
+:host ::ng-deep .customLegend ul li .valueLabel {
+    font-family: 'FrutigerLTArabic-65Bold';
+    font-style: normal;
+    font-weight: 700 !important;
+    font-size: 14px;
+    line-height: 27px;
+    text-align: right;
+    color: #3498DB !important;
+    margin-left: 12px;
+}
+
+
+//amount alignment
+.amountAlign {
+    text-align: right;
+    //  padding-right: 106px;
+}
+
+::ng-deep #dashBoardcontainer {
+    .bs-datepicker-container {
+        // Daterangepicker changes
+        min-height: 350px !important;
+        padding: 0 !important;
+        //width: 400px;
+    }
+
+}
+
+.rowPadding {
+    padding-right: 18px;
+
+    .card {
+        height: 378px;
+    }
+}
+
+.rowMargin {
+    margin-right: 24px;
+}
+
+.heightClass {
+    height: 410px;
+}
+
+@media (max-width:570px) {
+    .heightClass {
+        height: 493px !important;
+    }
+
+    :host ::ng-deep .legend-container1 div:nth-child(1) {
+        margin-left: 15%;
+    }
+}
+
+@media(max-width:767px) {
+    .rowMargin {
+        margin-right: 8px;
+        margin-right: 8px;
+    }
+}
+
+::ng-deep .ngx-spinner-overlay {
+    z-index: 1050 !important;
+}
+
+.marginLeft0 {
+    margin-left: 0px;
+}

@@ -1,0 +1,169 @@
+@import "../../../../css/01-settings.scss";
+
+::ng-deep #gridContainerConfig {
+    .dx-datagrid .dx-row>td {
+        padding: 8px;
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 27px;
+        /* identical to box height */
+        //overflow: visible;
+
+
+        color: #333333;
+
+        &:focus {
+            outline: transparent !important;
+        }
+    }
+
+    .dx-icon {
+        font-family: DXIcons !important;
+    }
+
+    .dx-sort-index-icon {
+        display: none !important;
+    }
+
+    .dx-sort {
+        display: block;
+        position: absolute;
+        top: 20px;
+    }
+
+    .dx-sort-down {
+        top: 24px !important;
+
+        &::before {
+            content: url(../../../../assets/icons/icon-sort-down.svg) !important;
+        }
+    }
+
+    .dx-sort-up {
+        top: 24px !important;
+
+        &::before {
+            content: url(../../../../assets/icons/icon-sort-up.svg) !important;
+        }
+    }
+
+    .dx-sort-none {
+        &::before {
+            content: url(../../../../assets/icons/sort.svg) !important;
+            // content: url(../../../../assets/icons/up-down.png) !important;
+        }
+    }
+
+    .dx-datagrid.dx-gridbase-container .dx-datagrid-nowrap .dx-header-row td.amount-text .dx-datagrid-text-content {
+        // float:right;
+        padding-right: 0px;
+    }
+
+    .dx-datagrid .dx-data-row>td.amount-text {
+        //padding-right: 0.9% !important;
+        padding-right: 0.2% !important;
+        font-weight: 700;
+        //font-family: 'Frutiger LT Arabic mix';
+        font-size: 12px;
+    }
+
+    .amount-text {
+        .dx-column-indicators {
+            padding-right: 10px;
+        }
+    }
+
+    .dx-datagrid .dx-data-row>td.fee-text {
+        padding-right: 27px !important;
+        font-weight: 700;
+        //font-family: 'Frutiger LT Arabic mix';
+        font-size: 12px;
+    }
+
+    .fee-text {
+        .dx-column-indicators {
+            padding-right: 10px;
+        }
+    }
+
+    .dx-datagrid-text-content.dx-text-content-alignment-right .dx-template-wrapper {
+        position: absolute;
+    }
+
+    .dx-datagrid-borders>.dx-datagrid-filter-panel,
+    .dx-datagrid-borders>.dx-datagrid-headers {
+        border-bottom: 1px solid $cyan-blue;
+
+    }
+
+    .dx-datagrid.dx-gridbase-container {
+        background: $white;
+        box-sizing: border-box;
+        border: 1px solid $white;
+        border-radius: 4px;
+    }
+
+    .dx-datagrid-borders>.dx-datagrid-headers {
+        border-top: 1px solid $white;
+        border-left: 1px solid $white;
+        border-right: 1px solid $white;
+    }
+
+    .dx-datagrid.dx-gridbase-container .fixed-headers .dx-row.dx-column-lines.dx-header-row {
+        background-color: $white;
+        color: #26273B;
+        font-weight: 700;
+        border-bottom: 1px solid $cyan-blue;
+        /* box-shadow: 0px 3px 4px rgb(0 0 0 / 10%); */
+        height: 58.25px;
+    }
+
+    .dx-datagrid .dx-row>td.transId-css {
+        color: $cyan-blue !important;
+        font-size: 14px;
+        line-height: 27px;
+        font-weight: 600;
+    }
+
+    .dx-datagrid .dx-row>td>span> {
+        span {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            display: inline-block;
+
+        }
+
+        p {
+            display: inline;
+            margin-left: 7px;
+            font-family: 'Frutiger-LT-Arabic-55-Roman';
+        }
+    }
+
+
+    .bi::before,
+    [class^="bi-"]::before,
+    [class*=" bi-"]::before {
+        font-weight: 700 !important;
+        font-size: 20px;
+    }
+
+
+
+
+}
+
+.no-records {
+    text-align: center;
+    margin: 10%;
+}
+
+.applyBtnn-label {
+    padding-top: 20px !important;
+}
+
+ul#dropdown-basic {
+    margin-top: 5px !important;
+}

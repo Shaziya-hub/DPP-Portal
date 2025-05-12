@@ -1,0 +1,97 @@
+<div class="common-trx">
+  <div class="pageHeadings">
+    <span class="page-heading2"><span style="cursor: pointer;" (click)="navigation($event)">{{'Reconciliation' |
+        translate}}</span> &nbsp;<span class="subpage-heading2">/&nbsp;{{"Logs" | translate}}</span></span>
+    <hr>
+
+
+    <dx-data-grid [hidden]="serviceNotResponded || showNoRecords" id="logger-gridContainer" [dataSource]="dataSource"
+      [showBorders]="true" [columnAutoWidth]="true" [showColumnLines]="true" [showRowLines]="true"
+      (onCellClick)="requestCellTemplate($event)" [columns]="columns" [customizeColumns]="customizeColumns"
+      (onFocusedCellChanging)="onFocusedCellChanging($event)" (onCellDblClick)="onCellDetailDblClick($event)">
+
+      <dxo-load-panel [enabled]="false"></dxo-load-panel>
+      <dxo-paging [enabled]="false"> </dxo-paging>
+
+      <div *dxTemplate="let data of 'header'">
+        {{ data.column.caption }}
+      </div>
+      <div *dxTemplate="let data of 'requestCellTemplate'">
+        <div *ngIf="!data.value"><a class="pointerNone">{{'Request' | translate}}</a></div>
+        <div *ngIf="data.value">
+          <a (click)="openVerticallyCentered(content)" class="pointerAuto">{{'Request' | translate}}</a>
+          <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title">{{'RequestData' | translate}}</h4>
+              <button class="close pull-right" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true"><img src="assets/icons/icon-close-new.png"></span>
+              </button>
+
+            </div>
+            <div class="modal-body">
+              <div class="container reqdata">
+                <pre>{{xmlString}}</pre>
+
+              </div>
+
+            </div>
+            <div class="modal-footer common-trx">
+              <button type="button" class="btn btn-primary  col-lg-1 left-alignment col applyBtnn"
+                (click)="clipboardCopy()"><label class="applyBtnn-label">{{'Clipboard' |translate}}</label></button>
+              <button type="button" class="btn  btn-light  col-lg-1 left-alignment col cancelBtnn"
+                (click)="modal.dismiss('Cross click')"><label class="cancelBtnn-label">{{'Cancel'
+                  |translate}}</label></button>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+
+      <div *dxTemplate="let data of 'replyCellTemplate'">
+        <div *ngIf="!data.value"><a class="pointerNone">{{'Reply' | translate}}</a></div>
+        <div *ngIf="data.value">
+          <a (click)="openVerticallyCentered(content)" class="pointerAuto">{{'Reply' | translate}}</a>
+          <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title">{{'RequestData' | translate}}</h4>
+              <button class="close pull-right" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true"><img src="assets/icons/icon-close-new.png"></span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container reqdata">
+                <pre>{{xmlString}}</pre>
+
+              </div>
+
+            </div>
+            <div class="modal-footer common-trx">
+              <button type="button" class="btn btn-primary  col-lg-1 left-alignment col applyBtnn"
+                (click)="clipboardCopy()"><label class="applyBtnn-label">{{'Clipboard' |translate}}</label></button>
+              <button type="button" class="btn  btn-light  col-lg-1 left-alignment col cancelBtnn"
+                (click)="modal.dismiss('Cross click')"><label class="cancelBtnn-label">{{'Cancel'
+                  |translate}}</label></button>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </dx-data-grid>
+  </div>
+
+  <div class="d-flex justify-content-end" *ngIf="dataSource">
+    <app-pagination class="w-100" [totalItems]="pageSettings.totalRecordsCount" [pageSize]="pageSettings.responseCount"
+      [responseCount]="responseCount" [page]="headerConfig['page-number']" [ttlPagesCnt]="pageSettings.ttlPagesCnt"
+      (pageChange)="onPageChange($event)"></app-pagination>
+  </div>
+  <div class="wrapper-main noRecords-Todisplay" *ngIf="showNoRecords">
+    <section class="no-records">
+      <img class="mb-3" src="assets/icons/icon-no-record.svg">
+      <div style="clear:both;"></div>
+      <span>{{"No records to display" | translate}}</span>
+    </section>
+  </div>
+
+  <div class="wrapper-main noRecords-Todisplay" *ngIf="serviceNotResponded">
+    <section class="no-records">
+      <span>{{"Not available at the moment" | translate}}</span>
+    </section>
+  </div>

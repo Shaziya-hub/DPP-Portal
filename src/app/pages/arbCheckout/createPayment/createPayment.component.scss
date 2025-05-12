@@ -1,0 +1,48 @@
+@import "../../../../css/01-settings.scss";
+
+.page-heading {
+  font-family: 'Frutiger LT Arabic mix';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 27px;
+  /* identical to box height */
+  color: #747C91;
+}
+
+.page-heading2 {
+  font-family: 'Frutiger LT Arabic 75 Black' !important;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 48px;
+  color: #1D1556;
+  cursor: pointer;
+}
+
+.subpage-heading2 {
+  font-family: 'FrutigerLTArabic-65Bold';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 48px;
+  color: $cyan-blue;
+}
+
+.pageHeadings hr {
+  background-color: #ECEBEB !important;
+  // border: 1px solid #ECEBEB;
+  opacity: 0.1;
+}
+
+body {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px !important;
+}
+
+p {
+  margin-left: 40%;
+  margin-right: 50%;
+
+}

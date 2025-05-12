@@ -1,0 +1,60 @@
+@import "../../../../css/01-settings.scss";
+
+
+
+.modal-body {
+    padding: 10px 20px;
+    overflow-y: auto;
+    // height: 350px;
+}
+
+
+.form-group {
+
+    padding-bottom: 20px;
+}
+
+
+.modal-footer {
+    margin-right: 8px;
+}
+
+.form-select {
+    font-size: 14px;
+    background-color: #FFFFFF;
+    color: #cfd1d7;
+    border: 1px solid rgba(116, 124, 145, 0.3);
+    border-radius: 6px;
+    height: 50px;
+    margin: 0px;
+}
+
+.disabledTextBox {
+    background: #e9ecef !important;
+}
+
+.redBorder {
+    border: 1px solid $error !important;
+}
+
+
+select.ng-touched.ng-valid {
+    border: 1px solid $cream-violet ;
+}
+
+.applyBtnn-label {
+    padding-top: 20px !important;
+    cursor: pointer;
+}
+
+.cancelBtnn-label {
+    cursor: pointer;
+}
+
+.close {
+    background-color: $white;
+}
+
+textarea.form-control.field {
+    height: 184px;
+}

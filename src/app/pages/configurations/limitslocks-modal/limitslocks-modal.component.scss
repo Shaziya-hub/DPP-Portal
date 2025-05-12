@@ -1,0 +1,15 @@
+@import "../../../../css/01-settings.scss";
+
+.common-trx {
+    .modal-body {
+        padding: 10px 20px;
+        overflow-y: auto;
+        height: 550px;
+    }
+
+    .applyBtnn {
+        .applyBtnn-label {
+            padding: 18px 0px 8px 0px !important;
+        }
+    }
+}

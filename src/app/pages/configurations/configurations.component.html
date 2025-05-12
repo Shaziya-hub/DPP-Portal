@@ -1,0 +1,10 @@
+<app-filters [pageConfig]="pageConfig" [headerConfig]="headerConfig" (applyFiltersEvent)="applyFilters($event)"
+    [dataSource]="dataSource" (limitLocksService)="limitLocksService($event)"
+    [configurationsPageInfo]="configurationsPageInfo"></app-filters>
+
+<configurations-data-grid *ngIf="dataSource || showNoRecords || serviceNotResponded" [dataSource]="dataSource"
+    [responseCount]="responseCount" [pageConfig]="pageConfig" [headerConfig]="headerConfig"
+    (applyFiltersEvent)="applyFilters($event)" [filters]="filters" [pageSettings]="pageSettings"
+    [showNoRecords]="showNoRecords" [configurationsPageInfo]="configurationsPageInfo"
+    (limitLocksService)="limitLocksService($event)" [serviceNotResponded]="serviceNotResponded">
+</configurations-data-grid>

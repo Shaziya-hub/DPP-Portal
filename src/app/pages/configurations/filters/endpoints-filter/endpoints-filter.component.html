@@ -1,0 +1,53 @@
+<div class="common-trx">
+    <app-common-heading></app-common-heading>
+
+    <form #endPointsForm="ngForm" novalidate>
+        <div class="wrapper-main">
+            <div class="row">
+                <div class="form-group col col-lg-3 col-12 custom-form ">
+                    <label>{{'Business Services' | translate}}</label>
+                    <angular2-multiselect name="services" [data]="filter.pageConfig?.listOfValues?.bizServices"
+                        (onSelect)="onChangeValue()" (onSelectAll)="onChangeValue()"
+                        [(ngModel)]="searchFilters.serviceId" [settings]="getBizServicesSetting()" #serviceId="ngModel"
+                        (onClose)=" onServiceChange()" (onDeSelectAll)="onServiceChange()">
+                    </angular2-multiselect>
+                </div>
+
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Service Types' | translate}}</label>
+                    <angular2-multiselect name="serviceTypes"
+                        [data]="filter.pageConfig?.listOfValues?.serviceTypes || []"
+                        [(ngModel)]="searchFilters.serviceTypeId" [settings]="getServiceTypesSetting()">
+                    </angular2-multiselect>
+                </div>
+
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Search' | translate}}</label>
+                    <input type="text" name="search" class="form-control" placeholder="{{'Search'| translate}}" [(ngModel)]="searchFilters.search">
+                </div>
+            </div>
+            <div class="d-flex">
+                <button type="button" class="btn btn-block btn-primary  col-lg-1 left-alignment col applyBtnn"
+                    (click)="search()">
+                    <div class="row applyBtnn-label">
+                        <div class="col col-sm-6 fa-searchIcon"><img src='assets/icons/icon-search.svg'></div>
+                        <div class="col col-sm-6 searchLabel">{{'Search' | translate}}</div>
+                    </div>
+                </button>
+                <button type="button" class="btn btn-block btn-light  col-lg-1 left-alignment col cancelBtnn"
+                    (click)="resetForm()">
+                    <div class="cancelBtnn-label">{{'Reset' | translate}}</div>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row additionalFIlter-list" *ngIf=" dataSource != null">
+        <div class="form-group col col-lg-10 col-12">
+            <div class="tags-container">
+                <div class="row transs transConfig"><label class="result-trx">{{'Results' | translate}}</label></div>
+            </div>
+        </div>
+
+    </div>
+</div>

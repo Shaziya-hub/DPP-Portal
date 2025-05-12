@@ -1,0 +1,48 @@
+<div class="base-grid-container" [ngClass]="{'menu-open': menuOpen, 'menu-close': !menuOpen}"
+    *ngIf="user !=undefined && user.session_state">
+    <div class="header grid-item">
+        <app-header></app-header>
+    </div>
+    <!-- <div class="site-logo grid-item" [class.center]="!menuOpen" routerLink="/home">
+        <img src="assets/icons/side-menu-logo.svg" class="ham-left logo-full" alt="logo">
+        <img src="assets/icons/logo-small-site.svg" class="ham-right logo-small" alt="logo">
+        
+
+    </div> -->
+    <div class="site-logo grid-item" [class.center]="!menuOpen" routerLink="/home">
+        <img src="assets/icons/Logo_Modon.png" class="ham-left logo-full" alt="logo">
+        <img src="assets/icons/Modon-logo.png" class="ham-right logo-small" alt="logo">
+        <!-- <img src="assets/icons/logo_image_en.png" class="ham-left logo-full" alt="logo" style="margin-left: 0px;
+        width: 257px;">
+        <img src="assets/icons/cst_logo_on_close.png" class="ham-right logo-small" alt="logo" style="height: 50px;"> -->
+
+        <!--  <img src="assets/icons/CBO.png" class="ham-left logo-full" alt="logo" style="margin-left: 70px;">
+        <img src="assets/icons/CBO.png" class="ham-right logo-small" alt="logo" style="height: 50px;">-->
+
+        <!-- <img src="assets/icons/mt_logo.png" class="ham-left logo-full" alt="logo" style="margin-left: 0px;
+     width: 257px;">
+     <img src="assets/icons/mt_logo_close.png" class="ham-right logo-small" alt="logo" style="height: 50px;"> -->
+        <!-- <img src="assets/icons/gasco_svg_logo.svg" class="ham-left logo-full" alt="logo" style="height: 93px; 
+     margin-top: -6px;
+     margin-left: 34%;
+     margin-right: 34%;">
+     <img src="assets/icons/gasico_logo_with_name.png" class="ham-right logo-small" alt="logo" style="height: 50px;"> -->
+    </div>
+
+    <div class="side-nav grid-item">
+        <app-side-menu [menuOpen]="menuOpen"></app-side-menu>
+    </div>
+    <div class="content grid-item flex-column-between-stretch" id="main-content">
+        <div class="router flex-auto">
+            <!-- <div class="block-14"></div> -->
+            <div [class.overlay]="loader || (menuOpen && isMobileView)"></div>
+            <router-outlet></router-outlet>
+        </div>
+        <div *ngIf="loader">
+            <div class="spinner-border loader" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

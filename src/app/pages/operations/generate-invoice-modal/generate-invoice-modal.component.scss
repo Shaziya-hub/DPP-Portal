@@ -1,0 +1,64 @@
+::ng-deep ngb-modal-window .modal-dialog .modal-content {
+    min-width: 774px !important;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.common-trx {
+
+    .modal-body {
+        padding: 24px 24px 33px 24px;
+
+        .img {
+            text-align: center;
+            padding-top: 34px;
+            padding-bottom: 48px;
+        }
+
+        .padding {
+            padding: 0px 138px;
+
+            .text {
+                line-height: 46px;
+                text-align: center;
+                font-weight: 700;
+                font-size: 24px;
+                font-family: "Frutiger-LT-Arabic-55-Roman";
+                margin-bottom: 24px;
+                color: #000;
+            }
+
+            .billNo {
+                border-radius: 20px;
+                border: 1px solid #EBEBEB;
+                background: #FFF;
+                box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.18) inset;
+                height: 87px;
+
+                div {
+                    color: #000;
+                    font-family: "Frutiger-LT-Arabic-55-Roman";
+                    font-size: 28px;
+                    font-style: normal;
+                    font-variant-alternates: text;
+                    font-weight: 700;
+                    line-height: normal;
+                    text-align: center;
+                    padding-top: 15px;
+                    padding-bottom: -4px;
+                }
+            }
+        }
+
+        .close {
+            background: transparent;
+            color: inherit;
+            min-width: 10px;
+            padding: 0;
+            height: auto;
+            float: right;
+        }
+    }
+}

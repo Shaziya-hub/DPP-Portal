@@ -1,0 +1,18 @@
+@import "../../../../../css/01-settings.scss";
+
+
+
+::ng-deep #manualDate {
+  bs-daterangepicker-container {
+    left: -71px !important;
+  }
+
+  .theme-green .bs-datepicker-body table td span.selected {
+    background-color: darkBlue !important;
+    color: #FFFFFF !important;
+  }
+
+  .bs-datepicker .bs-datepicker-container {
+    padding: 3px !important;
+  }
+}

@@ -1,0 +1,323 @@
+@import "../../../../../css/01-settings.scss";
+
+.heading {
+    position: relative;
+    left: 42%;
+    top: 7px;
+    font-family: "FrutigerLTArabic-65Bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 31px;
+    color: #1D1556;
+
+}
+
+.abc {
+
+    border-top: 1px solid $cream-violet;
+    text-align: center;
+
+}
+
+.left {
+    margin-left: 0px;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: "Frutiger-LT-Arabic-55-Roman";
+    font-style: normal;
+    color: #1D1556;
+    line-height: 27px;
+
+}
+
+.summary {
+    font-family: "FrutigerLTArabic-65Bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.col-lg-6 {
+    //  text-align: center;
+
+}
+
+.col-md-6 {
+    text-align: center;
+}
+
+.col-sm-2 {
+    text-align: center;
+}
+
+.col-lg-2 {
+    text-align: center;
+}
+
+.col-lg-4 {
+    text-align: center;
+}
+
+.col-md-4 {
+    text-align: center;
+}
+
+label.setwidth-for-merchant.ng-star-inserted {
+    width: 12.5%;
+    text-align: center;
+}
+
+label.setwidth-mismatch.ng-star-inserted {
+    width: 50%;
+    text-align: center;
+}
+
+label.set-width-dpp.ng-star-inserted {
+    width: 32.5%;
+    text-align: center;
+}
+
+.merchant-class {
+    display: block;
+}
+
+.mismach-dpp {
+    float: left;
+}
+
+::ng-deep .d-grid.ng-star-inserted {
+    margin-left: 14px;
+}
+
+@media (min-width: 992px) {
+    .col-lg-1-5 {
+        flex: 0 0 auto;
+        width: 12.333333%;
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-md-1-5 {
+        flex: 0 0 auto;
+        width: 12.333333%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 580px) {
+    label {
+        display: block;
+        text-align: center;
+    }
+}
+
+
+.dpp-last {
+    float: left;
+}
+
+.summarry .card-body {
+    text-align: left;
+
+    .total {
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 14px;
+        /* identical to box height, or 78% */
+        text-transform: uppercase;
+        color: #1D1557;
+        margin-bottom: 0px;
+    }
+}
+
+.PmtAddtnlStatsCard .card-body {
+    .total {
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 14px;
+        /* identical to box height, or 78% */
+        text-transform: uppercase;
+        color: #1D1557;
+    }
+}
+
+.sumaryLabel {
+    border-bottom: 1px solid #F1F1F2;
+    padding: 8px 16px 0px 16px;
+
+    .dppMerchant {
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 14px;
+        text-align: center;
+        color: #1D1556;
+        margin: 0px;
+    }
+
+    .dppMerchantVal {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 21px;
+        line-height: 32px;
+        text-align: center;
+        color: #000000;
+        margin: 0px;
+        margin-bottom: 10px;
+
+    }
+
+    .dpp {
+        color: #3498DB !important;
+    }
+
+}
+
+.match {
+    background: #09B39C;
+    padding: 28px 15px 26px 15px;
+
+    .match-head {
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 14px;
+        text-align: center;
+        color: #FFFFFF;
+        margin: 0px;
+    }
+}
+
+.recon {
+    background: #F59D1A;
+    ;
+    padding: 28px 15px 26px 15px;
+
+    .recon-head {
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 14px;
+        text-align: center;
+        color: #FFFFFF;
+        margin: 0px;
+    }
+}
+
+.mismatch {
+    background: #E53012;
+    padding: 13px 15px 0px 15px;
+
+    .mismatch-head {
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 14px;
+        text-align: center;
+        color: #FFFFFF;
+        margin: 0px;
+    }
+
+    .mismatch-value {
+        font-family: 'FrutigerLTArabic-65Bold';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 21px;
+        line-height: 32px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+
+}
+
+span.card.PmtAddtnlStatsCard {
+    padding-top: 20px;
+    padding: 0px;
+    padding-top: 20px !important;
+    margin-bottom: 24px;
+}
+
+span.card.PmtAddtnlStatsCard.summarry {
+    padding: 20px 18px 24px 18px;
+}
+
+.col.col-lg-6.col-12.firstCol {
+    margin-right: 21px !important;
+}
+
+
+
+.sumRows {
+    margin-top: 14px;
+
+    @media (min-width: 992px) {
+        .col-lg-6 {
+            flex: 0 0 auto;
+            width: 47%;
+            // border-bottom: 1px solid #F1F1F2;
+        }
+    }
+
+    .insideCOl {
+        border-bottom: 1px solid #F1F1F2;
+        margin-left: 8px;
+
+        .key {
+            padding-top: 6px;
+
+            .fees {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 14px;
+                color: #747C91;
+            }
+        }
+
+        .value {
+            text-align: end;
+
+            .feesVal {
+                font-style: normal;
+                font-weight: 700;
+                font-size: 21px;
+                line-height: 32px;
+                text-align: right;
+                color: #000000;
+                margin-bottom: 6px;
+            }
+        }
+    }
+
+}
+
+.ccc {
+    height: 258px;
+}
+
+.nodata {
+    text-align: center;
+    align-items: center;
+    padding: 26%;
+}
+
+.nodataa {
+    text-align: center;
+    align-items: center;
+    padding: 13%;
+}
+
+.topMargin {
+    margin-top: 32px !important;
+}

@@ -1,0 +1,151 @@
+@import "../../../../../css/01-settings.scss";
+
+::ng-deep .btn-group.pagination {
+  margin-left: 15% !important;
+}
+
+::ng-deep .custom-form .cuppa-dropdown {
+  .pure-checkbox input[type=checkbox]:disabled+label:after {
+    transform: rotate(-45deg) scale(1) !important;
+    content: "" !important;
+    transition: transform .2s ease-out !important;
+    color: #FFFFFF !important;
+    opacity: 0.7 !important;
+  }
+}
+
+::ng-deep .custom-form .cuppa-dropdown {
+  .dropdown-list {
+    .list-area {
+      .lazyContainer {
+        .pure-checkbox {
+          input[type=checkbox]:disabled+label:before {
+            border-color: #ccc;
+            background: #3498DB !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+::ng-deep .custom-form .opacityD .cuppa-dropdown {
+  .selected-list {
+    .c-btn {
+      span {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+.checkbox>span {
+  padding: 5px 5px 5px 5px !important;
+  font-family: "Frutiger-LT-Arabic-55-Roman";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 31px !important;
+  color: #747C91;
+  margin-bottom: 8px;
+}
+
+.checkbox>input:checked+span::before {
+  top: 3px !important;
+}
+
+.common-trx {
+  .wrapper-main {
+    padding: 22px 21px 20px 21px;
+
+    .assignroles {
+      position: relative;
+      min-height: 100px;
+      padding: 0;
+
+      .switch {
+        top: 40px !important;
+        left: 10px !important;
+      }
+
+      .roleRows {
+        background: #FFFFFF;
+        border: 1px solid #D8D8D8;
+        border-radius: 4px;
+        height: 56px;
+        display: flex;
+        margin-bottom: 8px;
+
+        .selectAllLabel {
+          margin-top: -2px !important;
+          font-style: normal;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 31px;
+          color: #1D1556;
+          font-family: "FrutigerLTArabic-65Bold";
+          padding: 10px 16px;
+        }
+
+        .unSelectAllLabel {
+          margin-top: -2px !important;
+          font-style: normal;
+          font-family: 'Frutiger-LT-Arabic-55-Roman';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 31px;
+          ;
+          padding: 10px 16px;
+          color: #333333;
+        }
+
+        .infoIcon {
+          background: #F6F8FA;
+          border: 1px solid #E6E6E6;
+          border-radius: 4px;
+          height: 40px;
+          width: 40px;
+          margin-right: 20px;
+          margin-left: auto;
+          margin-top: 7px;
+          text-align: center;
+          padding-top: 8px;
+          margin-right: 9px;
+        }
+
+      }
+    }
+
+    .marginTop {
+      margin-top: 40px;
+    }
+
+    ::ng-deep .custom-form .validation .cuppa-dropdown {
+      border: 1px solid $error !important;
+    }
+
+    .personal-head {
+      font-family: 'FrutigerLTArabic-65Bold';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 38px;
+      color: #000000;
+      margin-bottom: 16px;
+      padding: 0px;
+
+      span {
+        font-family: "FrutigerLTArabic-65Bold";
+        color: #3498DB;
+      }
+    }
+
+    .required:after {
+      content: " *";
+      color: #E53012;
+    }
+  }
+}

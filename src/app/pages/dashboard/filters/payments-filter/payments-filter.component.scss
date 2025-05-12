@@ -1,0 +1,322 @@
+@import '../../../../../css/01-settings.scss';
+
+.gaugecard {
+    height: 300px;
+    margin-right: 18px;
+
+    .title {
+        font-family: 'FrutigerLTArabic-65Bold';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 21px;
+        line-height: 24px;
+        color: #000000;
+        margin-bottom: 0 !important;
+
+        b {
+            font-family: 'FrutigerLTArabic-65Bold';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 36px;
+            text-align: center;
+            color: #3498DB;
+        }
+
+        span {
+            font-family: 'Frutiger-LT-Arabic-55-Roman';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 27px;
+            text-align: center;
+            color: #1D1556;
+        }
+    }
+
+    .card-body {
+        padding: 0;
+    }
+}
+
+
+.dateRangePicker {
+    border: 1px solid #ced4da;
+    height: 50px !important;
+    border-radius: 5px;
+    padding: 5px 15px 5px 15px;
+    color: #bdc2bd;
+}
+
+//doughnutchart
+.doughnutChartBox {
+    height: 199px;
+    // width: 80%;
+}
+
+.lineChartBox {
+    height: 330px;
+}
+
+//table
+
+
+
+
+
+.close {
+    background: transparent;
+    color: inherit;
+    min-width: 10px;
+    padding: 0px;
+    // height: auto;
+    margin-top: -1%;
+
+    &:focus-visible {
+        outline: 0;
+    }
+
+    span {
+        font-size: 28px;
+        color: #E1E4E8;
+    }
+}
+
+.legend-containerGuage {
+    position: absolute;
+    top: 150px;
+
+    ul {
+        padding: 0;
+
+        li {
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+
+            p {
+                margin-bottom: 0;
+            }
+
+            .span {
+                display: inline-block;
+                border-radius: 50%;
+                margin: 0px 10px 0px 9.388px;
+                border-style: solid;
+                border-width: 1px;
+                // margin-bottom: 10px;
+                min-height: 10px;
+                // background: #09B39C;
+                min-width: 10px;
+                //border-color: #09B39C;
+            }
+
+            .labelValue {
+                // width: 55%;
+                font-family: "Frutiger-LT-Arabic-55-Roman";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 14px;
+                color: #747C91;
+                min-width: 55px;
+            }
+
+            .valueLabel {
+                font-family: 'Frutiger-LT-Arabic-55-Roman';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 27px;
+                margin-left: 30px;
+                color: #3498DB;
+            }
+
+        }
+    }
+}
+
+::ng-deep #gauge-chart-id {
+    google-chart {
+        table {
+            tbody {
+                tr {
+                    td {
+                        div {
+                            position: absolute !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+::ng-deep google-chart {
+    svg {
+        g {
+            circle {
+                fill: transparent;
+                stroke-width: 0;
+            }
+
+            g circle {
+                fill: aliceblue;
+                stroke-width: 4;
+                stroke: #0066FF;
+
+            }
+
+            g path {
+                fill: #0066FF;
+                stroke-width: 1;
+                stroke: #0066FF;
+                fill-opacity: 1;
+            }
+
+            text {
+                font-family: 'Roboto' !important;
+                font-size: 12px;
+                fill: #102E42;
+                color: #102E42;
+            }
+
+            g text {
+                font-weight: 700;
+                font-size: 24px;
+                fill: #09B39C;
+            }
+        }
+    }
+}
+
+.guageChartBox {
+    height: 95%;
+    width: 95%;
+}
+
+@media (max-width: 570px) {
+    .gaugecard {
+        padding: 5px;
+    }
+
+    ::ng-deep #gauge-chart-id {
+        google-chart {
+
+            table {
+                tbody {
+                    tr {
+                        td {
+                            div {
+                                top: 52% !important;
+                                left: 50% !important;
+                                transform: translate(-50%, -50%) !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .legend-containerGuage {
+        position: relative;
+        top: 232%;
+        left: 50%;
+        transform: translate(-33%, 50%);
+    }
+
+    .legend-containerGuage ul li p {
+        width: 40%;
+    }
+
+}
+
+
+@media only screen and (min-width:768px) and (max-width:1320px) {
+
+    ::ng-deep #gauge-chart-id {
+        google-chart {
+            table {
+                tbody {
+                    tr {
+                        td {
+                            div {
+                                // position: absolute !important;
+                                top: 60% !important;
+                                left: 50% !important;
+
+                                transform: translate(-50%, -50%) !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .legend-containerGuage {
+        display: none;
+    }
+}
+
+//amount alignment
+.amountAlign {
+    text-align: right;
+}
+
+
+::ng-deep #dashBoardcontainer {
+    .bs-datepicker-container {
+        // Daterangepicker changes
+        min-height: 350px !important;
+        padding: 0 !important;
+        //width: 400px;
+    }
+
+}
+
+
+
+
+.PmtAddtnlStatsCard {
+    height: 138px;
+    // margin: 0px 12px 32.5px 12px;
+}
+
+.bg-success {
+    background-color: #01B8AA !important;
+    border-color: #01B8AA !important;
+}
+
+.bg-danger {
+    background-color: #FD625E !important;
+    border-color: #FD625E !important;
+}
+
+.marginLeft0 {
+    margin-left: 0px;
+}
+
+.marginRight0 {
+    margin-right: 0px;
+}
+
+.marginRight10 {
+    margin-right: 10px !important;
+}
+
+.legendAlign {
+    display: grid;
+    align-content: center;
+}
+
+
+.margin-top {
+    margin-top: 14px;
+}
+
+
+::ng-deep .ngx-spinner-overlay {
+    z-index: 1050 !important;
+}

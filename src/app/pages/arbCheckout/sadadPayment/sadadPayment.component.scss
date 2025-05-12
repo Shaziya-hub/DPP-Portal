@@ -1,0 +1,261 @@
+.applyBtnn {
+    border-radius: 4px;
+    height: 20px;
+    margin-right: 11px !important;
+    margin-top: 2px !important;
+    background: linear-gradient(135deg, #3d43b0 0%, #000062 100%);
+    border-color: #000062;
+}
+
+.page-header {
+    margin-bottom: 49px !important;
+
+}
+
+.paidCard {
+    align-items: center;
+    padding-top: 28px !important;
+}
+
+.labell {
+    margin-top: 22px;
+    margin-bottom: 12px;
+    font-family: 'Loew';
+    font-size: 12px;
+    color: #565656;
+}
+
+.above {
+    position: relative;
+    top: 0px;
+
+    label {
+        margin: 0px;
+        font-family: 'FrutigerLTArabic-65Bold';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 150%;
+        display: flex;
+        align-items: flex-end;
+        text-align: right;
+        color: #333333;
+    }
+}
+
+.apple {
+    padding: 12px 18px !important;
+    padding-left: 18px !important;
+    //  padding-right: 18px !important;
+    width: auto;
+    background: #F7F8FB;
+    border-radius: 2px;
+
+
+}
+
+.pay-cards {
+
+    // / flex-direction: row; /
+    align-items: center;
+    padding: 8px 12px 8px 16px;
+    gap: 12px;
+    // / width: auto; /
+    // / height: auto; /
+    margin-bottom: 16px;
+    border: 1px solid #EBEBEB !important;
+    border-radius: 2px;
+
+
+}
+
+.building-bank {
+    background: url(../../../../assets/icons/buildings-bank.png);
+    background-repeat: no-repeat;
+    background-position: 98%;
+}
+
+.document-bill {
+    background: url(../../../../assets/icons/document-bill.png);
+    background-repeat: no-repeat;
+    background-position: 98%;
+}
+
+.caption {
+    background: url(../../../../assets/icons/hashtag.png);
+    background-repeat: no-repeat;
+    background-position: 98%;
+}
+
+.file {
+    background: url(../../../../assets/icons/file.png);
+    background-repeat: no-repeat;
+    background-position: 98%;
+}
+
+.desc {
+    label {
+        font-family: "Frutiger-LT-Arabic-55-Roman";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 14px;
+        color: #000000;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: left;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 auto;
+        width: 33.33333333%;
+        padding-right: 14px;
+        padding-left: 10px;
+    }
+}
+
+.block-12 {
+    height: 120px;
+}
+
+.btn-primary {
+    align-items: center;
+    padding: 11px 41px !important;
+    color: #FFFFFF !important;
+    font-size: 12px;
+    font-weight: 700 !important;
+    font-family: 'Loew';
+    line-height: 24px;
+    border-radius: 2px;
+    //background: linear-gradient(270deg, #000067 0%, #404089 100%), #2E329D;
+
+}
+
+.btn-light {
+    align-items: center;
+    padding: 11px 41px !important;
+    border: 1px solid #000062;
+    font-size: 12px;
+    font-weight: 700 !important;
+    font-family: 'Loew';
+    line-height: 24px;
+    border-radius: 2px;
+
+}
+
+.btnn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 0.5px;
+    gap: 3px;
+
+    width: 61px;
+    height: 28px;
+
+    border: 1px solid #000062;
+    border-radius: 2px;
+    position: relative;
+    top: 20px;
+
+    span {
+        font-family: 'Loew';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px !important;
+        line-height: 24px;
+
+        text-align: center;
+
+        color: #000062;
+
+    }
+}
+
+.paidDate {
+    margin-top: 0px !important;
+    margin: 8px;
+    margin-bottom: 0px !important;
+    padding: 8px 10px 8px 5px;
+    font-family: "Frutiger-LT-Arabic-55-Roman";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 21px;
+    color: #000000;
+    margin-bottom: 16px;
+
+    span {
+        // font-family: 'Frutiger-LT-Arabic-55-Roman';
+        text-align: right !important;
+        // font-weight: 500;
+        // font-size: 14px;
+        // line-height: 24px;
+        // color: #000062 !important;
+
+        font-size: 14px;
+        font-family: 'FrutigerLTArabic-55-Roman';
+        font-weight: 400;
+        line-height: 24px;
+        //text-align: left;
+        margin-top: 0;
+        padding-bottom: 4px;
+        color: #9C9DB4;
+    }
+
+    .col-sm-3 {
+        color: #000;
+        cursor: pointer;
+    }
+
+
+}
+
+@media (min-width: 576px) {
+    .col-sm-9 {
+        flex: 0 0 auto;
+        width: 72%;
+    }
+}
+
+.card.paidCard {
+
+    padding-top: 0px !important;
+    padding: 2px;
+    padding-bottom: 16px;
+}
+
+.abovee {
+    margin-top: 16px;
+}
+
+.row.sadad {
+    margin-right: 8px;
+}
+
+.order-2 {
+    a {
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+    }
+
+    .page-title {
+        font-family: 'FrutigerLTArabic-65Bold';
+        font-weight: 700;
+        font-size: 24px;
+    }
+}
+
+.labell {
+    label {
+        font-family: "Frutiger-LT-Arabic-55-Roman";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 14px;
+        color: #565656;
+        margin-bottom: 16px;
+        display: flex;
+    }
+}

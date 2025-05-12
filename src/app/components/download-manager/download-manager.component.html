@@ -1,0 +1,71 @@
+<div class="modal-header modal-d-manager">
+    <div class="one">
+        <h4 class="modal-title m-0"> <img src='assets/icons/icon-download-manager.svg' style="width: 22px"
+                alt="left-icon"> <span>{{'Download Manager' | translate}}</span></h4>
+    </div>
+    <div class="two d-flex align-items-center close-btn-wp">
+        <button type="button" class="clear-all-btn" (click)="clearAll()">
+            {{'Clear All'|translate}}
+        </button>
+        <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="table-responsive" style="max-height:500px" *ngIf="downloads && downloads.length; else noData ">
+        <table class="table d-manager-table" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th class="col-lg-5 file-name" scope="col">File Name</th>
+                    <th class="col-lg-3" scope="col">Status</th>
+                    <th class="col-lg-1" scope="col">Count</th>
+                    <th class="col-lg-2" scope="col">Date & Time</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let download of downloads">
+                    <td class="col-lg-5" style="padding-left:19px;">{{download.name}}</td>
+                    <td class="col-lg-3">
+                        <div class="w3-light-grey d-m-per-wp">
+                            <div class="d-m-per">{{download.percent}} %</div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" [style]="'width:' + download.percent + '%'"
+                                    [attr.aria-valuenow]="download.percent" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-lg-1">{{download.totalCount}}</td>
+                    <td class="col-lg-2">{{download.date | date: 'short'}}</td>
+                    <td class="d-flex justify-content-around" style="padding-right:13px;"
+                        *ngIf="download.pdfFlag == true ">
+
+
+                        <a (click)="receivefile()"><img src='assets/icons/icon-download-row.svg' class=" "
+                                style="margin-top: 2px; margin-right:5px" alt="download"></a>
+
+
+                        <a (click)="deleteFile(download)"><img src='assets/icons/icon-delete-row.svg' class=" "
+                                alt="delete"></a>
+                    </td>
+                    <td class="d-flex justify-content-around" style="padding-right:13px;"
+                        *ngIf="download.percent == 100 && !download.pdfFlag">
+
+
+                        <a (click)="downloadFile(download)"><img src='assets/icons/icon-download-row.svg' class=" "
+                                style="margin-top: 2px; margin-right:5px" alt="download"></a>
+                        <a (click)="deleteFile(download)"><img src='assets/icons/icon-delete-row.svg' class=" "
+                                alt="delete"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <ng-template #noData>
+        <div class="d-flex justify-content-center no-download-data">
+            <span>{{'No Downloads' | translate}}</span>
+        </div>
+    </ng-template>
+</div>

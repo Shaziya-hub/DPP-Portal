@@ -1,0 +1,8 @@
+<app-filters [pageConfig]="pageConfig" [headerConfig]="headerConfig" [operationsPageInfo]="operationsPageInfo"
+    (applyFiltersEvent)="applyFilters($event)"></app-filters>
+
+
+<app-data-grid *ngIf="dataSource || showNoRecords || serviceNotResponded" [pageConfig]="pageConfig"
+    [headerConfig]="headerConfig" [operationsPageInfo]="operationsPageInfo" (applyFiltersEvent)="applyFilters($event)"
+    [dataSource]="dataSource" [showNoRecords]="showNoRecords" [serviceNotResponded]="serviceNotResponded"
+    [filters]="filters" [pageSettings]="pageSettings" [responseCount]="responseCount"></app-data-grid>

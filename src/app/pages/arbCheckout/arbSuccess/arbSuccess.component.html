@@ -1,0 +1,63 @@
+<div class="pageHeadings">
+    <span class="page-heading2">{{'Payment'}} &nbsp;<span class="subpage-heading2">/&nbsp;{{'Ack'}}</span></span>
+    <hr>
+</div>
+
+<div class="wrapper-main page-header" id="filter-section">
+    <div class="row" style="display: flex; justify-content: center;margin-top: 24px;">
+        <div class="col col-md-5 col-12">
+            <div class="card paidCard">
+                <ngx-spinner bdColor="rgba(0, 0, 0, 0.1)" size="medium" color="#000" type="ball-clip-rotate"
+                    [fullScreen]="false">
+                    <p style="color: black;">{{'Loading...' | translate}}</p>
+                </ngx-spinner>
+
+                <img *ngIf="data?.UpdatePaymentRs?.UpdatePaymentRecRs?.Status.status=='SUCCESS'"
+                    src="assets/icons/paid.png" class="paidImg">
+                <img *ngIf="data?.UpdatePaymentRs?.UpdatePaymentRecRs?.Status.status=='ERROR'"
+                    src="assets/icons/unpaid.png" class="paidImg">
+                <div class="card-body">
+                    <div class="heading">{{'Bill Amount' | translate}}</div>
+                    <div class="bill">{{totalAppliedAmount}}<span>{{'SAR' | translate}}</span> </div>
+                    <!-- <div class="status">{{'The bill has been successfully paid' | translate}}</div> -->
+                    <div class="status"
+                        [ngStyle]="data?.UpdatePaymentRs?.UpdatePaymentRecRs?.Status.status=='SUCCESS'?{'color':'#39BA95'}:{'color':'red'}">
+                        {{reasonDesc}}</div>
+
+                </div>
+                <!-- <div class="paidDate">&nbsp;&nbsp;<img src="assets/icons/calender-icon.png" style="height: 15.99px;width: 15.99px;">&nbsp;&nbsp;<span>{{'Payment Date' | translate}}</span>&nbsp;&nbsp;20/2/2022&nbsp;&nbsp;</div> -->
+                <div class="between-stretch">
+                    <label class="labelss">
+                        <div class="key">{{"Payment Reference" | translate}}</div>
+                        <div class="key" style="padding-top: 8px;">{{'Transaction ID' | translate}}</div>
+                    </label>
+                    <label class="labels">
+
+                        <div class="value">{{paymentRef}}</div>
+                        <div class="value" style="padding-top: 8px;">{{ePayTransId}}</div>
+                    </label>
+                </div>
+                <div class="row" style="height: 5px;overflow: hidden;">
+                    <label class="circle"></label><label style="width: 5px;margin-right: 24px;"
+                        *ngFor="let index of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+                        <div class="rectangle"></div>
+                    </label>&nbsp;&nbsp;&nbsp;
+                    <!-- <img class="col col-sm-auto col-12" src="assets/icons/rectanglee.png" *ngFor="let index of [0,1,2,3,4,5,6,7,8,9,10,11]" style="height: 9px; width: 23px;"> -->
+                </div>
+                <!-- <button class="btn btn-light">{{'Payment was made by credit card' | translate}}</button> -->
+                <div class="row" style="margin-top: 6%;">
+                    <div class="col col-sm-12 col-12 flex-center bottom">
+                        <span class="btn btn-primary px-5 py-2 fw-bold flex-center" (click)="goBack()">{{'Go Back' |
+                            translate}}</span>
+
+                    </div>
+                    <!-- <div class="col col-sm-6 col-12 flex-center bottom">
+                <span class="btn btn-light px-5 py-2 fw-bold flex-center">{{'Homepage' | translate}}</span>
+                
+            </div> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

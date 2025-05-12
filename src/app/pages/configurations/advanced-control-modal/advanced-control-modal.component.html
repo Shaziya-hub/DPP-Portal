@@ -1,0 +1,80 @@
+<div class="common-trx">
+    <div class="modal-header">
+        <h4 class="modal-title">{{type=='serviceTypes'?('Select Service Types' | translate):type=='channels'?('Select
+            Payment Channels' | translate):('Select Payment Methods' |translate)}}</h4>
+        <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body column-set-wp">
+        <div class="left-right-body">
+            <div class="left-body">
+                <div class="form-group custom-form d-flex">
+                    <label class="label text-end" *ngIf="!leftList || (leftList && leftList.length==0)">{{'Empty list'|
+                        translate}}</label>
+                    <label class="label text-end"
+                        *ngIf="leftList && leftList.length>0 && (!filteredLeftList || (filteredLeftList && filteredLeftList.length==0))">{{('Showing
+                        All ' | translate)+leftList.length }}</label>
+                    <label class="label text-end" *ngIf="filteredLeftList && filteredLeftList.length>0">{{'Filtered
+                        '+filteredLeftList.length+' of '+leftList.length | translate}}</label>
+                    <input type="text" name="leftSearch" class="form-control field"
+                        [placeholder]="('Filter' | translate)" (input)="searchLeft()" [(ngModel)]="leftSearch">
+                </div>
+                <div class="item-list">
+                    <div class="header" (click)="moveAllRight()">>></div>
+                    <ng-container *ngIf="filteredLeftList.length==0">
+                        <div class="list-item" (click)="moveRight(m)" *ngFor="let listItem of leftList;let m=index;">
+                            <div *ngIf="type=='channels'">{{listItem.channelName}}</div>
+                            <div *ngIf="type=='serviceTypes'">{{listItem.serviceTypeName}}</div>
+                            <div *ngIf="type=='methods'">{{listItem.pmtMethodName}}</div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="filteredLeftList.length>0">
+                        <div class="list-item" (click)="moveRightFromFiltered(listItem,n)"
+                            *ngFor="let listItem of filteredLeftList;let n=index;">
+                            <div *ngIf="type=='channels'">{{listItem.channelName}}</div>
+                            <div *ngIf="type=='serviceTypes'">{{listItem.serviceTypeName}}</div>
+                            <div *ngIf="type=='methods'">{{listItem.pmtMethodName}}</div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="right-body">
+                <div class="form-group custom-form d-flex">
+                    <label class="label text-end" *ngIf="!rightList || (rightList && rightList.length==0)">{{'Empty
+                        list'| translate}}</label>
+                    <label class="label text-end"
+                        *ngIf="rightList && rightList.length>0 && (!filteredRightList || (filteredRightList && filteredRightList.length==0))">{{('Showing
+                        All ' | translate)+rightList.length}}</label>
+                    <label class="label text-end" *ngIf="filteredRightList && filteredRightList.length>0">{{'Filtered
+                        '+filteredRightList.length+' of '+rightList.length | translate}}</label>
+                    <input type="text" name="rightSearch" class="form-control field"
+                        [placeholder]="('Filter' | translate)" (input)="searchRight()" [(ngModel)]="rightSearch">
+                </div>
+                <div class="item-list">
+                    <div class="header" (click)="moveAllLeft()">{{'<<'}}</div>
+                            <ng-container *ngIf="filteredRightList.length==0">
+                                <div class="list-item" (click)="moveLeft(j)"
+                                    *ngFor="let listItem of rightList;let j=index;">
+                                    <div *ngIf="type=='channels'">{{listItem.channelName}}</div>
+                                    <div *ngIf="type=='serviceTypes'">{{listItem.serviceTypeName}}</div>
+                                    <div *ngIf="type=='methods'">{{listItem.pmtMethodName}}</div>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="filteredRightList.length>0">
+                                <div class="list-item" (click)="moveLeftFromFiltered(listItem,k)"
+                                    *ngFor="let listItem of filteredRightList;let k=index;">
+                                    <div *ngIf="type=='channels'">{{listItem.channelName}}</div>
+                                    <div *ngIf="type=='serviceTypes'">{{listItem.serviceTypeName}}</div>
+                                    <div *ngIf="type=='methods'">{{listItem.pmtMethodName}}</div>
+                                </div>
+                            </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary  col-lg-1 left-alignment col applyBtnn" (click)="save()"><label
+                    class="applyBtnn-label">{{'OK' | translate}}</label></button>
+        </div>
+    </div>

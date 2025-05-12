@@ -1,0 +1,210 @@
+@import '../../../../css/01-settings.scss';
+
+//::ng-deep #model-container{
+.modal-body {
+    height: 580px;
+
+    .chartBox {
+        height: 500px;
+        margin-top: 15px;
+    }
+}
+
+//legend
+:host ::ng-deep .customLegend {
+    padding: 10px 30px 0px;
+
+    table {
+        background: #FFFFFF !important;
+
+        tr {
+            background-color: #FFFFFF;
+        }
+    }
+}
+
+:host ::ng-deep .customLegend .colorBox {
+    display: inline-block;
+    min-height: 10px;
+    min-width: 10px;
+    border-radius: 50%;
+    margin: 0px 10px 0px 9.388px;
+    border-style: solid;
+    border-width: 1px;
+    //margin-bottom: 1rem;
+}
+
+:host ::ng-deep .customLegend .labelValue {
+    cursor: pointer;
+    font-family: 'Frutiger-LT-Arabic-55-Roman';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 14px;
+    color: #747C91;
+    ;
+}
+
+:host ::ng-deep .customLegend .valueLabel {
+    font-family: 'FrutigerLTArabic-65Bold';
+    font-style: normal;
+    font-weight: 700 !important;
+    font-size: 14px;
+    line-height: 27px;
+    // text-align: right;
+    color: #3498DB !important;
+    //margin-left: 30%;
+}
+
+::ng-deep ngb-modal-backdrop.modal-backdrop {
+    background: rgba(51, 51, 51, 0.65) !important;
+}
+
+::ng-deep ngb-modal-backdrop.modal-backdrop.show {
+    opacity: 1 !important;
+}
+
+//center legend
+.centerLegend {
+    display: grid;
+    align-content: center;
+}
+
+//}
+
+
+@media (min-width: 320px) and (max-width:767px) {
+    .customLegend {
+        padding: 0px 0px 0px 20rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width:990px) {
+    .customLegend {
+        position: absolute;
+        top: 80%;
+        right: 35%;
+    }
+}
+
+.switch {
+    input {
+        &:checked+.slider {
+            background-color: #09b39c !important;
+            border: 2px solid #09B39C !important;
+            border-radius: 100px !important;
+
+            &:before {
+                transform: translate(26px);
+                content: "" !important;
+                height: 32px;
+                width: 32px;
+                left: 36px;
+                background-color: #FFFFFF;
+            }
+
+            &:after {
+                content: "Amount";
+                color: #fff;
+            }
+        }
+    }
+
+    .slider {
+        content: "";
+        color: #000;
+        width: 100px !important;
+        height: 40px !important;
+        background: #09B39C;
+
+        &:after {
+            content: "Count";
+            color: #fff;
+        }
+
+        &:before {
+            height: 32px;
+            width: 32px;
+            left: 4px;
+            background-color: #FFFFFF;
+            content: "";
+        }
+    }
+}
+
+:host ::ng-deep .customTooltip {
+    opacity: 1;
+    left: 468.256px;
+    top: 327.748px;
+    background: rgba(116, 124, 145, 0.69);
+    border-radius: 4px;
+    min-height: 70px;
+    color: rgb(255, 255, 255);
+    min-width: 150px;
+    position: absolute;
+    transform: translate(-50%, 0px);
+    transition: all 0.1s ease 0s;
+    pointer-events: none;
+
+    ul {
+        font-family: 'Frutiger LT Arabic 45';
+        margin: 0;
+        // text-align: center;
+        list-style: none;
+
+        li {
+            p {
+                margin-top: 10px;
+
+                div {
+                    display: flex;
+
+                    // margin-bottom: 0;
+                    label {
+                        margin-top: 0px !important;
+                        margin-left: 7px;
+                        margin-right: 7px;
+                        font-family: 'Frutiger LT Arabic 45';
+                        font-style: normal;
+                        font-weight: 300;
+                        font-size: 10px;
+                        line-height: 14px;
+
+                    }
+
+                    p {
+                        font-family: 'Frutiger LT Arabic mix';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 15px;
+                        line-height: 18px;
+                        margin-top: 0px;
+                    }
+                }
+
+                .colorBox {
+                    height: 10px;
+                    width: 10px;
+                    display: block;
+                    margin-top: 5px
+                }
+            }
+        }
+    }
+}
+
+.toggle-row {
+    margin-left: 6% !important;
+}
+
+::ng-deep #modalGaugeChart {
+    google-chart {
+        table {
+            tbody {
+                tr:hover {
+                    background-color: #FFFFFF !important;
+                }
+            }
+        }
+    }
+}

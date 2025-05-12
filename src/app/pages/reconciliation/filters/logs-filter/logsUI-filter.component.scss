@@ -1,0 +1,64 @@
+@import "../../../../../css/01-settings.scss";
+
+::ng-deep .container {
+
+    bs-datepicker-container {
+        right: 0px;
+    }
+}
+
+::ng-deep #containerr {
+    bs-daterangepicker-container.bottom {
+        transform: translate3d(-2px, 50px, 0px) !important;
+    }
+}
+
+::ng-deep #container-log {
+
+    bs-month-calendar-view {
+        width: 55%;
+    }
+
+    bs-years-calendar-view {
+        width: 50%;
+    }
+
+    bs-daterangepicker-container.bottom {
+        transform: translate3d(-2px, 50px, 0px) !important;
+    }
+
+    .bs-media-container {
+        display: flex !important;
+    }
+
+    .theme-green .bs-datepicker-body table td span.selected {
+        background-color: darkblue !important;
+    }
+
+    .bs-datepicker-body table.days span.in-range:not(.select-start):before {
+        background: deepskyblue;
+    }
+
+    .bs-datepicker .bs-datepicker-container .bs-datepicker-body table td {
+        border: 0px;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: transparent !important;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: transparent !important;
+    }
+
+}
+
+.row.transs {
+    margin-left: 10px !important;
+    margin-top: 16px !important;
+}
+
+.required:after {
+    content: " *";
+    color: #E53012;
+}

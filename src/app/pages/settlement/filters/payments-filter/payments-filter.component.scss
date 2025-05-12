@@ -1,0 +1,188 @@
+@import "../../../../../css/01-settings.scss";
+
+.monthly {
+    padding-left: 290px;
+}
+
+.form-check-input {
+    float: right;
+    margin: 2px 10px;
+    width: 18px;
+    height: 18px;
+}
+
+.form-check-label {
+    float: right;
+    margin: 0px 10px;
+}
+
+.rng-amount {
+    padding: 0px 10px;
+}
+
+.datepicker-only-month-select {
+    border: 0 !important;
+
+    .ngb-dp-months {
+        display: none !important;
+    }
+}
+
+input.ng-touched.ng-valid,
+textarea.ng-touched.ng-valid,
+select.ng-touched.ng-valid {
+    border: 1px solid $cream-violet !important;
+}
+
+::ng-deep #settlementDateContainer {
+
+    bs-datepicker-container {
+        right: 0px;
+        top: 25% !important;
+        // width: 100%;
+
+        .bs-datepicker-container {
+            padding: 0px !important;
+            height: 361px;
+            width: 420px !important;
+        }
+
+        .bs-media-container {
+            display: block !important;
+        }
+    }
+
+    .bs-media-container {
+        display: flex !important;
+    }
+
+    bs-month-calendar-view {
+        width: 55%;
+    }
+
+    bs-years-calendar-view {
+        width: 50%;
+    }
+
+
+    .theme-green .bs-datepicker-body table td span.selected {
+        background-color: darkblue !important;
+        color: #FFFFFF !important;
+    }
+
+    .bs-datepicker-body table.days span.in-range:not(.select-start):before {
+        background: deepskyblue;
+    }
+
+    .bs-datepicker .bs-datepicker-container .bs-datepicker-body table td {
+        border: 0px;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: transparent !important;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: transparent !important;
+    }
+
+
+}
+
+.row.transs {
+    margin-left: 10px !important;
+    margin-top: 16px !important;
+}
+
+
+
+.common-trx .topMargin {
+    margin-top: 32px !important;
+}
+
+
+.form-group.col.col-lg-3.col-12.custom-form.btntoggle {
+    padding-top: 18px !important;
+    padding-bottom: 35px !important;
+}
+
+.selectedValueLabel {
+    position: absolute;
+    top: 42px !important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 31px;
+    color: #333333;
+    font-family: 'Frutiger-LT-Arabic-55-Roman';
+}
+
+.common-trx .PmtAddtnlStatsCard {
+    padding: 17px 10px 23px 10px;
+    margin-bottom: 32px;
+
+    .card-body {
+        .total {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 27px;
+            text-align: center;
+            text-transform: uppercase;
+            color: #1D1557;
+            margin-bottom: 0px;
+        }
+
+        .total-counts {
+            margin-bottom: 8px !important;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 35px;
+            text-align: center;
+            text-transform: uppercase;
+
+        }
+
+        .total-footer {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            // line-height: 27px;
+            text-align: center;
+            text-transform: uppercase;
+            color: #747C91;
+        }
+
+        .total-footer.includedVat {
+            font-size: 12px;
+            text-transform: none;
+        }
+    }
+}
+
+
+
+.vat {
+    padding-bottom: 3px !important;
+
+    .sar {
+        padding-bottom: 5px !important;
+    }
+}
+
+.required:after {
+    content: " *";
+    color: #E53012;
+}
+
+.wrapper-main .row .form-group {
+    padding-bottom: 5px !important;
+}
+
+.common-trx {
+    .switch {
+        .slider {
+            top: 0px !important;
+        }
+    }
+}

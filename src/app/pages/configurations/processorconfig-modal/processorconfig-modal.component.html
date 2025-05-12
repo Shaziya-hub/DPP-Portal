@@ -1,0 +1,175 @@
+<div class="common-trx">
+    <div class="modal-header">
+        <h4 class="modal-title">{{'Edit Processor Configuration' | translate}}</h4>
+        <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true"><img src="assets/icons/icon-close-new.png"></span>
+        </button>
+    </div>
+
+    <div class="modal-body column-set-wp">
+        <div class="row">
+
+            <div class="form-group custom-form">
+                <label class="label">{{'Processor Url' | translate}}</label>
+                <span *ngIf="sensitiveLabel['processorUrl']" class='icon'><i
+                        [ngClass]="processorconfigCopy.processorUrl != '*****' && processorconfig.processorUrl != null? 'fa fa-eye' : processorconfigCopy.processorPassword == '*****' && processorconfig.processorUrl != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('processorUrl')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['processorUrl'] || processorconfigCopy.processorUrl != '*****'? 'text' : 'password']"
+                    name="processorUrl" class="form-control field" [(ngModel)]="processorconfig.processorUrl">
+
+                <!-- <input type="text" name="processorUrl" class="form-control field" [(ngModel)]="processorconfig.processorUrl"> -->
+            </div>
+
+            <div class="form-group custom-form relative">
+                <label class="label ">{{'Processor Username' | translate}}</label>
+                <span *ngIf="sensitiveLabel['processorUsername']" class='icon'><i
+                        [ngClass]="processorconfigCopy.processorUsername != '*****' ? 'fa fa-eye' : 'fa fa-eye-slash'"
+                        (click)="showPassword('processorUsername')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['processorUsername'] || processorconfigCopy.processorUsername != '*****'? 'text' : 'password']"
+                    name="processorUsername" class="form-control field" [(ngModel)]="processorconfig.processorUsername">
+
+                <!-- <input type="text" name="processorUsername" class="form-control field"
+                    [(ngModel)]="processorconfig.processorUsername"> -->
+            </div>
+
+            <div class="form-group custom-form relative">
+                <label class="label ">{{'Processor Password' | translate}}</label>
+                <span *ngIf="sensitiveLabel['processorPassword']" class='icon'><i
+                        [ngClass]="processorconfigCopy.processorPassword != '*****' && processorconfig.processorPassword != null? 'fa fa-eye' : processorconfigCopy.processorPassword == '*****' && processorconfig.processorPassword != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('processorPassword')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['processorPassword'] || processorconfigCopy.processorPassword != '*****'? 'text' : 'password']"
+                    name="processorPassword" class="form-control field" [(ngModel)]="processorconfig.processorPassword">
+            </div>
+
+            <!-- <div class="form-group custom-form">
+                <label class="label ">{{'Payment Method' | translate}}</label>
+                <span *ngIf="sensitiveLabel['pmtMethodId']" class='icon'><i
+                        [ngClass]="processorconfigCopy.pmtMethodId != '*****' && processorconfig.pmtMethodId != null? 'fa fa-eye' : processorconfigCopy.processorPassword == '*****' && processorconfig.pmtMethodId != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('pmtMethodId')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['pmtMethodId'] || processorconfigCopy.pmtMethodId != '*****'? 'text' : 'password']"
+                    name="pmtMethodId" class="form-control field" [(ngModel)]="processorconfig.pmtMethodId">
+            </div> -->
+
+            <div class="form-group custom-form">
+                <label class="label ">{{'Merchant Code' | translate}}</label>
+                <span *ngIf="sensitiveLabel['merchantId']" class='icon'><i
+                        [ngClass]="processorconfigCopy.merchantId != '*****' && processorconfig.merchantId != null? 'fa fa-eye' : processorconfigCopy.processorPassword == '*****' && processorconfig.merchantId != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('merchantId')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['merchantId'] || processorconfigCopy.merchantId != '*****'? 'text' : 'password']"
+                    name="merchantId" class="form-control field" [(ngModel)]="processorconfig.merchantId">
+
+            </div>
+
+            <div class="form-group custom-form">
+                <label class="label ">{{'Merchant Name' | translate}}</label>
+                <span *ngIf="sensitiveLabel['merchantName']" class='icon'><i
+                        [ngClass]="processorconfigCopy.merchantName != '*****' && processorconfig.merchantName != null? 'fa fa-eye' : processorconfigCopy.processorPassword == '*****' && processorconfig.merchantName != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('merchantName')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['merchantName'] || processorconfigCopy.merchantName != '*****'? 'text' : 'password']"
+                    name="merchantName" class="form-control field" [(ngModel)]="processorconfig.merchantName">
+
+            </div>
+
+            <div class="form-group custom-form">
+                <label class="label ">{{'Host Name' | translate}}</label>
+                <span *ngIf="sensitiveLabel['hostName']" class='icon'><i
+                        [ngClass]="processorconfigCopy.hostName != '*****' && processorconfig.hostName != null? 'fa fa-eye' : processorconfigCopy.processorPassword == '*****' && processorconfig.hostName != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('hostName')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['hostName'] || processorconfigCopy.hostName != '*****'? 'text' : 'password']"
+                    name="hostName" class="form-control field" [(ngModel)]="processorconfig.hostName">
+
+            </div>
+
+            <div class="form-group custom-form">
+                <label class="label ">{{'Report Username' | translate}}</label>
+                <span *ngIf="sensitiveLabel['reportUsername']" class='icon'><i
+                        [ngClass]="processorconfigCopy.reportUsername != '*****' && processorconfig.reportUsername != null? 'fa fa-eye' : processorconfigCopy.processorPassword == '*****' && processorconfig.reportUsername != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('reportUsername')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['reportUsername'] || processorconfigCopy.reportUsername != '*****'? 'text' : 'password']"
+                    name="reportUsername" class="form-control field" [(ngModel)]="processorconfig.reportUsername">
+
+            </div>
+
+            <div class="form-group custom-form relative">
+                <label class="label ">{{'Report Password' | translate}}</label>
+                <span *ngIf="sensitiveLabel['reportPassword']" class='icon'><i
+                        [ngClass]="processorconfigCopy.reportPassword != '*****' && processorconfig.reportPassword != null? 'fa fa-eye' : processorconfigCopy.processorPassword == '*****' && processorconfig.reportPassword != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('reportPassword')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['reportPassword'] || processorconfigCopy.reportPassword != '*****'? 'text' : 'password']"
+                    name="reportPassword" class="form-control field" [(ngModel)]="processorconfig.reportPassword">
+
+            </div>
+            <div class="form-group custom-form">
+                <label class="label ">{{'Fees ID' | translate}}</label>
+                <span *ngIf="sensitiveLabel['fee']" class='icon'><i
+                        [ngClass]="processorconfigCopy.fee != '*****' && processorconfig.fee != null? 'fa fa-eye' : processorconfigCopy.processorPassword == '*****' && processorconfig.fee != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('fee')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['fee'] || processorconfigCopy.fee != '*****'? 'text' : 'password']"
+                    name="fee" class="form-control field" [(ngModel)]="processorconfig.fee">
+
+            </div>
+
+            <!-- <div class="form-group custom-form">
+                <label class="label ">{{'Merchant Name' | translate}}</label>
+                <span *ngIf="sensitiveLabel['merchantName']" class='icon'><i [ngClass]="processorconfigCopy.merchantName != '*****' && processorconfig.merchantName != null? 'fa fa-eye' : processorconfigCopy.processorPassword == '*****' && processorconfig.merchantName != null ? 'fa fa-eye-slash' :''" (click)="showPassword('merchantName')"></i></span>
+            <input [type]="[!sensitiveLabel['merchantName'] || processorconfigCopy.merchantName != '*****'? 'text' : 'password']" name="merchantName" class="form-control field" [(ngModel)]="processorconfig.merchantName">
+       
+
+            </div> -->
+
+            <!-- <div class="form-group custom-form">
+                <label class="label ">{{'Service Type' | translate}}</label>
+                <span *ngIf="sensitiveLabel['serviceTypeId']" class='icon'><i
+                        [ngClass]="processorconfigCopy.serviceTypeId != '*****' && processorconfig.serviceTypeId != null? 'fa fa-eye' : processorconfigCopy.processorPassword == '*****' && processorconfig.serviceTypeId != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('serviceTypeId')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['serviceTypeId'] || processorconfigCopy.serviceTypeId != '*****'? 'text' : 'password']"
+                    name="serviceTypeId" class="form-control field" [(ngModel)]="processorconfig.serviceTypeId">
+            </div> -->
+
+            <!-- <div class="form-group custom-form">
+            <label class="label ">{{'Fee' | translate}}</label>
+            <span *ngIf="sensitiveLabel['fee']" class='icon'><i [ngClass]="processorconfigCopy.fee != '*****' && processorconfig.fee != null? 'fa fa-eye' : processorconfigCopy.processorPassword == '*****' && processorconfig.fee != null ? 'fa fa-eye-slash' :''" (click)="showPassword('fee')"></i></span>
+            <input [type]="[!sensitiveLabel['fee'] || processorconfigCopy.fee != '*****'? 'text' : 'password']" name="fee" class="form-control field" [(ngModel)]="processorconfig.fee">
+       
+
+        </div>
+
+        <div class="form-group custom-form relative">
+            <label class="label ">{{'Report UserName' | translate}}</label>
+            <span *ngIf="sensitiveLabel['reportUsername']" class='icon'><i [ngClass]="processorconfigCopy.reportUsername != '*****' && processorconfig.reportUsername != null? 'fa fa-eye' : processorconfigCopy.processorPassword == '*****' && processorconfig.reportUsername != null ? 'fa fa-eye-slash' :''" (click)="showPassword('reportUsername')"></i></span>
+            <input [type]="[!sensitiveLabel['reportUsername'] || processorconfigCopy.reportUsername != '*****'? 'text' : 'password']" name="reportUsername" class="form-control field" [(ngModel)]="processorconfig.reportUsername">
+       
+   
+        </div>
+
+        <div class="form-group custom-form relative">
+            <label class="label ">{{'Report Password' | translate}}</label>
+            <span *ngIf="sensitiveLabel['reportPassword']" class='icon'><i [ngClass]="processorconfigCopy.reportPassword != '*****' && processorconfig.reportPassword != null? 'fa fa-eye' : processorconfigCopy.processorPassword == '*****' && processorconfig.reportPassword != null ? 'fa fa-eye-slash' :''" (click)="showPassword('reportPassword')"></i></span>
+            <input [type]="[!sensitiveLabel['reportPassword'] || processorconfigCopy.reportPassword != '*****'? 'text' : 'password']" name="reportPassword" class="form-control field" [(ngModel)]="processorconfig.reportPassword">
+       
+        
+        </div> -->
+
+            <div class="form-group custom-form">
+                <input type="hidden" name="configId" class="form-control field" [(ngModel)]="processorconfig.configId">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary col-lg-1 left-alignment col applyBtnn" (click)="save()"><label
+                class="applyBtnn-label">{{'Update' | translate}}</label></button>
+        <button type="button" class="btn  btn-light  col-lg-1 left-alignment col cancelBtnn" (click)="close()"><label
+                class="cancelBtnn-label">{{'Cancel' | translate}}</label></button>
+    </div>
+</div>

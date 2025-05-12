@@ -1,0 +1,203 @@
+@import "../../../css/01-settings.scss";
+
+input.color-border {
+  border: 1px solid $error !important;
+
+}
+
+
+
+//timepicker
+.card.ng-star-inserted {
+  position: absolute;
+  height: 248px;
+  width: 272px;
+  top: 40px;
+  left: 2px;
+  z-index: 999;
+  box-shadow: 0 0 10px 0 $medium-gray;
+  border-radius: 8px;
+
+}
+
+td {
+  padding: 2.5rem;
+  max-width: 200px;
+}
+
+button.btn.btn-sm.btn-light.now {
+  background-color: $white;
+  color: $accent;
+  border: 1px solid $cream-violet;
+  position: absolute;
+  //right: -1%;
+  box-shadow: 0px 2px 2px $shadow-black;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+button.btn.btn-sm.btn-light.clear {
+  background-color: $white;
+  color: $cyan-blue;
+  border: 0px solid $cream-violet;
+  position: absolute;
+  left: 142px;
+  // right: 1%;
+  font-weight: 600;
+}
+
+button.btn.btn-sm.btn-light.close {
+  background-color: $white;
+  color: $cyan-blue;
+  border: 0px solid $cream-violet;
+  position: absolute;
+  left: 74%;
+  //right: 42%;
+  top: 74%;
+  font-weight: 600;
+}
+
+button.btn.btn-sm.btn-light.date {
+  background-color: $white;
+  color: $cyan-blue;
+  border: 0px solid $cream-violet;
+  position: absolute;
+  top: 47px;
+  left: -4px;
+  //right: 0%;
+  font-weight: 600;
+}
+
+.hidden {
+  visibility: hidden !important;
+}
+
+//for settelement placeholder position
+.date-picker2 ::placeholder {
+  transform: scaleY(1);
+}
+
+.date-picker3 ::placeholder {
+  transform: scaleY(1);
+}
+
+
+
+//DateRangePicker
+//DateRangePicker
+.card.timepicker {
+
+  position: absolute;
+  /* height: 248px; */
+  /* width: 272px; */
+  top: 40px;
+  /* left: 2px; */
+  width: 500px;
+  right: 0px;
+  z-index: 999;
+  box-shadow: 0 0 10px 0 #aaa;
+  border-radius: 8px;
+
+}
+
+::ng-deep #time {
+  input.form-control.text-center.bs-timepicker-field {
+    margin-left: 8px !important;
+  }
+}
+
+button.btn.btn-light.noww {
+  /* position: absolute; */
+  background-color: $white;
+  color: $accent;
+  border: 1px solid $cream-violet;
+  box-shadow: 0px 2px 2px $shadow-black;
+  min-width: 57%;
+  border-radius: 4px;
+  /* width: 45%; */
+  /* align-items: center; */
+}
+
+label.label-align {
+  text-align: center;
+  margin-left: 40%;
+}
+
+button.btn.btn-light.clearr {
+  background-color: $white;
+  color: $cyan-blue;
+  border: 0px solid $cream-violet;
+  min-width: 57%;
+  font-weight: 600;
+}
+
+button.btn.btn-light.datee {
+  background-color: $white;
+  color: $cyan-blue;
+  border: 0px solid $cream-violet;
+  min-width: 57%;
+  font-weight: 600;
+}
+
+button.btn.btn-light.closee {
+  background-color: $white;
+  color: $cyan-blue;
+  border: 0px solid $cream-violet;
+  min-width: 57%;
+  font-weight: 600;
+}
+
+input.form-control {
+  border-radius: 6px !important;
+  height: 50px;
+  border: 1px solid rgba(116, 124, 145, 0.3);
+  background-color: #FFFF !important;
+  border: 1px solid rgba(116, 124, 145, 0.3)
+}
+
+
+.input-group-append {
+  span {
+    height: 45px;
+    display: block;
+    top: 7.5px;
+    position: absolute;
+    right: 0px;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(116, 124, 145, 0.3);
+    border-radius: 0px 6px 6px 0px;
+    border-left: 1px solid transparent;
+
+    img {
+      margin: 5px;
+      cursor: pointer;
+    }
+  }
+}
+
+.input-group-appendTrx {
+  span {
+    height: 50px;
+    display: block;
+    top: 0px;
+    position: absolute;
+    right: 0px;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(116, 124, 145, 0.3);
+    border-radius: 0px 6px 6px 0px;
+    border-left: 1px solid transparent;
+
+    img {
+      margin: 5px;
+      cursor: pointer;
+    }
+  }
+}
+
+.customTextwidth {
+  width: 80%;
+}
+
+input:focus {
+  outline: none;
+}

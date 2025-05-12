@@ -1,0 +1,122 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{'Assign Resources' | translate}}</h4>
+    <button class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <!-- <div class="container">  -->
+    <div class="accordion access-ctl-acc" id="accordionExample" *ngIf="menu?.length > 0 && show">
+        <div *ngFor="let menuu of menu; let i = index">
+            <div class="block-12"></div>
+            <div class="accordion-item" *ngIf="menu?.length">
+                <h2 class="accordion-header margin-0" id="panelsStayOpen-heading{{i}}">
+                    <button class="accordion-button "
+                        [class]="i>0? 'collapsed cst-acc-btn margin-0 padding-0':'cst-acc-btn margin-0 padding-0'"
+                        type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#panelsStayOpen-collapse'+ i"
+                        [attr.aria-expanded]="i==0 ? 'true' : 'false'"
+                        [attr.aria-controls]="'panelsStayOpen-collapse'+ i">
+                        <div class="acc-heading">{{menuu.displayName}}</div>
+                    </button>
+                </h2>
+                <!-- [class]="i==0? 'show': ''" -->
+                <div id="panelsStayOpen-collapse{{i}}" class="accordion-collapse collapse"
+                    [attr.aria-labelledby]="'panelsStayOpen-heading'+ i" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+
+                        <div class="col-sm-12 col-lg-3">
+                            <label class="checkbox">
+                                <input type="checkbox" [(ngModel)]="selectDemo[menuu.displayName]"
+                                    [checked]="selectDemo[menuu.displayName]==true"
+                                    (change)="selectAll($event, menuu ,menuu.id)" [name]="menuu.displayName">
+                                <span>{{'Select All' | translate}}</span>
+                            </label>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-2 col-2 parent-row">{{menuu.displayName}}</div>
+                            <div class=" col-sm-2 col-2 heading"
+                                *ngFor="let rootText of ['View','Download','Edit','Delete','Add']">
+                                <label class=" checkbox"> <input class=" col-sm-1 col-1"
+                                        [type]="menuu.rootSelectable && (rootText == menuu.rootSelectable.view || rootText == menuu.rootSelectable.download || rootText == menuu.rootSelectable.edit || rootText == menuu.rootSelectable.delete || rootText == menuu.rootSelectable.add)?'checkbox':'hidden'"
+                                        id={{menuu.id}}_{{rootText}}
+                                        (change)="seletColumn($event, menuu,rootText,menuu.id)">
+                                    <span class=" col-sm-1 col-1">{{rootText | translate}}</span>
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="block-20"></div>
+                        <div class="col">
+                            <div *ngFor="let submenu of menuu?.subMenu, let i =index">
+                                <div class="row" *ngFor="let permission of submenuPass">
+                                    <div class="col-sm-2 col-2  roleright-row ">{{submenu.displayName
+                                        ==permission.displayName && submenu.id==permission.id? submenu.displayName :''}}
+                                    </div>
+                                    <div class="col-sm-1 col-1 view-offset"
+                                        *ngIf="submenu.displayName ==permission.displayName && submenu.id==permission.id">
+                                        <i [ngClass]="permission?.permissions?.viewPermission?.flag=='na' && permission?.permissions.viewPermission?.view=='View'? 'fa fa-ban fa-lg' : ''"
+                                            [ngStyle]="menuu.rootSelectable?.view == permission?.permissions?.viewPermission?.view && permission?.permissions?.viewPermission?.flag=='na'? {'margin-left':'19.4%'}:{'margin-left': '7.4%'}"></i><label
+                                            *ngIf="permission?.permissions?.viewPermission?.view=='View' && permission?.permissions?.viewPermission?.flag!='na'"
+                                            class="checkbox checkboxAlign"><input type="checkbox"
+                                                [checked]="permission?.permissions?.viewPermission?.flag=='true'"
+                                                (change)="onChange($event,menuu,submenu.id,menuu.id,'View')"></label>
+                                    </div>
+                                    <div class="col-sm-1 col-1 offset-1  "
+                                        *ngIf="submenu.displayName ==permission.displayName && submenu.id==permission.id">
+                                        <i [ngClass]="permission?.permissions?.downloadPermission?.flag=='na' && permission?.permissions?.downloadPermission?.download=='Download'? 'fa fa-ban fa-lg ' : ''"
+                                            [ngStyle]="menuu.rootSelectable?.download == permission?.permissions?.downloadPermission?.download && permission?.permissions?.downloadPermission?.flag=='na'?{'margin-left':'19.4%'}:{'margin-left': '7.4%'}"></i><label
+                                            *ngIf="permission?.permissions?.downloadPermission?.download=='Download' && permission?.permissions?.downloadPermission?.flag!='na'"
+                                            class="checkbox checkboxAlign"><input type="checkbox"
+                                                [checked]="permission?.permissions?.downloadPermission?.flag=='true'"
+                                                (change)="onChange($event,menuu,submenu.id,menuu.id,'Download')"></label>
+                                    </div>
+                                    <div class="col-sm-1 col-1 edit-offset  "
+                                        *ngIf="submenu.displayName ==permission.displayName && submenu.id==permission.id">
+                                        <i [ngClass]="permission?.permissions?.editPemission?.flag=='na' && permission?.permissions?.editPemission?.edit=='Edit'? 'fa fa-ban' : ''"
+                                            [ngStyle]="menuu.rootSelectable?.edit == permission?.permissions?.editPemission?.edit && permission?.permissions?.editPemission?.flag=='na'?{'margin-left':'19.4%'}:{'margin-left': '7.4%'}"></i><label
+                                            *ngIf="permission?.permissions?.editPemission?.edit=='Edit' && permission?.permissions?.editPemission?.flag!='na'"
+                                            class="checkbox checkboxAlign"><input type="checkbox"
+                                                [checked]="permission?.permissions?.editPemission?.flag=='true'"
+                                                (change)="onChange($event,menuu,submenu.id,menuu.id,'Edit')"></label>
+                                    </div>
+                                    <div class="col-sm-1 col-1 edit-offset  "
+                                        *ngIf="submenu.displayName ==permission.displayName && submenu.id==permission.id">
+                                        <i [ngClass]="permission?.permissions?.deletePermission.flag=='na' && permission?.permissions?.deletePermission?.delete=='Delete'? 'fa fa-ban' : ''"
+                                            [ngStyle]="menuu.rootSelectable?.delete == permission?.permissions?.deletePermission?.delete && permission?.permissions?.deletePermission.flag=='na'? {'margin-left':'19.4%'}:{'margin-left': '7.4%'}"></i><label
+                                            *ngIf="permission?.permissions?.deletePermission?.delete=='Delete' && permission?.permissions?.deletePermission?.flag!='na'"
+                                            class="checkbox checkboxAlign"><input type="checkbox"
+                                                [checked]="permission?.permissions?.deletePermission?.flag=='true'"
+                                                (change)="onChange($event,menuu,submenu.id,menuu.id,'Delete')"></label>
+                                    </div>
+                                    <div class="col-sm-1 col-1 edit-offset "
+                                        *ngIf="submenu.displayName ==permission.displayName && submenu.id==permission.id">
+                                        <i [ngClass]="permission?.permissions?.addPermission?.flag=='na' && permission?.permissions?.addPermission?.add=='Add'? 'fa fa-ban' : ''"
+                                            [ngStyle]="menuu.rootSelectable?.add == permission?.permissions?.addPermission?.add && permission?.permissions?.addPermission?.flag=='na'? {'margin-left':'19.4%'}:{'margin-left': '7.4%'}"></i><label
+                                            *ngIf="permission?.permissions?.addPermission?.add=='Add' && permission?.permissions?.addPermission?.flag!='na'"
+                                            class="checkbox checkboxAlign"><input type="checkbox"
+                                                [checked]="permission?.permissions?.addPermission?.flag=='true'"
+                                                (change)="onChange($event,menuu,submenu.id,menuu.id,'Add')"></label>
+                                    </div>
+                                </div>
+
+
+                                <div class="block-20"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-block btn-light btn-light-custom col-lg-1 cancelBtnn" (click)="close()"
+        style="margin-right: 20px;">{{'Cancel' | translate}}</button>
+    <button type="button" class="btn btn-block btn-primary btn-primary-custom col-lg-1 applyBtnn" (click)="apply()"
+        style="margin-left: 0px; margin-right: 0px;">{{'Apply' | translate}}</button>
+</div>

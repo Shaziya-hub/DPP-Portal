@@ -1,0 +1,78 @@
+<div class="home">
+  <div class="row carousel-padding">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row">
+            <div class="col-md-6 col">
+              <div class="carousel-heading">{{'Track Digital Payments' | translate}}</div>
+              <div class="carousel-sub-heading">{{'Easily track digital payments through Digital Payment Platform' |
+                translate}}</div>
+            </div>
+            <div class="col-md-6 col-12">
+              <img src="assets/icons/slide1-img.svg" class="d-block w-100" alt="..." height="324px" />
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <div class="carousel-heading">{{'Visualized Dashboard' | translate}}</div>
+              <div class="carousel-sub-heading">{{'Visualized dashboard to get most platform stats, payments,...etc' |
+                translate}}</div>
+            </div>
+            <div class="col-md-6 col">
+              <img src="assets/icons/slide2-img.svg" class="d-block w-100" alt="..." height="324px" />
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-md-6 col">
+              <div class="carousel-heading">{{'Full Payment History Reports' | translate}}</div>
+              <div class="carousel-sub-heading">{{"View, download fully detailed payment history reports including all
+                company's digital payment history" | translate}}</div>
+            </div>
+            <div class="col-md-6 col-12">
+              <img src="assets/icons/slide3-img.svg" class="d-block w-100" alt="..." height="324px" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="homeHeading">{{'Our Features' | translate}}</div>
+    <div class="col-md-3 col-sm-6 col-6" *ngFor="let head of cardheading,let i = index">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-img">
+            <img [src]="i ==0 ? 'assets/icons/dashboard-icon.png':i ==1 ? 'assets/icons/trx-icon.png':
+                i ==2 ? 'assets/icons/reconcilation-icon.png':i ==3 ? 'assets/icons/settlement-icon.png':
+                i ==4 ? 'assets/icons/configuration-icon.png':i ==5 ? 'assets/icons/uploads-icon.png':
+                i ==6 ? 'assets/icons/idm-png.png':i ==7 ? 'assets/icons/report-icon.png':''" alt="">
+          </div>
+          <div class="text-center">{{head | translate}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

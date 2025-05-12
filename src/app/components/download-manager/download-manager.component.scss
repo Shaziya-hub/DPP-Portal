@@ -1,0 +1,149 @@
+@import "src/css/01-settings.scss";
+
+::ng-deep .dark-modal {
+    .modal-content {
+        min-height: 300px;
+    }
+
+
+    .modal-body {
+        padding: 0px;
+    }
+
+    .modal-header {
+        background-color: $black-blue;
+        color: $white;
+        padding: 0 20px;
+        border-radius: 6px 6px 0px 0px;
+        height: 50px;
+    }
+
+    .modal-title {
+        font-size: 20px;
+    }
+
+    .modal-title span {
+        font-size: 18px;
+        padding-left: 10px;
+        font-weight: 500;
+    }
+
+    .close {
+        background: transparent;
+        color: inherit;
+        min-width: 10px;
+        padding: 0px;
+        height: auto;
+
+        &:focus-visible {
+            outline: 0;
+        }
+
+        span {
+            font-size: 28px;
+            color: $milkwhite;
+        }
+    }
+
+    .clear-all-btn {
+        background-color: $white;
+        color: $maritime-blue;
+        border-radius: 4px;
+        padding: 0px 2px;
+        font-weight: 600;
+        font-size: 12px;
+        height: 24px;
+        border: 1px solid $cream-violet;
+
+        &:focus-visible {
+            outline: 0;
+        }
+    }
+
+    tr td {
+        padding: 1.5rem 0.5rem;
+        vertical-align: middle;
+        color: $gun-powder;
+    }
+
+    .progress {
+        background-color: $spa;
+        border-radius: 0.25rem;
+        height: 10px;
+        border-radius: 100px;
+        width: 140px;
+        margin-top: 2px;
+        margin-left: 10px;
+        float: left;
+    }
+
+    .progress-bar {
+        background-color: $waterfall;
+        transition: width .6s ease;
+        border-radius: 100px;
+
+    }
+
+    .d-m-per-wp {}
+
+    .d-m-per {
+        font-size: 12px;
+        width: auto;
+        float: left;
+    }
+
+    .date-w {
+        width: 130px;
+    }
+
+    .d-manager-table thead tr {
+        height: 48px;
+        vertical-align: middle;
+        background: $white;
+        box-shadow: 0px 3px 4px $shadow-black;
+        position: sticky;
+    }
+
+    .d-manager-table {
+        border-collapse: initial;
+    }
+
+    .d-manager-table tbody tr:nth-child(even) {
+        background-color: $gray95 !important;
+    }
+
+    .d-manager-table th {
+        font-weight: 500;
+    }
+
+
+
+    .file-name {
+        padding-left: 20px;
+    }
+
+    .no-download-data {
+        height: 225px;
+        align-items: center;
+    }
+}
+
+::ng-deep .modal-content {
+    border: 0px !important;
+    border-radius: 6px;
+}
+
+::ng-deep .close-btn-wp {
+    margin-right: -10px;
+}
+
+
+
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+
+    .d-manager-table {
+        min-width: 1000px;
+    }
+
+}

@@ -1,0 +1,13 @@
+@import "../../../../../css/01-settings.scss";
+
+::ng-deep #container {
+
+    .theme-green .bs-datepicker-body table td span.selected {
+      background-color: $darkGreen !important;
+      color: #FFFFFF !important;
+    }
+
+    bs-daterangepicker-container {
+      transform: translate3d(-2px, 50px, 0px) !important;
+    }
+  }

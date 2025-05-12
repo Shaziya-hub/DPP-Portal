@@ -1,0 +1,49 @@
+.btn-group.pagination {
+  width: 99px;
+  height: 50px;
+  background: #FFFFFF;
+  border: 1px solid rgba(116, 124, 145, 0.3);
+  border-radius: 6px;
+  margin-top: 2px
+    /* padding: 10px 10px 10px 12px; */
+}
+
+label.page-dropdown {
+  background: url(../../../../../assets/icons/icon-select-down.svg) no-repeat center center;
+  background-color: #e6e8ee;
+  mix-blend-mode: normal;
+  margin-top: 6px !important;
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  margin-right: 9px;
+}
+
+ul#dropdown-basic {
+  width: auto !important;
+  margin-left: 1px;
+  //  margin-top: -53px;
+  height: 287px;
+  overflow: auto;
+
+  li.menu-item {
+    text-align: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(116, 124, 145, 0.3);
+    ;
+  }
+}
+
+.common-trx {
+  ::ng-deep #reportcontainer {
+
+    .theme-green .bs-datepicker-body table td span.selected {
+      background-color: darkBlue !important;
+      color: #FFFFFF !important;
+    }
+
+    bs-daterangepicker-container {
+      transform: translate3d(-2px, 50px, 0px) !important;
+    }
+  }
+}

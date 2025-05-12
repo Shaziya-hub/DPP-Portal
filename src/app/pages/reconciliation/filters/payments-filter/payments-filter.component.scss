@@ -1,0 +1,345 @@
+@import "../../../../../css/01-settings.scss";
+
+#monthly {
+
+    margin: 25px 1px 5px 1px;
+}
+
+//Validation
+.ng-alert {
+    border: $bright-red;
+}
+
+.ng-message {
+    color: $bright-red;
+    text-align: left;
+    margin: 20px 0px 0px 0px;
+}
+
+input.ng-touched.ng-valid,
+textarea.ng-touched.ng-valid,
+select.ng-touched.ng-valid {
+    border: 1px solid $cream-violet;
+}
+
+.ng-select.ng-invalid.ng-touched .ng-select-container {
+    border-color: $bright-red;
+}
+
+.colour {
+    border: 1px solid $cream-violet;
+}
+
+
+::ng-deep #container {
+
+    bs-datepicker-container {
+        right: 0px;
+        top: 25% !important;
+        //width: 100%;
+
+        .bs-datepicker-container {
+            padding: 0px !important;
+            height: 361px;
+            width: 420px !important;
+            height: 310px !important;
+        }
+
+        .bs-media-container {
+            display: block !important;
+        }
+
+        .bs-datepicker .bs-datepicker-container .bs-datepicker-body table.months td span {
+            padding: 14px 6px !important;
+        }
+    }
+
+
+
+    bs-month-calendar-view {
+        width: 55%;
+
+        tbody tr:nth-child(odd) {
+            background-color: #FFFFFF !important;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #FFFFFF !important;
+        }
+
+    }
+
+    bs-years-calendar-view {
+        width: 50%;
+    }
+
+
+    .theme-green .bs-datepicker-body table td span.selected {
+        background-color: darkblue !important;
+    }
+
+    .bs-datepicker-body table.days span.in-range:not(.select-start):before {
+        background: deepskyblue;
+    }
+
+    .bs-datepicker .bs-datepicker-container .bs-datepicker-body table td {
+        border: 0px;
+    }
+
+
+}
+
+.col-height {
+    height: 105px;
+}
+
+.btntoggle {
+    //toggle
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        top: 30px;
+        width: 60px;
+        height: 15px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 11px;
+        bottom: 0;
+        -webkit-transition: .4s;
+        transition: .4s;
+        content: "";
+        color: $accent;
+        width: 52px !important;
+        height: 32px !important;
+        background-color: #09B39C;
+        border: 2px solid #09B39C;
+        border-radius: 100px;
+    }
+
+    .slider:before {
+        position: absolute;
+        // content: url(../../../../assets/icons/correctTick.svg) !important;;
+        content: url(../../../../../assets/icons/correct-tick.svg) !important;
+
+        // content: 'ok';
+        height: 24px;
+        width: 24px;
+        left: 22px;
+        bottom: -5px;
+        top: 2px !important;
+        background-color: $white;
+        border: 1px solid $medium-gray;
+        -webkit-transition: .4s;
+        transition: .4s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    input:checked+.slider:before {
+        position: absolute;
+        // content: url(../../../../assets/icons/correctTick.svg) !important;;
+        //content: url(../../../../../assets/icons/correct-tick.svg) !important;
+        content: '' !important;
+        height: 24px;
+        width: 24px;
+        left: -2px;
+        bottom: -5px;
+        top: 2px !important;
+        color: $primary-blue;
+        // background-color: $white;
+        background-color: #D8D8D8;
+        border: 0px solid $medium-gray;
+        -webkit-transition: .4s;
+        transition: .4s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .switch .slider:after {
+        content: "";
+        color: $white;
+        display: block;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 70%;
+        transition: all .5s;
+        font-size: 10px;
+        font-family: Verdana, sans-serif;
+    }
+
+
+    .switch input:checked+.slider:after {
+        transition: all .5s;
+        left: 30%;
+        content: "";
+        color: $white;
+    }
+
+    input:checked+.slider {
+        // background-color: #09B39C !important;
+        // border: 2px solid #09B39C !important;
+        // border-radius: 100px !important;
+
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 11px;
+        bottom: 0;
+        -webkit-transition: .4s;
+        transition: .4s;
+        content: "";
+        color: $accent;
+        width: 52px !important;
+        height: 32px !important;
+        background: #FFFFFF !important;
+        border: 2px solid #D8D8D8 !important;
+        border-radius: 100px !important;
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px $primary-blue;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(5px);
+
+    }
+
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+
+
+}
+
+.form-group.col.col-lg-3.col-12.custom-form.btntoggle {
+    padding-top: 18px !important;
+}
+
+.selectedValueLabel {
+    position: absolute;
+    top: 42px !important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 31px;
+    color: #333333;
+    font-family: 'Frutiger-LT-Arabic-55-Roman';
+}
+
+.row.transs {
+    margin-left: 10px !important;
+    margin-top: 9px !important;
+}
+
+ul#dropdown-basic {
+    width: 388px;
+    margin-left: 15px;
+
+}
+
+.additional-label {
+
+    //font-family: 'Frutiger LT Arabic';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 31px;
+    color: #747C91;
+}
+
+.row.hhh {
+    height: 25px;
+}
+
+.btnn {
+    height: 35px;
+    width: 119px;
+}
+
+.additional {
+    height: 50px;
+    border-radius: 6px;
+    border: 1px solid rgba(116, 124, 145, 0.3);
+}
+
+.menuitem-height {
+    height: 50px;
+}
+
+.menuitem-border .col.col-sm-auto.cheev {
+    margin-left: 28px;
+}
+
+
+
+.row.additionalFIlter-list {
+    @media (min-width: 992px) {
+        .col-lg-2 {
+            flex: 0 0 auto;
+            width: auto;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .col-lg-10 {
+            flex: 0 0 auto;
+            width: 83.333333%;
+        }
+    }
+
+    .form-group.col.col-lg-2.col-12 {
+        padding: 18px 1px 10px 1px;
+        margin-left: 22px;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        top: -6px !important;
+        width: 60px;
+        height: 15px;
+    }
+
+    .mismatchOnly {
+        margin-top: 0px !important;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 31px;
+        /* identical to box height */
+        color: #333333;
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+    }
+}
+
+.required:after {
+    content: " *";
+    color: #E53012;
+}

@@ -1,0 +1,166 @@
+<div class="common-trx">
+    <app-common-heading></app-common-heading>
+</div>
+
+<div class="inbox row" *ngIf="dataSource != null">
+
+    <div class="col col-lg-4 col-12 refund-inbox">
+        <div class="search">
+            <!-- <div class="searchSymbol"><img src="assets/icons/inbox-search.svg"></div> -->
+            <label class="btn-group all" dropdown [insideClick]="true">
+                <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                    aria-controls="dropdown-basic">
+                    {{name}} <span class="caret"></span>
+                </button>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                    <li role="menuitem"><a class="dropdown-item" (click)="valueSelected('ALL','ALL')">{{'All' |
+                            translate}}</a></li>
+                    <li role="menuitem" *ngFor="let val of pageConfig.listOfValues.reviewRefundsApprovalStatus">
+                        <a class="dropdown-item" (click)="valueSelected(val.value,val.name)">{{val.name}}</a>
+                    </li>
+
+                </ul>
+            </label>
+            <label class="btn-group search-icon" dropdown (isOpenChange)="onOpenChange($event)" [insideClick]="true">
+                <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                    <img src="assets/icons/inbox-search.svg" style="margin-top: -3px;">
+                    <!-- <img *ngIf="image==true" src="assets/icons/white-search.svg" style="margin-top: -3px;"> -->
+                </button>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                    <input type="text" name="billNumber" class="form-control" [(ngModel)]="searchFilters.paymentRef"
+                        (keyup.enter)="search()" placeholder="{{'Payment Reference'| translate}}">
+                </ul>
+            </label>
+        </div>
+
+        <div class="refund-list" *ngFor="let data of dataSource; let i = index;" (click)="rowData(data,i)"
+            [class.active]="i == HighlightRow">
+
+            <label class="labelss">
+                <div class="key refKey">{{"Refund Request" | translate}}</div>
+                <div class="key payRefKey" style="padding-top: 8px;">{{data.paymentRef}}</div>
+            </label>
+            <label class="labels">
+
+                <div class="value dateVal">{{data.createdTimestamp | date: 'dd/MM/yyyy'}}</div>
+                <div class="value val pending" style="padding-top: 8px;" *ngIf="data.approvalStatus == 'PENDING'"><span
+                        class="circle"></span>{{'Pending' | translate}}</div>
+                <div class="value val approve" style="padding-top: 8px;" *ngIf="data.approvalStatus == 'APPROVED'">
+                    <span class="circle"></span>{{'Approved' | translate}}
+                </div>
+                <div class="value val reject" style="padding-top: 8px;" *ngIf="data.approvalStatus == 'REJECTED'">
+                    <span class="circle"></span>{{'Rejected' | translate}}
+                </div>
+            </label>
+
+        </div>
+        <hr [ngStyle]="dataSource.length == 1? {'margin-top':'800px'}:{'margin-top':'400px'}">
+        <div class="inboxPagination" *ngIf="dataSource">
+            <app-pagination class="w-100" [totalItems]="pageSettings.totalRecordsCount"
+                [pageSize]="pageSettings.responseCount" [responseCount]="responseCount"
+                [page]="headerConfig['page-number']" [ttlPagesCnt]="pageSettings.ttlPagesCnt"
+                (pageChange)="onPageChange($event)" [inboxRefunds]="inboxRefunds"></app-pagination>
+        </div>
+    </div>
+    <div class="col col-lg-8 col-12 refund-req">
+        <div class="selected-refund">
+            <label class="labelss">
+                <div class="key refKey">{{"Refund Request" | translate}}</div>
+                <div class="key payRefKey" style="padding-top: 8px;">{{paymentRef}} | {{createdTimestamp | date:
+                    'dd/MM/yyyy'}}</div>
+            </label>
+            <label class="labels">
+                <div class="btn btn-light btnPending" *ngIf="approvalStatus=='PENDING'">{{'Pending' | translate}}</div>
+                <div class="btn btn-light btnRejected" *ngIf="approvalStatus=='REJECTED'">{{'Rejected' | translate}}
+                </div>
+                <div class="btn btn-light btnApproved" *ngIf="approvalStatus=='APPROVED'">{{'Approved' | translate}}
+                </div>
+
+            </label>
+        </div>
+        <hr>
+
+        <!-- Alert messages for reject and approve -->
+        <div class="alert alert-danger" role="alert" *ngIf="approvalStatus=='REJECTED' && reason != null ">
+            <div class="reject-label">{{'Rejected Reason' | translate}}</div>
+            <div class="reason">{{reason}}</div>
+        </div>
+        <div class="alert alert-danger" role="alert"
+            *ngIf="approvalStatus=='APPROVED' && refundStatus != 'REFUNDED' && reason != null ">
+            <div class="reject-label">{{'Refund Failed Reason' | translate}}</div>
+            <div class="reason">{{reason}}</div>
+        </div>
+
+        <div class="reqDetails">{{'Request Details' | translate}}</div>
+        <div class="details">
+            <div *ngFor="let d of pageConfig.selectableColumns">
+                <div class="detailRow">
+                    <label class="labelss">
+                        <div class="key transKey">{{d['name']}}</div>
+                    </label>
+                    <label class="labels" *ngIf="data[d['id']]">
+                        <div class="value tranVal">{{data[d['id']]}}</div>
+                    </label>
+
+                </div>
+                <hr>
+            </div>
+
+        </div>
+
+        <div class="row" *ngIf="approvalStatus=='PENDING'">
+            <button class="back-btn btn-light approvebtn  col-md-auto " (click)="onApprovalActionClick()"
+                [disabled]="permissionFlag==true"><img src="assets/icons/approve-btn.svg"
+                    style="margin-right: 27px;"><label>{{'Approve' | translate}}</label></button>
+            <button class="back-btn btn-light rejectbtn  col-md-auto " (click)="onRejectActionClick()"
+                [disabled]="permissionFlag==true"><img src="assets/icons/reject-btn.svg"
+                    style="margin-right: 27px;"><label>{{'Reject' | translate}}</label></button>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="inbox row" *ngIf="dataSource == null">
+
+    <div class="col col-lg-4 col-12 refund-inbox">
+        <div class="search">
+            <label class="btn-group all" dropdown [insideClick]="true">
+                <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                    aria-controls="dropdown-basic">
+                    {{name}} <span class="caret"></span>
+                </button>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                    <li role="menuitem"><a class="dropdown-item" (click)="valueSelected('ALL','ALL')">{{'ALL' |
+                            translate}}</a></li>
+                    <li role="menuitem" *ngFor="let val of pageConfig.listOfValues.reviewRefundsApprovalStatus">
+                        <a class="dropdown-item" (click)="valueSelected(val.value,val.name)">{{val.name}}</a>
+                    </li>
+
+                </ul>
+            </label>
+            <label class="btn-group search-icon" dropdown (isOpenChange)="onOpenChange($event)" [insideClick]="true">
+                <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                    <img src="assets/icons/inbox-search.svg" style="margin-top: -3px;">
+                    <!-- <img *ngIf="image==true" src="assets/icons/white-search.svg" style="margin-top: -3px;"> -->
+                </button>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                    <input type="text" name="billNumber" class="form-control" [(ngModel)]="searchFilters.paymentRef"
+                        (keyup.enter)="search()" placeholder="{{'Payment Reference'| translate}}">
+                </ul>
+            </label>
+        </div>
+        <div class="noRecords-Todisplay" *ngIf="showNoRecords">
+            <div><img class="mb-3" src="assets/icons/icon-no-record.svg"></div>
+            <div><label>{{'No records to display' | translate}}</label></div>
+        </div>
+        <div class="noRecords-Todisplay margin0" *ngIf="serviceNotResponded">
+            <section class="no-records">
+                <span>{{"Not available at the moment" | translate}}</span>
+            </section>
+        </div>
+    </div>
+    <div class="col col-lg-8 col-12 refund-req"></div>
+
+</div>

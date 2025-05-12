@@ -1,0 +1,138 @@
+@import "../../../css/01-settings.scss";
+
+.site-logo {
+    background-color: black;
+    width: 6%;
+    margin-top: -4%;
+    margin-left: 88%;
+}
+
+.detail {
+    font-family: "FrutigerLTArabic-65Bold";
+    font-style: normal;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    color: black !important;
+    margin: 5px 4px 5px 17px !important;
+    //box-shadow: 0px 3px 4px $shadow-black;
+}
+
+.filters {
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0px 3px 4px $shadow-black;
+}
+
+
+.tags-container {
+    height: 45px;
+}
+
+
+.wrapper-main {
+    padding: 20px 21px 20px 21px !important;
+}
+
+.form-group.col.col-lg-10.col-12 {
+    padding-bottom: 0px;
+}
+
+/////////////////////////////////////////
+.reportTypeHeader {
+    background: #1D1556;
+    padding: 9px 20px 14px 20px;
+    margin-bottom: 24px;
+}
+
+.header-eml {
+    font-family: "Frutiger LT Arabic 75 Black";
+    font-style: normal;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 36px;
+    color: #FFFFFF;
+    margin: 0px;
+    margin-top: 0px !important;
+}
+
+@media (min-width: 768px) {
+    .col-md-10 {
+        flex: 0 0 auto;
+        width: 89.333333%;
+        margin-left: -21px;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-md-auto {
+        flex: 0 0 auto;
+        width: auto;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        margin-bottom: 24px;
+    }
+}
+
+
+a.print-img {
+    /* margin-right: 29px !important; */
+    padding: 16px 10px 16px 18px;
+}
+
+a.download-img {
+    padding: 16px 8px 16px 18px;
+}
+
+.summary-row {
+    margin-bottom: 12px;
+}
+
+.report-Summary {
+    font-family: 'Frutiger LT Arabic 75 Black';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 21px;
+    line-height: 36px;
+    /* identical to box height, or 171% */
+
+    margin-bottom: 0px;
+    color: #000000;
+}
+
+.summary-border {
+
+    margin-top: 6px !important;
+    margin-bottom: 75px !important;
+    // margin-right: 24px;
+    background: #F6F8FA;
+    border: 1px solid rgba(116, 124, 145, 0.15);
+    border-radius: 4px;
+    padding: 20px !important;
+}
+
+.label {
+    font-family: 'Frutiger-LT-Arabic-55-Roman';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 27px;
+    /* identical to box height */
+
+
+    color: #000000;
+}
+
+label.lab {
+    font-family: 'Frutiger LT Arabic 75 Black';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 38px;
+
+    color: #000000;
+
+}
+
+.dateRangeRow {
+    margin-top: 2%;
+}

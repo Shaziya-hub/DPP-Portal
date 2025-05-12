@@ -1,0 +1,25 @@
+<div class="common-trx">
+    <app-common-heading></app-common-heading>
+
+    <form>
+        <div class="wrapper-main">
+            <div class="row">
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Business Service' | translate}}</label>
+                    <select class="form-select" name="serviceId" (change)="search()"
+                        [(ngModel)]="searchFilters.serviceId" #serviceId="ngModel"
+                        [ngClass]="searchFilters.serviceId == null?'':'selected'">
+                        <option [ngValue]="null" [disabled]="true">{{getBizServicesSetting.text}}</option>
+                        <option *ngFor="let service of  pageConfig?.listOfValues?.bizServices"
+                            [ngValue]="service.serviceId">{{service.serviceName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="block-12"></div>
+            <div style="display: flex;justify-content: center;" *ngIf="show && showMap">
+                <advanced-control style="width: 90%;" [inputData]="advancedControlData" [searchFilters]="searchFilters"
+                    [headerConfig]="headerConfig" [pageConfig]="pageConfig"></advanced-control>
+            </div>
+        </div>
+    </form>
+</div>

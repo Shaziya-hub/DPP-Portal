@@ -1,0 +1,718 @@
+@import "../../../css/01-settings.scss";
+
+.header,
+.right {
+    height: 60px;
+
+}
+
+.lang-text {
+    padding-left: 73%;
+    padding-top: 8%;
+}
+
+.menu-button {
+    width: 56px;
+    // cursor: pointer;
+
+    &:hover {
+        background-color: rgba($color: $secondary, $alpha: 0.1);
+    }
+}
+
+.badge {
+    font-size: $regular-flat;
+    position: relative;
+    top: -10px;
+    background: $success;
+    padding: 1px 4px 2px 4px;
+    border-radius: 7px;
+}
+
+.user-profile {
+    padding: 0px 24px 0px 10px;
+    width: auto;
+    white-space: nowrap;
+    word-break: keep-all;
+    word-wrap: none;
+
+    .dropdown-menu {
+        top: 50px !important;
+        right: -23px;
+        left: auto !important;
+        font-size: inherit;
+        will-change: auto !important;
+        transform: inherit !important;
+        min-width: 200px;
+
+        .dropdown-item {
+            width: auto;
+            padding: 1rem;
+        }
+    }
+}
+
+.user-name {
+    cursor: pointer;
+}
+
+.menu-container {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+    width: 25px;
+    height: 3px;
+    background-color: $secondary;
+    margin: 6px 0;
+}
+
+.menu-change {
+    .bar1 {
+        -webkit-transform: rotate(-45deg) translate(-7px, 6px);
+        transform: rotate(-45deg) translate(-7px, 6px);
+    }
+
+    .bar2 {
+        opacity: 0;
+    }
+
+    .bar3 {
+        -webkit-transform: rotate(45deg) translate(-6px, -6px);
+        transform: rotate(45deg) translate(-6px, -6px);
+    }
+}
+
+.form-inline {
+    display: flex;
+    align-items: center;
+
+    .language-box {
+        min-width: 100px;
+        height: 26px;
+        line-height: 15px;
+        border: 1px solid $cream-violet;
+        background: $safe-blue;
+        appearance: auto;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        border-radius: 4px;
+        font-size: 12px !important;
+    }
+}
+
+
+.logout .item-icon.glow {
+    width: 35px;
+    height: 36px;
+
+}
+
+
+.logout,
+.download-manager {
+    background-color: rgba($color: $tertiary, $alpha: 0.03);
+
+    .item-icon {
+        width: 35px;
+        height: 36px;
+        margin-left: 2px;
+    }
+}
+
+.glow {
+    width: 50px;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+.glow:before {
+    content: '';
+    background: linear-gradient(45deg, $bright-red, $vibrant-orange, $yellow, $lime-green, $cyan, $royal-blue, $indigo, $fuchsia-pink, $bright-red);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow {
+    color: $accent
+}
+
+.glow:after {
+    //background: transparent;
+}
+
+.glow:before {
+    opacity: 1;
+}
+
+.glow:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+i.bi.bi-download.dd {
+    position: absolute;
+    font-size: 24px;
+    left: 11px;
+    z-index: 999;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+i.bi.bi-globe {
+    font-size: 25px;
+    position: absolute;
+    top: 15px;
+    cursor: pointer;
+}
+
+.globe {
+    height: 60px;
+    width: 66px;
+    border-right: 1px solid #ECEBEB;
+    border-left: 1px solid #ECEBEB;
+    padding: 17px 17px 17px 9px;
+}
+
+//Download Dropdown
+::ng-deep #download {
+
+    i.bi.bi-download.bb {
+        color: #3498DB;
+        // margin-left: 16px;
+        font-size: 17px;
+        cursor: pointer;
+    }
+
+
+    i.bi.bi-trash {
+        font-size: 20px;
+        color: indianred;
+        cursor: pointer;
+    }
+
+    .dropdown-menu {
+        top: 53px !important;
+        right: -23px;
+        /* left: auto !important; */
+        left: -368px !important;
+        font-size: inherit;
+        will-change: auto !important;
+        transform: inherit !important;
+        min-width: 400px;
+        padding: 0px 0px 0px 0px;
+        border: 0.5px solid rgba(116, 124, 145, 0.231713);
+        // box-shadow: 0px 2px 10px rgba(61 85 128 );
+        box-shadow: 0px 2px 10px rgba(61, 85, 128, 0.1);
+        border-radius: 4px;
+        background: #FFFFFF;
+    }
+
+    ul#dropdown-animated {
+        width: 363px !important;
+
+        .container {
+            padding: 19px 17px 24px 15px;
+            height: 243px !important;
+            overflow: auto;
+
+            .spaceing {
+                padding: 0px 0px 0px 1px;
+                //overflow: hidden;
+                word-break: break-all;
+                white-space: pre-wrap;
+            }
+
+            .spaceing-percent {
+                padding: 0px 21px 0px 21px
+            }
+
+            .spaceing-icons {
+                padding: 0px 0px 0px 0px;
+                display: flex;
+                justify-content: end;
+
+                .row {
+                    .col {
+                        width: auto;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .dropdown-header {
+        margin-top: 12px;
+    }
+
+    label.heading {
+        font-family: 'FrutigerLTArabic-65Bold';
+        font-size: 21px;
+        line-height: 24px;
+        /* margin-left: 2%; */
+        /* position: absolute; */
+        font-weight: 700;
+        color: #000;
+        //padding: 20px 24px 0px 16px
+    }
+
+    .downloadList-row {
+        border-bottom: 1px dashed #E6E6E6;
+        padding: 3px 5px 3px 5px;
+    }
+
+    .noFiles {
+        border-bottom: 1px dashed #E6E6E6;
+        padding: 80px 80px 13px 80px;
+
+        .nodownloads {
+            font-family: 'FrutigerLTArabic-55Roman';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 31px;
+            color: #747C91;
+            top: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    label.download-name {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+
+        line-height: 14px;
+        /* identical to box height, or 88% */
+
+
+        color: #747C91;
+    }
+
+    label.download-completed {
+        line-height: 14px;
+        font-size: 14px;
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        color: #09B39C;
+        //padding: 12px 10px 2px 12px;
+        cursor: pointer;
+        text-align: end;
+    }
+
+    .clear-all-btn {
+        background-color: #FFFFFF;
+        color: #26273B;
+        border-radius: 4px;
+        padding: 0px 2px;
+        font-weight: 600;
+        font-size: 12px;
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        height: 24px;
+        margin-top: -2px;
+        border: 1px solid #ACADC1;
+    }
+
+    .close {
+        background: transparent;
+        color: inherit;
+        min-width: 10px;
+        padding: 0px;
+        height: auto;
+    }
+
+    .dark-modal .close span {
+        font-size: 28px;
+        color: #d2ccdf;
+    }
+}
+
+
+
+//progess
+$borderWidth: 5px;
+$animationTime: .5s;
+$border-color-default: #efefef;
+$border-color-fill: #ffb43e;
+$size: 160px;
+$howManySteps: 100; //this needs to be even. 
+
+.progress {
+    width: 40px;
+    height: 40px;
+    line-height: $size;
+    background: none;
+    margin: 0 auto;
+    box-shadow: none;
+    position: relative;
+
+    &:after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: $borderWidth solid $border-color-default;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    >span {
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+    }
+
+    .progress-left {
+        left: 0;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 100%;
+        background: none;
+        border-width: $borderWidth;
+        border-style: solid;
+        position: absolute;
+        top: 0;
+        border-color: $border-color-fill;
+    }
+
+    .progress-left .progress-bar {
+        left: 100%;
+        border-top-right-radius: ($size/2);
+        ;
+        border-bottom-right-radius: ($size/2);
+        ;
+        border-left: 0;
+        -webkit-transform-origin: center left;
+        transform-origin: center left;
+        //animation: loading-2 1.5s linear forwards 1.8s;
+    }
+
+    .progress-right {
+        right: 0;
+
+        .progress-bar {
+            left: -100%;
+            border-top-left-radius: ($size/2);
+            ;
+            border-bottom-left-radius: ($size/2);
+            ;
+            border-right: 0;
+            -webkit-transform-origin: center right;
+            transform-origin: center right;
+            //animation: loading-1 1.8s linear forwards;
+        }
+    }
+
+    .progress-value {
+        display: flex;
+        border-radius: 50%;
+        font-size: 1rem;
+        text-align: center;
+        line-height: 20px;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        font-weight: 300;
+
+        div {
+            //margin-top: 10px;
+        }
+
+        span {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+    }
+}
+
+/* This for loop creates the necessary css animation names 
+  Due to the split circle of progress-left and progress right, we must use the animations on each side. 
+  */
+@for $i from 1 through $howManySteps {
+    $stepName: (
+        $i*(100 / $howManySteps)
+    );
+
+//animation only the left side if below 50%
+@if $i <=($howManySteps/2) {
+    .progress[data-percentage="#{$stepName}"] {
+        .progress-right .progress-bar {
+            animation: loading-#{$i} $animationTime linear forwards;
+        }
+
+        .progress-left .progress-bar {
+            animation: 0;
+        }
+    }
+}
+
+//animation only the right side if above 50%
+@if $i >($howManySteps/2) {
+    .progress[data-percentage="#{$stepName}"] {
+        .progress-right .progress-bar {
+            animation: loading-#{($howManySteps/2)} $animationTime linear forwards; //set the animation to longest animation
+        }
+
+        .progress-left .progress-bar {
+            animation: loading-#{$i - ($howManySteps/2)} $animationTime linear forwards $animationTime;
+        }
+    }
+}
+}
+
+.progress {
+    overflow: inherit !important;
+}
+
+//animation
+@for $i from 1 through ($howManySteps/2) {
+    $degrees: (
+        180/($howManySteps/2)
+    );
+$degrees: (
+    $degrees*$i
+);
+
+@keyframes loading-#{$i} {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate($degrees);
+        transform: rotate(#{$degrees}deg);
+    }
+}
+}
+
+
+$borderWidth: 5px;
+$animationTime: .5s;
+$border-color-default: #efefef;
+$border-color-fill: #ffb43e;
+$size: 50px;
+$howManySteps: 100; //this needs to be even. 
+
+.progress {
+    width: $size;
+    height: $size;
+    line-height: $size;
+    background: none;
+    margin: 0 auto;
+    box-shadow: none;
+    position: relative;
+
+    &:after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: $borderWidth solid $border-color-default;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    >span {
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+    }
+
+    .progress-left {
+        left: 0;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 100%;
+        background: none;
+        border-width: $borderWidth;
+        border-style: solid;
+        position: absolute;
+        top: 0;
+        border-color: $border-color-fill;
+    }
+
+    .progress-left .progress-bar {
+        left: 100%;
+        border-top-right-radius: ($size/2);
+        ;
+        border-bottom-right-radius: ($size/2);
+        ;
+        border-left: 0;
+        -webkit-transform-origin: center left;
+        transform-origin: center left;
+        //animation: loading-2 1.5s linear forwards 1.8s;
+    }
+
+    .progress-right {
+        right: 0;
+
+        .progress-bar {
+            left: -100%;
+            border-top-left-radius: ($size/2);
+            ;
+            border-bottom-left-radius: ($size/2);
+            ;
+            border-right: 0;
+            -webkit-transform-origin: center right;
+            transform-origin: center right;
+            //animation: loading-1 1.8s linear forwards;
+        }
+    }
+
+    .progress-value {
+        display: flex;
+        border-radius: 50%;
+        font-size: 1rem;
+        text-align: center;
+        line-height: 20px;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        font-weight: 300;
+
+        div {
+            //margin-top: 10px;
+        }
+
+        span {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+    }
+}
+
+/* This for loop creates the necessary css animation names 
+Due to the split circle of progress-left and progress right, we must use the animations on each side. 
+*/
+@for $i from 1 through $howManySteps {
+    $stepName: (
+        $i*(100 / $howManySteps)
+    );
+
+//animation only the left side if below 50%
+@if $i <=($howManySteps/2) {
+    .progress[data-percentage="#{$stepName}"] {
+        .progress-right .progress-bar {
+            animation: loading-#{$i} $animationTime linear forwards;
+        }
+
+        .progress-left .progress-bar {
+            animation: 0;
+        }
+    }
+}
+
+//animation only the right side if above 50%
+@if $i >($howManySteps/2) {
+    .progress[data-percentage="#{$stepName}"] {
+        .progress-right .progress-bar {
+            animation: loading-#{($howManySteps/2)} $animationTime linear forwards; //set the animation to longest animation
+        }
+
+        .progress-left .progress-bar {
+            animation: loading-#{$i - ($howManySteps/2)} $animationTime linear forwards $animationTime;
+        }
+    }
+}
+}
+
+//animation
+@for $i from 1 through ($howManySteps/2) {
+    $degrees: (
+        180/($howManySteps/2)
+    );
+$degrees: (
+    $degrees*$i
+);
+
+@keyframes loading-#{$i} {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate($degrees);
+        transform: rotate(#{$degrees}deg);
+    }
+}
+}
+
+.d-flex {
+    display: flex !important;
+}
+
+.bi-info-circle::before {
+    content: "\f431";
+    font-weight: 400 !important;
+    font-size: 19px;
+}
+
+::ng-deep {
+    bs-tooltip-container {
+        position: absolute !important;
+
+        .bs-tooltip-top .tooltip-arrow {
+            position: absolute !important;
+        }
+
+        .tooltip-arrow.arrow {
+            position: absolute !important;
+        }
+    }
+}

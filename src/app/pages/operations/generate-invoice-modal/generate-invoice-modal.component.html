@@ -1,0 +1,19 @@
+<div class="common-trx">
+
+    <div class="modal-body">
+        <button class="close" aria-label="Close" (click)="close()">
+            <img src="assets/icons/icon-close-new.png">
+        </button>
+        <div class="padding">
+            <div class="img"><img src="assets/icons/invoice-right-icon.svg"></div>
+            <div class="text">{{"Invoice Generated Successfully"}}</div>
+            <div class="billNo">
+                <div>Number : {{billNumber}}</div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-block btn-primary btn-primary-custom col-lg-1 col-md col applyBtnn"
+                    (click)="goBack()"><span class="applyBtnn-label">{{"Go Back" | translate}}</span></button>&nbsp;
+            </div>
+        </div>
+    </div>
+</div>

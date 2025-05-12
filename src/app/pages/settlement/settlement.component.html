@@ -1,0 +1,10 @@
+<app-filters [pageConfig]="pageConfig" [headerConfig]="headerConfig" (applyFiltersEvent)="applyFilters($event)"
+    [settlementPageInfo]="settlementPageInfo" [dataSource]="dataSource" [cardsAttribute]="cardsAttribute"></app-filters>
+
+
+<data-grid *ngIf="dataSource || showNoRecords || serviceNotResponded" [dataSource]="dataSource"
+    [responseCount]="responseCount" [pageConfig]="pageConfig" [headerConfig]="headerConfig"
+    (applyFiltersEvent)="applyFilters($event)" [filterss]="filterss" [pageSettings]="pageSettings"
+    [showNoRecords]="showNoRecords" [settlementPageInfo]="settlementPageInfo"
+    [serviceNotResponded]="serviceNotResponded">
+</data-grid>

@@ -1,0 +1,349 @@
+<div class="common-trx">
+    <app-common-heading></app-common-heading>
+    <div class="row topMargin">
+        <div class="col col-md-3 col-12 ">
+            <span class="card PmtAddtnlStatsCard first-cardAllign">
+                <div class="card-body">
+                    <p class="total">{{'Total Bills' | translate}}</p>
+                    <p class="total-counts" style="color: #1D1557;">
+                        {{cardServiceAttribute?.ttlBills?cardServiceAttribute?.ttlBills:"--"}}</p>
+                    <p class="total-footer">{{'Trx' | translate}}</p>
+                </div>
+            </span>
+        </div>
+        <div class="col col-md-3 col-12 ">
+            <span class="card PmtAddtnlStatsCard">
+                <div class="card-body">
+                    <p class="total">{{'Total Uploaded' | translate}}</p>
+                    <p class="total-counts" style="color:#09B39C">
+                        {{cardServiceAttribute?.ttlSuccessfulUploads?cardServiceAttribute?.ttlSuccessfulUploads:"--"}}
+                    </p>
+                    <p class="total-footer">{{'Trx' | translate}}</p>
+                </div>
+            </span>
+        </div>
+        <div class="col col-md-3 col-12 ">
+            <span class="card PmtAddtnlStatsCard">
+                <div class="card-body">
+                    <p class="total">{{'Total Failed' | translate}} </p>
+                    <p class="total-counts" style="color: #E53012;">
+                        {{cardServiceAttribute?.ttlUnsuccessfulBills?cardServiceAttribute?.ttlUnsuccessfulBills:"--"}}
+                    </p>
+                    <p class="total-footer">{{'Trx' | translate}}</p>
+                </div>
+            </span>
+        </div>
+        <div class="col col-md-3 col-12 ">
+            <span class="card PmtAddtnlStatsCard last-cardAllign">
+                <div class="card-body">
+                    <p class="total">{{'Total Amount' | translate }}</p>
+                    <p class="total-counts" style="color: #3498DB;">
+                        {{cardServiceAttribute?.ttlAmtUploaded?cardServiceAttribute?.ttlAmtUploaded:"--"}}</p>
+                    <p class="total-footer">{{'SAR' | translate }}</p>
+                </div>
+            </span>
+        </div>
+    </div>
+    <div class="wrapper-main page-header" id="filter-section">
+        <form>
+            <div class="row filter-row">
+                <div class="form-group col col-lg-3 col-12 custom-form bill-filter-two">
+                    <label>{{'Business Services' | translate}}</label>
+                    <angular2-multiselect name="services"
+                        [data]="filtersComponent?.pageConfig?.listOfValues?.bizServices"
+                        [(ngModel)]="searchFilters.serviceId" [settings]="getBizServicesSetting()"
+                        (onClose)=" onServiceChange()" (onDeSelectAll)="onServiceChange()">
+                    </angular2-multiselect>
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form date-filter-one">
+                    <label>{{'Service Types' | translate}}</label>
+                    <angular2-multiselect name="serviceTypes"
+                        [data]="filtersComponent?.pageConfig?.listOfValues?.serviceTypes"
+                        [(ngModel)]="searchFilters.serviceTypeId" [settings]="getServiceTypesSetting()">
+                    </angular2-multiselect>
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form bill-filter-three">
+                    <label>{{'Process Statuses' | translate}}</label>
+                    <angular2-multiselect name="billStatus"
+                        [data]="filtersComponent.pageConfig.listOfValues.billStatus || []"
+                        [(ngModel)]="searchFilters.billStatus" [settings]="getBillStatusSetting()">
+                    </angular2-multiselect>
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form bill-filter-four">
+                    <label>{{'Bill Types' | translate}}</label>
+                    <angular2-multiselect name="billTypes"
+                        [data]="filtersComponent.pageConfig.listOfValues.billTypes || []"
+                        [(ngModel)]="searchFilters.billType" [settings]="getBillTypesSetting()">
+                    </angular2-multiselect>
+                </div>
+                
+            </div>
+            <div class="row">
+
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Date Range' | translate}}</label>
+                    <app-dateTimepicker id="container" [fromdateInputFlag]="fromdateInputFlag" [reset3]="reset3"
+                        [bsdateRange]="bsdateRange" [logVal]="logVal" [searchFilter]="searchFilter"
+                        [dashboardFlag]="dashboardFlag" [bsRangeValueFromDashBoard]="bsRangeValueFromDashBoard"
+                        (dateRange)="dateRangeChange($event)" [landingDateRange]="landingDateRange"
+                        [bsConfig]="{withTimepicker: true,showWeekNumbers: false, keepDatepickerOpened: true, rangeInputFormat : 'MM/DD/YYYY,HH:mm',dateInputFormat: 'MMMM Do YYYY, HH:mm',monthLabel: 'MMM'}">
+                    </app-dateTimepicker>
+
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Bill Number' | translate}}</label>
+                    <input type="text" name="billNumber" class="form-control" [(ngModel)]="searchFilters.billNumber"
+                        placeholder="{{'Bill Number'| translate}}">
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Batch ID' | translate}}</label>
+                    <input type="text" name="batchId" class="form-control" [(ngModel)]="searchFilters.batchId"
+                        placeholder="{{'Batch ID'| translate}}">
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Ext. System Ref ID' | translate}}</label>
+                    <input type="text" name="extSysRefId" class="form-control" [(ngModel)]="searchFilters.extSysRefId"
+                        placeholder="{{'Ext. System Ref ID'| translate}}">
+                </div>
+            </div>
+
+            <div class=" d-flex">
+                <button type="button" class="btn btn-block btn-primary  col-lg-1 left-alignment col applyBtnn"
+                    (click)="search()">
+                    <div class="row applyBtnn-label">
+                        <div class="col col-sm-6 fa-searchIcon"><img src='assets/icons/icon-search.svg'></div>
+                        <div class="col col-sm-6 searchLabel">{{'Search' | translate}}</div>
+                    </div>
+                </button>
+                <button type="button" class="btn btn-block btn-light  col-lg-1 left-alignment col cancelBtnn"
+                    (click)="resetForm()">
+                    <div class="cancelBtnn-label">{{'Reset' | translate}}</div>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="additionalFilter==true || dataSource != null">
+
+        <div class="row transs">
+            <label class="result-trx">{{'Results' | translate}}</label>
+        </div>
+        <div class="row additionalFIlter-list">
+            <div class="form-group col col-lg-10 col-12">
+                <div class="tags-container">
+                    <!-- list of additional filter -->
+                    <div *ngIf="addFilters!=null" class="tags-list">
+                        <li *ngIf="searchFilters.accountNumber != null && searchFilters.accountNumber != '' && searchFilters.accountNumber != undefined && extraFilter.addAccountno==false"
+                            class="tag-item"><span class="tag-label">{{'Account Number' |
+                                translate}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                (click)="searchFilters.accountNumber=null;inputFilters.accountNumber=null"><img
+                                    src='assets/icons/icon_cross.svg'></a>&nbsp;&nbsp;</li>
+                        <li *ngIf="searchFilters.profileId != null && searchFilters.profileId != '' && searchFilters.profileId != undefined && extraFilter.addProfileID==false"
+                            class="tag-item"><span class="tag-label">{{'Profile ID' |
+                                translate}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                (click)="searchFilters.profileId=null;inputFilters.profileId=null"><img
+                                    src='assets/icons/icon_cross.svg'></a>&nbsp;&nbsp;</li>
+                        <li *ngIf="searchFilters.transId != null && searchFilters.transId != '' && searchFilters.transId != undefined && extraFilter.addTransId==false"
+                            class="tag-item"><span class="tag-label">{{'Transaction ID' |
+                                translate}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                (click)="searchFilters.transId=null;inputFilters.transId=null"><img
+                                    src='assets/icons/icon_cross.svg'></a>&nbsp;&nbsp;</li>
+                        <li *ngIf="searchFilters.serviceNumber != null && searchFilters.serviceNumber != '' && searchFilters.serviceNumber != undefined && extraFilter.addServiceNo==false"
+                            class="tag-item"><span class="tag-label">{{'Service Number' | translate}}
+                            </span>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                (click)="searchFilters.serviceNumber=null;inputFilters.serviceNumber=null"><img
+                                    src='assets/icons/icon_cross.svg'></a>&nbsp;&nbsp;</li>
+                        <li *ngIf="searchFilters.amount != null && searchFilters.amount != '' && searchFilters.amount != undefined && extraFilter.addBillAmt==false"
+                            class="tag-item"><span class="tag-label">{{'Bill Amount' |
+                                translate}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                (click)="searchFilters.amount=null || inputFilters.amountMin=null || inputFilters.amountMax=null;inputFilters.amount=null;rangeHide()"><img
+                                    src='assets/icons/icon_cross.svg'></a>&nbsp;&nbsp;</li>
+
+                        <li *ngIf="searchFilters.reasonCode != null && searchFilters.reasonCode != '' && searchFilters.reasonCode != undefined && extraFilter.addReasonCode==false"
+                            class="tag-item"><span class="tag-label">{{'Reason Code' |
+                                translate}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                (click)="searchFilters.reasonCode=null;inputFilters.reasonCode=null"><img
+                                    src='assets/icons/icon_cross.svg'></a>&nbsp;&nbsp;</li>
+                        <li *ngIf="searchFilters.billCategory != null && searchFilters.billCategory != '' && searchFilters.billCategory != undefined && extraFilter.addBillCategory==false"
+                            class="tag-item"><span class="tag-label">{{'Bill Category' |
+                                translate}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                (click)="searchFilters.billCategory=null;inputFilters.billCategory=null"><img
+                                    src='assets/icons/icon_cross.svg'></a>&nbsp;&nbsp;</li>
+                    </div>
+                    <div class="btn-group" dropdown #dropdown="bs-dropdown" [autoClose]="autoclose">
+                        <button id="button-basic" dropdownToggle type="button"
+                            class="btn btn-block btn-light  additionalFilter" aria-controls="dropdown-basic"> <label
+                                class="addFilter"> {{'Add Filter' | translate}}</label><label class="funnel">
+                                <img src='assets/icons/icon_filter.svg'>
+                            </label></button>
+
+                        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu insideClick" role="menu"
+                            aria-labelledby="button-basic">
+                            <div class="container dropdownContainer insideClick">
+                                <div class="dropdown-header insideClick">
+                                    <label class="dropDown-heading insideClick">{{'Additional Filters' |
+                                        translate}}</label>
+                                </div>
+
+                                <div *ngIf="extraFilter.filterhide==false" class="menuitem-height insideClick">
+                                    <li role="menuitem" class="row menuitem-border testing insideClick"
+                                        (click)="addFilterAccountno()">
+                                        <div class="col col-sm-auto chev insideClick"><label
+                                                class="dropdown-item insideClick">{{'Account Number' |
+                                                translate}}</label></div>
+                                        <div class="col col-sm-auto cheev insideClick"> <a
+                                                class="chevron-right insideClick"><img class="insideClick"
+                                                    src='assets/icons/chevron-right.svg'></a></div>
+                                    </li>
+                                </div>
+                                <div *ngIf="extraFilter.filterhide==false" class="menuitem-height insideClick">
+                                    <li role="menuitem" class="row menuitem-border insideClick"
+                                        (click)="addFilterProfileID()">
+                                        <div class="col col-sm-auto chev insideClick"><label
+                                                class="dropdown-item insideClick">{{'Profile ID' | translate}}</label>
+                                        </div>
+                                        <div class="col col-sm-auto cheev insideClick"><a
+                                                class="chevron-right insideClick"><img class="insideClick"
+                                                    src='assets/icons/chevron-right.svg'></a></div>
+                                    </li>
+                                </div>
+                                <div *ngIf="extraFilter.filterhide==false" class="menuitem-height insideClick">
+                                    <li role="menuitem" class="row menuitem-border insideClick"
+                                        (click)="addFiltertransId()">
+                                        <div class="col col-sm-auto chev insideClick"><label
+                                                class="dropdown-item insideClick">{{'Transaction ID' |
+                                                translate}}</label></div>
+                                        <div class="col col-sm-auto cheev insideClick"><a
+                                                class="chevron-right insideClick"><img class="insideClick"
+                                                    src='assets/icons/chevron-right.svg'></a></div>
+                                    </li>
+                                </div>
+                                <div *ngIf="extraFilter.filterhide==false" class="menuitem-height insideClick">
+                                    <li role="menuitem" class="row menuitem-border insideClick"
+                                        (click)="addFilterServiceNo()">
+                                        <div class="col col-sm-auto chev insideClick"><label
+                                                class="dropdown-item insideClick">{{'Service Number' |
+                                                translate}}</label></div>
+                                        <div class="col col-sm-auto cheev insideClick"><a
+                                                class="chevron-right insideClick"><img class="insideClick"
+                                                    src='assets/icons/chevron-right.svg'></a></div>
+                                    </li>
+                                </div>
+                                <div *ngIf="extraFilter.filterhide==false" class="menuitem-height insideClick">
+                                    <li role="menuitem" class="row menuitem-border insideClick"
+                                        (click)="addFilterBillAmt()">
+                                        <div class="col col-sm-auto chev insideClick"><label
+                                                class="dropdown-item insideClick">{{'Bill Amount' | translate}}</label>
+                                        </div>
+                                        <div class="col col-sm-auto cheev insideClick"><a
+                                                class="chevron-right insideClick"><img class="insideClick"
+                                                    src='assets/icons/chevron-right.svg'></a></div>
+                                    </li>
+                                </div>
+                                <div *ngIf="extraFilter.filterhide==false" class="menuitem-height insideClick">
+                                    <li role="menuitem" class="row menuitem-border insideClick"
+                                        (click)="addFilterReasonCode()">
+                                        <div class="col col-sm-auto chev insideClick"><label
+                                                class="dropdown-item insideClick">{{'Reason Code' | translate}}</label>
+                                        </div>
+                                        <div class="col col-sm-auto cheev insideClick"><a
+                                                class="chevron-right insideClick"><img class="insideClick"
+                                                    src='assets/icons/chevron-right.svg'></a></div>
+                                    </li>
+                                </div>
+                                <div *ngIf="extraFilter.filterhide==false" class="menuitem-height insideClick">
+                                    <li role="menuitem" class="row menuitem-border insideClick"
+                                        (click)="addFilterBillCategory()">
+                                        <div class="col col-sm-auto chev insideClick"><label
+                                                class="dropdown-item insideClick">{{'Bill Category' |
+                                                translate}}</label></div>
+                                        <div class="col col-sm-auto cheev insideClick"><a
+                                                class="chevron-right insideClick"><img class="insideClick"
+                                                    src='assets/icons/chevron-right.svg'></a></div>
+                                    </li>
+                                </div>
+
+                                <div *ngIf="extraFilter.filterhide==true" class="menu insideClick">
+                                    <div class="row insideClick">
+                                        <div
+                                            class="form-group col col-lg-12 col-12 custom-form inputAddFilter insideClick">
+                                            <label class="additional-label"
+                                                *ngIf="extraFilter.addBillAmt==false">{{extraFilter.labelName|
+                                                translate}}</label>
+                                            <input *ngIf="extraFilter.addAccountno==true" type="text" name="accountno"
+                                                class="form-control insideClick"
+                                                [(ngModel)]="inputFilters.accountNumber"
+                                                placeholder="{{'Account Number' | translate}}">
+                                            <input *ngIf="extraFilter.addProfileID==true" type="text"
+                                                name="paymentReference" class="form-control insideClick"
+                                                [(ngModel)]="inputFilters.profileId"
+                                                placeholder="{{'Profile ID' | translate}}">
+                                            <input *ngIf="extraFilter.addTransId==true" type="text"
+                                                name="paymentReference" class="form-control insideClick"
+                                                [(ngModel)]="inputFilters.transId"
+                                                placeholder="{{'Transaction ID' | translate}}">
+                                            <input *ngIf="extraFilter.addServiceNo==true" type="text"
+                                                name="paymentReference" class="form-control insideClick"
+                                                [(ngModel)]="inputFilters.serviceNumber"
+                                                placeholder="{{'Service Number' | translate}}">
+                                            <!-- <input *ngIf="extraFilter.addBillAmt==true" type="text" name="paymentReference" class="form-control insideClick" [(ngModel)]="inputFilters.amount" placeholder="{{'Bill Amount' | translate}}"> -->
+                                            <input *ngIf="extraFilter.addReasonCode==true" type="text" name="reasonCode"
+                                                class="form-control insideClick" [(ngModel)]="inputFilters.reasonCode"
+                                                placeholder="{{'Reason Code' | translate}}">
+                                            <input *ngIf="extraFilter.addBillCategory==true" type="text"
+                                                name="billCategory" class="form-control insideClick"
+                                                [(ngModel)]="inputFilters.billCategory"
+                                                placeholder="{{'Bill Category' | translate}}">
+                                            <!-- New implementation for bill amount range checkbox -->
+                                            <label *ngIf="extraFilter.addBillAmt==true"
+                                                class="amount-label insideClick">{{'Bill Amount' | translate}}
+                                                <div class="range insideClick">
+                                                    <label class="m-0 insideClick" for="vehicle1"> {{'Range' |
+                                                        translate}}</label>&nbsp;
+                                                    <input class="m-0 mt-1 insideClick" type="checkbox" name="range"
+                                                        [(ngModel)]="extraFilter.range">
+                                                </div>
+                                            </label>
+                                            <div *ngIf="extraFilter.range; else range2;"
+                                                class="range rng-amount insideClick">
+                                                <input *ngIf="extraFilter.addBillAmt==true" type="number" name="amountMin"
+                                                    [(ngModel)]="inputFilters.amountMin"
+                                                    class="form-control w-40 m-0 insideClick amount"
+                                                    placeholder="{{'Enter Min' | translate}}"
+                                                    (ngModelChange)="validateAmounts()"
+                                                    [ngClass]="{'redBorder': amount == true}">
+                                                <input *ngIf="extraFilter.addBillAmt==true" type="number" name="amountMax"
+                                                    [(ngModel)]="inputFilters.amountMax"
+                                                    class="form-control w-40 m-0 insideClick amount"
+                                                    placeholder="{{'Enter Max' | translate}}"
+                                                    (ngModelChange)="validateAmounts()"
+                                                    [ngClass]="{'redBorder': amount == true}">
+                                            </div>
+                                            <ng-template #range2>
+                                                <input *ngIf="extraFilter.addBillAmt==true" type="number" name="billAmt"
+                                                    class="form-control insideClick" [(ngModel)]="inputFilters.amount"
+                                                    placeholder="{{'Bill Amount' | translate}}">
+                                            </ng-template>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row insideClick">
+                                        <button type="button"
+                                            class="btn btn-primary  col-lg-1 left-alignment col applyBtnn"
+                                            (click)="dropdown.isOpen = !dropdown.isOpen;additionalFIlters()"><label
+                                                class="applyBtnn-label">{{'Apply' |translate}}</label></button>
+                                        <button type="button"
+                                            class="btn  btn-light  col-lg-1 left-alignment col cancelBtnn"
+                                            (click)="dropdown.isOpen = !dropdown.isOpen;addFilterHide()"><label
+                                                class="cancelBtnn-label">{{'Cancel' |translate}}</label></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

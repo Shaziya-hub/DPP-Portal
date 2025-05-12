@@ -1,0 +1,203 @@
+@import "../../../../../css/01-settings.scss";
+
+
+.redBorder {
+    border: 1px solid $error !important;
+}
+
+textarea {
+    background: $safe-blue;
+    resize: none;
+    padding: 10px 6px;
+}
+
+//tooltip
+
+.d-flex {
+    display: flex !important;
+}
+
+.cancelBtnn {
+    background: #D8D8D8 !important;
+    border: none;
+    border-radius: 4px;
+    // height: 48px;
+    min-width: 114px;
+    margin-top: 0px !important;
+    margin-left: 11px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: 'FrutigerLTArabic-65Bold';
+    color: white;
+    padding: 0px 16px;
+}
+
+.btn:disabled {
+    background: #2A235F;
+}
+
+.applyBtnn {
+    background: #2A235F;
+    border-radius: 4px;
+    margin-top: 1px !important;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+    span {
+        font-style: normal;
+        font-weight: 700;
+        font-family: 'FrutigerLTArabic-65Bold';
+        line-height: 24px;
+        font-size: 16px;
+        color: #FFFFFF;
+        //padding: 0px 31px;
+
+    }
+}
+
+.wrapper-main {
+    padding: 25px 31px;
+}
+
+.required:after {
+    content: " *";
+    color: #E53012;
+}
+
+.formPadding {
+    padding-bottom: 40px;
+    padding-top: 25px;
+}
+
+.nav {
+    .nav-item {
+        a.nav-link {
+            background-color: transparent !important;
+            border-color: transparent !important;
+            font-family: 'FrutigerLTArabic-65Bold';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 31px;
+            color: #747C91;
+            margin-right: 30px;
+        }
+
+        a.active {
+            border: transparent;
+            font-family: 'FrutigerLTArabic-65Bold';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 31px;
+            color: #3498DB;
+            border-bottom: 2px solid #3498DB !important;
+            border-radius: 0px !important;
+        }
+    }
+}
+
+.rowTopPadding {
+    padding: 24px 0px;
+}
+
+#resourcesDetail {
+    background: #F6F8FA;
+
+    nav {
+        border-bottom: 1px solid #E1E4E8;
+
+        .active {
+            background: rgba(116, 124, 145, 0.2);
+            color: #000000 !important;
+            font-weight: 700 !important;
+        }
+
+        .nav-link {
+            font-family: 'Frutiger-LT-Arabic-55-Roman';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 31px;
+            display: flex;
+            align-items: center;
+            color: #333333;
+            height: 43px;
+        }
+    }
+}
+
+#resourceCheck {
+    padding: 20px;
+
+    .moduleName {
+
+
+        span {
+            font-family: 'FrutigerLTArabic-65Bold';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 46px;
+            color: #000000;
+        }
+
+    }
+
+    .roleHeading {
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 27px;
+        text-align: center;
+        color: #747C91;
+        display: inline-block;
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    .checkbox>input {
+        border: 1px solid #747C91;
+    }
+
+    .checkbox>input:checked+span::before {
+        top: 0 !important;
+    }
+
+    .checkbox>span {
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 31px;
+        padding: 1px 7px 5px 5px;
+    }
+
+    .subMenuName {
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 31px;
+        display: flex;
+        align-items: center;
+        color: #747C91;
+    }
+
+    input[type=checkbox][disabled] {
+        opacity: 0.5;
+    }
+}
+
+.checkboxAlign>input:checked {
+    content: url(../../../../../assets/icons/icon-checkbox.svg);
+    display: block;
+    text-align: center;
+    color: $sea-green;
+    padding: 3px;
+}

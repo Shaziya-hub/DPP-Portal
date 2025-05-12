@@ -1,0 +1,20 @@
+<app-filters *ngIf="transactionId==null && instanceid == null" [pageConfig]="pageConfig" [headerConfig]="config"
+    (applyFiltersEvent)="applyFilters($event)" [actionKey]="actionKey" [cardsUrl]="cardsUrl"
+    (applyPmtCards)="pmtCards($event)" [transactionsPageInfo]="transactionsPageInfo" [dataSource]="dataSource"
+    [cardAttriute]="cardAttriute" [logVal]="logVal" [searchFilter]="searchFilter"
+    [cardServiceAttribute]="cardServiceAttribute"></app-filters>
+
+<data-grid *ngIf="(dataSource || showNoRecords || serviceNotResponded) && transactionId==null && instanceid == null"
+    [dataSource]="dataSource" [responseCount]="responseCount" (applyPmtCards)="pmtCards($event)"
+    [pageConfig]="pageConfig" [headerConfig]="config" (applyFiltersEvent)="applyFilters($event)"
+    (transactionIdEvent)="transactionIdEvent($event)" [filters]="filters" [logVal]="logVal" [actionKey]="actionKey"
+    [pageSettings]="pageSettings" [showNoRecords]="showNoRecords" [transactionsPageInfo]="transactionsPageInfo"
+    (instanceIdEvent)="instanceIdEvent($event)" (actionIdEvent)="actionIdEvent($event)"
+    [serviceNotResponded]="serviceNotResponded">
+</data-grid>
+
+<app-logger *ngIf="transactionId != null || instanceid != null" (transactionIdEvent)="transactionIdEvent($event)"
+    [transactionId]="transactionId" [instanceid]="instanceid" (instanceIdEvent)="instanceIdEvent($event)"
+    (LoggerEvent)="LoggerEvent($event)" [actionKey]="actionKey" (actionKeyEvent)="actionIdEvent($event)"
+    [transactionsPageInfo]="transactionsPageInfo">
+</app-logger>

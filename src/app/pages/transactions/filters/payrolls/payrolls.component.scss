@@ -1,0 +1,29 @@
+@import "../../../../../css/01-settings.scss";
+
+.common-trx {
+  hr {
+    background-color: #ECEBEB;
+  }
+
+  ul#dropdown-basic {
+    width: 388px;
+    margin-left: 15px;
+
+    .menuitem-height {
+      height: 50px;
+    }
+
+  }
+
+::ng-deep #container {
+
+  .theme-green .bs-datepicker-body table td span.selected {
+    background-color: $darkBlue !important;
+    color: #FFFFFF !important;
+  }
+
+  bs-daterangepicker-container {
+    transform: translate3d(-2px, 50px, 0px) !important;
+  }
+}
+}

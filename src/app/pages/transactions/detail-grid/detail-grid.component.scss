@@ -1,0 +1,11 @@
+@import "../../../../css/01-settings.scss";
+
+::ng-deep #trxDetailsGrid {
+
+    .dx-datagrid .dx-row>td {}
+
+    tr.dx-row.dx-column-lines.dx-header-row {
+        background-color: $white;
+        border-bottom: 1px solid #3498db;
+    }
+}

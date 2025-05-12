@@ -1,0 +1,21 @@
+<div class="pageHeadings">
+    <span class="page-heading2">{{'Payment'}} &nbsp;<span class="subpage-heading2">/&nbsp;{{'Get Bills'}}</span></span>
+    <hr>
+</div>
+
+<div class="wrapper-main page-header" id="filter-section">
+    <div class="row">
+        <div class="form-group col col-lg-3 col-12 custom-form">
+            <label>{{'Profile ID' | translate}}</label>
+            <div class="search-container">
+                <input type="search" id="myText" placeholder="{{'Search by profile Id' | translate}}"
+                    [(ngModel)]="body.GetBillDetailsRq.GetBillDetailsRecRq.Request.profileId"
+                    (keyup.enter)="serviceCall()">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<data-grid *ngIf="dataSource || showNoRecords" [dataSource]="dataSource" [arbCheckoutPageInfo]="arbCheckoutPageInfo"
+    [serviceNotResponded]="serviceNotResponded" [showNoRecords]="showNoRecords"></data-grid>

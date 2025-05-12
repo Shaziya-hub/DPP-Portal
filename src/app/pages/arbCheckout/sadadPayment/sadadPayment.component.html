@@ -1,0 +1,77 @@
+<div class="wrapper-main">
+    <div class="page-header d-flex flex-md-row flex-column">
+        <div class="order-2 order-md-1 d-flex page-header-element align-items-center">
+            <!-- <img src="assets/icons/header_icon.png" width="64" class="me-2"> -->
+            <div>
+                <!-- <a class="back_btn pb-1 align-items-end mt-0 fs-12" (click)="backToMethod()">
+              <img class="arrow" src="assets/icons/Vector.png"  >
+              &nbsp;&nbsp;
+              {{'Back to the billing page' | translate}}
+            </a> -->
+                <h1 class="page-title font-weight-bold page-header-element">
+                    {{'Bill No' | translate}} &nbsp;{{billNumber}}
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="row sadad" style="margin-bottom: 10%;">
+        <div class="col col-md-4 col-12 main-card">
+            <div class="card paidCard">
+                <img src="assets/icons/sadad_details.png"
+                    style="height: 54px; width: 152.8px;margin-bottom: 23.5px;margin-top: 28px;">
+                <div class="row" style="height: 5px;">
+                    <!-- <label style="width: 5px;margin-right: 9px;" *ngFor="let index of [0,1,2,3,4,5,6,7,8,9,10,11,12]"><div class="rectangle"></div></label>&nbsp;&nbsp;&nbsp; -->
+                    <label class="col" *ngFor="let index of [0,1,2,3,4,5,6,7,8,9,10,11,12]">
+                        <div class="rectangle"></div>
+                    </label>
+                </div>
+                <div class="row labell">
+                    <label>{{'Please pay through SADAD' | translate}}</label>
+                </div>
+                <div class="paidDate">
+                    <div class="row">
+                        <div class="col col-sm-9 col-12"><span>{{'Your billing number' | translate}}
+                            </span> {{billNumber}} </div>
+                        <div class="col col-sm-3 col-12">
+                            <div class="btnn" (click)="copy(billNumber)"><img
+                                    src="assets/icons/folder.png"><span>{{'copies' | translate}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-4 col-12">
+            <div class="row above"><label>{{'Payment steps via SADAD' | translate}}</label></div>
+            <div class="row pay-cards building-bank abovee">
+                <div class="apple"><img src="assets/icons/oneBtn.png"></div>
+                <div class="desc"><label>{{'Log in to your bank account' | translate}}</label></div>
+            </div>
+            <div class="row pay-cards document-bill">
+                <div class="apple"><img src="assets/icons/threeBtn.png"></div>
+                <div class="desc"><label>{{'Enter the bill payment number' | translate}}</label></div>
+            </div>
+        </div>
+        <div class="col col-md-4 col-12">
+            <div class="row above" style="height: 21px;"><label></label></div>
+            <div class="row pay-cards caption abovee">
+                <div class="apple"><img src="assets/icons/twoBtn.png"></div>
+                <div class="desc"><label>{{'Enter the postpaid number 057' | translate}}</label></div>
+            </div>
+            <div class="row pay-cards file">
+                <div class="apple"><img src="assets/icons/fourBtn.png"></div>
+                <div class="desc"><label>{{'Pay your bill' | translate}}</label></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <!-- <div class="col-md-6 text-end mt-5 flex-start">
+            <a class="btn btn-light px-5 py-2 fw-bold" (click)="backToMethod()">{{'Reference' | translate}}</a>
+        </div> -->
+        <div class="col-md-6 text-end mt-5 flex-end">
+            <a class="btn btn-primary px-5 py-2 fw-bold" (click)="backToMethod()">{{'Go Back' | translate}}</a>
+        </div>
+    </div>
+</div>

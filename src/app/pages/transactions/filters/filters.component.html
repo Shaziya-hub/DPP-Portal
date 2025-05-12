@@ -1,0 +1,28 @@
+<div class="page-header" id="filter-section">
+    <payments-filter *ngIf="transactionsPageInfo?.pageName == 'payments'" [pageConfig]="pageConfig"
+        [dataSource]="dataSource" [logVal]="logVal" [searchFilter]="[searchFilter]" [cardAttriute]="cardAttriute"
+        [actionKey]="actionKey" [cardServiceAttribute]="cardServiceAttribute" [cardsUrl]="cardsUrl"></payments-filter>
+    <bills-filter *ngIf="transactionsPageInfo?.pageName == 'bills'" [pageConfig]="pageConfig" [dataSource]="dataSource"
+        [logVal]="logVal" [searchFilter]="[searchFilter]" [cardAttriute]="cardAttriute"
+        [cardServiceAttribute]="cardServiceAttribute" [cardsUrl]="cardsUrl"></bills-filter>
+    <nonsadad-filter *ngIf="transactionsPageInfo?.pageName == 'nonsadad'" [pageConfig]="pageConfig"
+        [dataSource]="dataSource" [logVal]="logVal" [searchFilter]="[searchFilter]"
+        [cardAttriute]="cardAttriute"></nonsadad-filter>
+    <accounts-filter *ngIf="transactionsPageInfo?.pageName == 'accounts'" [pageConfig]="pageConfig"
+        [dataSource]="dataSource" [logVal]="logVal" [searchFilter]="[searchFilter]"
+        [cardAttriute]="cardAttriute"></accounts-filter>
+    <refunds-filter *ngIf="transactionsPageInfo?.pageName == 'refunds'" [pageConfig]="pageConfig"
+        [dataSource]="dataSource" [logVal]="logVal" [searchFilter]="[searchFilter]"
+        [cardAttriute]="cardAttriute"></refunds-filter>
+    <batches-filter *ngIf="transactionsPageInfo?.pageName == 'batches'" [pageConfig]="pageConfig"
+        [dataSource]="dataSource" [logVal]="logVal" [searchFilter]="[searchFilter]"
+        [cardAttriute]="cardAttriute"></batches-filter>
+    <app-e-invoices *ngIf="transactionsPageInfo?.pageName == 'einvoices'" [pageConfig]="pageConfig"
+        [dataSource]="dataSource" [logVal]="logVal" [searchFilter]="[searchFilter]"></app-e-invoices>
+    <app-payouts-filter *ngIf="transactionsPageInfo?.pageName == 'payouts'" [pageConfig]="pageConfig"
+        [dataSource]="dataSource" [logVal]="logVal" [searchFilter]="[searchFilter]"></app-payouts-filter>
+    <app-payrolls  *ngIf="transactionsPageInfo?.pageName == 'payrolls'" [pageConfig]="pageConfig"
+    [dataSource]="dataSource" [logVal]="logVal" [searchFilter]="[searchFilter]" [cardAttriute]="cardAttriute"
+    [actionKey]="actionKey" [cardServiceAttribute]="cardServiceAttribute" [cardsUrl]="cardsUrl"></app-payrolls>    
+    
+</div>

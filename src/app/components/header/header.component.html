@@ -1,0 +1,103 @@
+<header class="header flex-row-between-stretch">
+  <div class="menu-button flex-row-center-center" (click)="toggleMenu()">
+    <div class="menu-container" [class.menu-change]="sideMenu.menuOpen">
+
+      <img src="assets/icons/icon-menu-expand.svg" class="ham-right" alt="menu">
+      <img src="assets/icons/icon-menu-collapse.svg" class="ham-left" alt="menu">
+    </div>
+  </div>
+  <div class="row right flex-row-between-stretch">
+
+    <div class="menu-button flex-row-center-center user-profile text-capitalize">
+      <div class="progress" id="downloadmanagerid" data-percentage="0">
+        <span class="progress-left">
+          <span class="progress-bar"></span>
+        </span>
+        <span class="progress-right">
+          <span class="progress-bar"></span>
+        </span>
+        <div class="logout dw-manager" id="download" (click)="downloadManagerClick()">
+          <div *ngIf="downloadManagerService.isDownloading?inprogressMethod():false"></div>
+          <div class="item-icon flex-row-start-center btn-group" dropdown #dropdown="bs-dropdown" [insideClick]="true">
+
+            <i id="button-basic" dropdownToggle type="button" class="btn btn-light dropdown-toggle"
+              aria-controls="dropdown-basic" class="bi bi-download dd"></i>
+            <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu"
+              aria-labelledby="button-animated">
+              <div class="container">
+                <div class="row">
+                  <div class="col col-sm-9 col-12">
+                    <label class="heading">{{'Download Manager' | translate}}</label>
+                  </div>
+                  <div class="col col-sm-2 col-12" style="padding: 1px 1px 1px 8px" *ngIf="downloads.length != 0">
+                    <button type="button" class="clear-all-btn" (click)="clearAll()">{{'Clear All' |
+                      translate}}</button>
+                  </div>
+                </div>
+                <div class="row noFiles" *ngIf="downloads.length == 0">
+                  <div class="col col-sm-6 col-12"><span class="nodownloads">{{ 'No Files Downloaded' |
+                      translate}}</span></div>
+
+                </div>
+                <div class="row downloadList-row" *ngFor="let download of downloads">
+                  <div class="col col-sm-6 col-12 spaceing"><label class="download-name">{{download.pdfFlag==true?
+                      download.name+".pdf":download.xlsxFlag ==
+                      true?download.name+".xlsx":download.name+".csv"}}</label></div>
+                  <div class="col col-sm-6 col-12 spaceing-percent"
+                    *ngIf="download.percent !=100?'setDownloadFalse()':''">{{download.percent}} %
+                  </div>
+                  <div class="col col-lg-6 col-12 spaceing-icons" *ngIf="download.percent==100 && !download.pdfFlag">
+                    <div class="row">
+                      <div class="col col-sm-3"><label class="download-completed">{{'Ready' | translate}}</label></div>
+                      <div class="col col-sm-3 "><i class="bi bi-download bb" (click)="downloadFile(download)"></i>
+                      </div>
+                      <div class="col col-sm-3 "><i class="bi bi-trash" (click)="deleteFile(download)"></i></div>
+                      <!-- Show 'i' symbol in download Manager of portal, on hover should show password to be used -->
+                      <div *ngIf="download.pdfFlag == true  || download.xlsxFlag == true " class="col col-sm-3 "><i
+                          class="bi bi-info-circle" [tooltip]="userPassword"></i></div>
+                    </div>
+                  </div>
+                  <div class="col col-lg-6 col-12 spaceing-icons"
+                    *ngIf="download.percent==100 && download.pdfFlag == true">
+                    <div class="row">
+                      <div class="col col-sm-6"><label class="download-completed">{{'Ready' | translate}}</label></div>
+                      <div class="col col-sm-2 "><i class="bi bi-download bb" (click)="downloadPDF()"></i></div>
+                      <div class="col col-sm-2 "><i class="bi bi-trash" (click)="deleteFile(download)"></i></div>
+                      <!-- Show 'i' symbol in download Manager of portal, on hover should show password to be used -->
+                      <div class="col col-sm-2 "><i class="bi bi-info-circle" [tooltip]="userPassword"></i></div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>&nbsp;&nbsp;&nbsp;
+      <div class="globe" (click)="switchLang(nextSelectedLang)">
+        <div><i class="bi bi-globe"></i></div>
+        <div class="lang-text">{{ (nextSelectedLang == 'ar' ? 'عربى' : 'En')}} </div>
+      </div>
+
+      &nbsp;&nbsp;&nbsp;
+      <div ngbDropdown class="d-flex dropdown align-items-center">
+        <div class="user-profile-box"> <img src="assets/icons/avtar.jpg"> </div>
+        <div class="user-name" id="dropdownMenuButton" ngbDropdownToggle>{{user?.name}}</div>
+        <div class="user-menu-cont" ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+          <div class="block-6"></div>
+          <div class="d-flex user-m-box">
+            <div class="item-icon flex-row-start-center user-icon-box"> <img src="assets/icons/icon-account.svg"
+                class="" alt="user-icon"></div>
+            <div class="item-text flex-row-start-center user-text-box">{{'Account' | translate}}</div>
+          </div>
+          <div class="block-13"></div>
+          <div class="d-flex border-top-log user-m-box user-log-box" (click)="logout()">
+            <div class="item-icon flex-row-start-center user-icon-box"> <img src="assets/icons/icon-logout.svg" class=""
+                alt="user-icon"></div>
+            <div class="item-text flex-row-start-center user-text-box">{{'Logout' | translate}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

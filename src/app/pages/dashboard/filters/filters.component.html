@@ -1,0 +1,10 @@
+<div id="filter-section">
+    <payments-filter *ngIf="dashboardPageInfo.pageName == 'payments'" [dashboardPageInfo]="dashboardPageInfo"
+        [pageConfig]="pageConfig" [pmtGaugeData]="pmtGaugeData" [pmtDoughnutData]="pmtDoughnutData"
+        [pmtReportData]="pmtReportData" [pmtCardData]="pmtCardData" [pmtLineData]="pmtLineData"></payments-filter>
+
+    <bills-dashboard-filter *ngIf="dashboardPageInfo.pageName == 'bills'" [dashboardPageInfo]="dashboardPageInfo"
+        [pageConfig]="pageConfig" [billReportData]="billReportData" [billCardData]="billCardData"
+        [billBarData]="billBarData" [billDoughnutData]="billDoughnutData"
+        [billLineData]="billLineData"></bills-dashboard-filter>
+</div>

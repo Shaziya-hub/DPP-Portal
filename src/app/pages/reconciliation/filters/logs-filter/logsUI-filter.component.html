@@ -1,0 +1,92 @@
+<div class="common-trx">
+    <app-common-heading></app-common-heading>
+
+    <div class="wrapper-main">
+        <form #logsForm="ngForm" autocomplete="off">
+            <div class="row">
+
+                <!-- <div class="form-group col col-lg-3 col-12 custom-form">
+            <label>{{'Business Services' | translate}}</label>
+                <angular2-multiselect name="services" [data]="pageConfig?.listOfValues?.bizServices"
+                    [(ngModel)]="searchFilters.serviceId" #serviceId="ngModel"    [settings]="getBizServicesSetting()" (onClose)=" onServiceChange()" (onDeSelectAll)="onServiceChange()">
+                </angular2-multiselect>
+            </div> -->
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label class="required">{{'Gateways' | translate}}</label>
+                    <select class="form-select" name="getways" [(ngModel)]='searchFilters.pmtGatewayType'
+                        (change)="onChange(searchFilters.pmtGatewayType)"
+                        [ngClass]="searchFilters.pmtGatewayType == null?'':'selected'" #pmtGatewayType="ngModel">
+                        <option [ngValue]='null' [disabled]="true">{{getwaysSettings.text}}</option>
+                        <option class="form-group col col-lg-3 col-md-6 custom-form col-custom-pd-left col-custom-pd"
+                            *ngFor="let dropdownList of pageConfig?.listOfValues?.pmtGateways "
+                            [ngValue]="dropdownList.pmtGatewayType">{{dropdownList.pmtGatewayName}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group col col-lg-3 col-12 custom-form" *ngIf="reconLogType == true">
+                    <div>
+                        <label
+                            [ngClass]="searchFilters.pmtGatewayType == 'SADAD' || searchFilters.pmtGatewayType == 'TAHSEEL'? 'required':''">{{'Log
+                            Type' | translate}}</label>
+                        <select class="form-select" name="serviceId"
+                            [ngClass]="searchFilters.logType == null?'':'selected'" [(ngModel)]='searchFilters.logType'
+                            (change)="onLogChange(searchFilters.logType)"
+                            [ngStyle]="logFlag == true? {'border':'1px solid #dd4b39'}:{}">
+                            <option [ngValue]='null' [disabled]="true">{{logTypeSettings.text}}</option>
+                            <option
+                                class="form-group col col-lg-3 col-md-6 custom-form col-custom-pd-left col-custom-pd"
+                                *ngFor="let dropdownList of pageConfig?.listOfValues?.reconLogType"
+                                [ngValue]="dropdownList.value">{{dropdownList.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Merchant Names' | translate}}</label>
+                    <angular2-multiselect name="merchant" [data]=" filtersComponent.pageConfig?.listOfValues?.merchants"
+                        [(ngModel)]="searchFilters.merchantId" [settings]="getMerchantServiceSetting()">
+                    </angular2-multiselect>
+                </div>
+
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Batch ID' | translate}}</label>
+                    <input type="text" name="search" class="form-control" [(ngModel)]="searchFilters.batchId"
+                        placeholder="{{'Batch ID'| translate}}">
+                </div>
+
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label class="required">{{'Date Range' | translate}}</label>
+                    <app-dateTimepicker id="{{reconLogType == true ? 'container-log': 'containerr'}}"
+                        [fromdateInputFlag]="fromdateInputFlag" [reset3]="reset3" [bsdateRange]="bsdateRange"
+                        (dateRange)="dateRangeChange($event)" [landingDateRange]="landingDateRange" class="kkkk"
+                        [bsConfig]="{withTimepicker: true,showWeekNumbers: false, keepDatepickerOpened: true, rangeInputFormat : 'MM/DD/YYYY,HH:mm',dateInputFormat: 'MMMM Do YYYY, HH:mm',monthLabel: 'MMM'}">
+                    </app-dateTimepicker>
+
+                </div>
+
+            </div>
+
+            <div class=" d-flex">
+                <button type="button" class="btn btn-block btn-primary  col-lg-1 left-alignment col applyBtnn"
+                    (click)="search()">
+                    <div class="row applyBtnn-label">
+                        <div class="col col-sm-6 fa-searchIcon"><img src='assets/icons/icon-search.svg'></div>
+                        <div class="col col-sm-6 searchLabel">{{'Search' | translate}}</div>
+                    </div>
+                </button>
+                <button type="button" class="btn btn-block btn-light  col-lg-1 left-alignment col cancelBtnn"
+                    (click)="resetForm()">
+                    <div class="cancelBtnn-label">{{'Reset' | translate}}</div>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="row additionalFIlter-list" *ngIf=" dataSource != null">
+        <div class="form-group col col-lg-10 col-12">
+            <div class="tags-container">
+                <div class="row transs"><label class="result-trx">{{'Results' | translate}}</label></div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="page-header" id="filter-section">
+    <users-filter *ngIf="identitymanagementPageInfo.pageName == 'users'"
+        [identityManagementPageInfo]="identitymanagementPageInfo" [pageConfig]="pageConfig"
+        [dataSource]="dataSource"></users-filter>
+    <users *ngIf="identitymanagementPageInfo.pageName == 'userDetails'"
+        [identityManagementPageInfo]="identitymanagementPageInfo" [pageConfig]="pageConfig"
+        [pageConfigDetails]="pageConfigDetails" [headerConfig]="headerConfig"></users>
+    <roles-filter *ngIf="identitymanagementPageInfo.pageName == 'roles'"
+        [identityManagementPageInfo]="identitymanagementPageInfo" [pageConfig]="pageConfig"
+        [dataSource]="dataSource"></roles-filter>
+    <roles *ngIf="identitymanagementPageInfo.pageName == 'rolesDetails'"
+        [identityManagementPageInfo]="identitymanagementPageInfo" [headerConfig]="headerConfig"></roles>
+</div>

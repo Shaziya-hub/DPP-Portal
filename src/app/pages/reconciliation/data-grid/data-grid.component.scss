@@ -1,0 +1,273 @@
+@import "../../../../css/01-settings.scss";
+
+::ng-deep #reconcilationGridContainer {
+    .dx-datagrid .dx-row>td {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 27px;
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        color: #333333;
+
+        &:focus {
+            outline: transparent !important;
+        }
+    }
+
+    .dx-icon {
+        font-family: DXIcons !important;
+    }
+
+    .dx-sort-index-icon {
+        display: none !important;
+    }
+
+    .dx-sort {
+        display: block;
+        position: absolute;
+        top: 20px;
+    }
+
+    .dx-sort-down {
+        top: 24px !important;
+
+        &::before {
+            content: url(../../../../assets/icons/icon-sort-down.svg) !important;
+        }
+    }
+
+    .dx-sort-up {
+        top: 24px !important;
+
+        &::before {
+            content: url(../../../../assets/icons/icon-sort-up.svg) !important;
+        }
+    }
+
+    .dx-sort-none {
+        &::before {
+            content: url(../../../../assets/icons/sort.svg) !important;
+            // content: url(../../../../assets/icons/up-down.png) !important;
+        }
+    }
+
+    .dx-datagrid .dx-data-row>td.trxamount-text {
+        padding-right: 24px !important;
+        font-weight: 700;
+        //font-family: 'Frutiger LT Arabic mix';
+        font-size: 12px;
+    }
+
+    .trxamount-text {
+        .dx-column-indicators {
+            padding-right: 10px;
+        }
+    }
+
+    .dx-datagrid .dx-data-row>td.ttlFees-text {
+        padding-right: 30px !important;
+        font-weight: 700;
+        //font-family: 'Frutiger LT Arabic mix';
+        font-size: 12px;
+    }
+
+    .ttlFees-text {
+        .dx-column-indicators {
+            padding-right: 10px;
+        }
+    }
+
+    .dx-datagrid .dx-data-row>td.amount-text {
+        padding-right: 27px !important;
+        font-weight: 700;
+        //font-family: 'Frutiger LT Arabic mix';
+        font-size: 12px;
+    }
+
+    .amount-text {
+        .dx-column-indicators {
+            padding-right: 10px;
+        }
+    }
+
+    .dx-datagrid .dx-data-row>td.sadadPmt-col {
+        padding-right: 16px !important;
+        font-weight: 700;
+        //font-family: 'Frutiger LT Arabic mix';
+        font-size: 12px;
+    }
+
+    .sadadPmt-col {
+        .dx-column-indicators {
+            padding-right: 10px;
+        }
+    }
+
+    .dx-datagrid .dx-data-row>td.sadadPmtUnreconCSS {
+        padding-right: 12px !important;
+        font-weight: 700;
+        //font-family: 'Frutiger LT Arabic mix';
+        font-size: 12px;
+    }
+
+    .sadadPmtUnreconCSS {
+        .dx-column-indicators {
+            padding-right: 10px;
+        }
+    }
+
+    .dx-datagrid .dx-data-row>td.sadadPmt-coll {
+        padding-right: 12px !important;
+        font-weight: 700;
+        //font-family: 'Frutiger LT Arabic mix';
+        font-size: 12px;
+    }
+
+    .sadadPmt-coll {
+        .dx-column-indicators {
+            padding-right: 10px;
+        }
+    }
+
+    .dx-datagrid .dx-data-row>td.sadadRefAmtCSS {
+        padding-right: 16px !important;
+        font-weight: 700;
+        //font-family: 'Frutiger LT Arabic mix';
+        font-size: 12px;
+    }
+
+    .sadadRefAmtCSS {
+        .dx-column-indicators {
+            padding-right: 10px;
+        }
+    }
+
+    .dx-datagrid .dx-data-row>td.srefundAmtCss {
+        padding-right: 20px !important;
+        font-weight: 700;
+        //font-family: 'Frutiger LT Arabic mix';
+        font-size: 12px;
+    }
+
+    .srefundAmtCss {
+        .dx-column-indicators {
+            padding-right: 10px;
+        }
+    }
+
+    .dx-datagrid .dx-data-row>td.appliedAmount-text {
+        padding-right: 16px !important;
+        font-weight: 700;
+        //font-family: 'Frutiger LT Arabic mix';
+        font-size: 12px;
+    }
+
+    .appliedAmount-text {
+        .dx-column-indicators {
+            padding-right: 10px;
+        }
+    }
+
+    .dx-datagrid .dx-row>td.transId-css {
+        color: $cyan-blue !important;
+        font-size: 14px;
+        line-height: 27px;
+        font-weight: 400;
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+
+        //  cursor:pointer
+        div {
+            a {
+                span {
+                    width: 170px;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .dx-datagrid-text-content.dx-text-content-alignment-right .dx-template-wrapper {
+        position: absolute;
+    }
+
+    .dx-datagrid-borders>.dx-datagrid-filter-panel,
+    .dx-datagrid-borders>.dx-datagrid-headers {
+        border-bottom: 1px solid $cyan-blue;
+
+    }
+
+    .dx-datagrid.dx-gridbase-container {
+        background: $white;
+        box-sizing: border-box;
+        border: 1px solid $white;
+        border-radius: 4px;
+    }
+
+    .dx-datagrid-borders>.dx-datagrid-headers {
+        border-top: 1px solid $white;
+        border-left: 1px solid $white;
+        border-right: 1px solid $white;
+    }
+
+    .dx-datagrid.dx-gridbase-container .fixed-headers .dx-row.dx-column-lines.dx-header-row {
+        background-color: $white !important;
+        color: #26273B;
+        font-weight: 700;
+        border-bottom: 1px solid $cyan-blue;
+        /* box-shadow: 0px 3px 4px rgb(0 0 0 / 10%); */
+        height: 58.25px;
+    }
+
+    .dx-datagrid .dx-row>td.transId-css {
+        color: $cyan-blue !important;
+        font-size: 14px;
+        line-height: 27px;
+        font-weight: 400;
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        cursor: pointer
+    }
+
+    td.top-header-align.dx-cell-focus-disabled {
+        position: relative;
+        left: 21%;
+    }
+
+    .dx-overlay-content.dx-popup-normal.dx-resizable.dx-popup-flex-height {
+        height: 216px !important;
+        width: 265px !important;
+    }
+
+
+    .bi::before,
+    [class^="bi-"]::before,
+    [class*=" bi-"]::before {
+        font-weight: 700 !important;
+        font-size: 20px;
+    }
+
+
+
+
+}
+
+.no-records {
+    text-align: center;
+    margin: 10%;
+}
+
+
+.download-menu {
+    width: 90px !important;
+    margin-left: -68px !important;
+    margin-top: 2px !important;
+
+    a.dropdown-item {
+        padding: 7px 30px 4px 30px !important;
+    }
+}
+
+// .btn-group {
+//     top: 8px !important;
+// }

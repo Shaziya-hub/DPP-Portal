@@ -1,0 +1,220 @@
+<html>
+<head>
+   <script src="https://ncbtest.mtf.gateway.mastercard.com/form/version/64/merchant/TEST601000756/session.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   <style id="antiClickjack">
+      body {
+         display: none !important;
+      }
+      .input-field {
+         width: 250px !important;
+      }
+    
+   </style>
+   <style>
+  .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.payment-content-wrapper{
+    max-width: 600px!important;
+    position: relative;
+    margin-bottom: 3rem;
+    overflow: hidden;
+    background-color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+   </style>
+</head>
+<body>
+   <div class="container container-fluid container-lg .container-md container-sm container-xl">
+     <div class="row" style="margin-right: -9px !important; margin-left: -9px !important;">
+        <div class="col payment-content-wrapper">
+      <div class="row">
+         <div class="form-group col-md-12">
+            <label>Cardholder Name</label>
+            <input type="text" id="cardholder-name" class="input-field" title="cardholder name"
+               aria-label="enter name on card" value="" tabindex="5" readonly
+               style="width:100%;border:1px solid #ced4da;height: 38px;">
+         </div>
+      </div>
+      <div class="row">
+         <div class="form-group col-md-12">
+            <label>Card Number</label>
+            <input type="text" id="card-number" class="input-field" title="card number"
+               aria-label="enter your card number" value="" tabindex="1" readonly
+               style="width:100%;border:1px solid #ced4da;height: 38px;">
+         </div>
+      </div>
+      <div class="row">
+         <div class="form-group col-xs-6 col-md-6">
+            <label>Expiry date</label>
+            <div id="outerid" class="main-div" style="border:1px solid #ced4da;    display: flex;
+            height: 38px; min-width: 92px">
+               <input type="text" id="expiry-month" class="input-field" title="expiry month"
+                  aria-label="two digit expiry month" value="" tabindex="2" readonly
+                  style="width: 40px;border:0px solid #ced4da; padding-left:10px !important;"
+                  placeholder="MM">
+                  <span class="form-group" style=" padding: 0.25rem .25rem;
+               font-size: 1.875rem;
+               line-height: 1.7;">/</span>
+               <input type="text" id="expiry-year" class="input-field" title="expiry year" placeholder="YY"
+                  aria-label="two digit expiry year" value="" tabindex="3" readonly
+                  style="width:40px;border:0px solid #ced4da;padding-left:5px !important;">
+            </div>
+         </div>
+         <div class="form-group col-md-6 col-xs-6">
+            <label> Security Code</label>
+            <input type="text" id="security-code" class="input-field" title="security code"
+               aria-label="three digit CCV security code" value="" tabindex="4" readonly
+               style="width:100%;border:1px solid #ced4da;height: 38px;">
+         </div>
+
+      </div>
+
+      <div class="row">
+         <div class="form-group col-md-12"><button id="payNow" onclick="pay('card');" class="btn btn-primary">Pay Now</button></div>
+      </div>
+   </div>
+   </div>
+   </div>
+   </div>
+   
+   <script type="text/javascript">
+      var  checkMonthExp=false
+	  var  checkYearExp=false 
+      var proceedToPayAuth="";
+       console.log("self obj:",self.origin ,"top obj:", top.origin);
+      if (self === top || self.origin == top.origin) { var antiClickjack = document.getElementById("antiClickjack"); antiClickjack.parentNode.removeChild(antiClickjack); console.log("antiClickjack is ",antiClickjack);} else { top.location=self.location} PaymentSession.configure({
+         session: "SESSION0002454215484E3323691K45", fields: { card: { number: "#card-number", securityCode: "#security-code", expiryMonth: "#expiry-month", expiryYear: "#expiry-year", nameOnCard: "#cardholder-name" } }, frameEmbeddingMitigation: ["javascript"], callbacks: {
+            initialized: function (response) { }, formSessionUpdate: function (response) {
+               if (response.status) { 
+                  if ("ok" == response.status) {
+                      if (response.sourceOfFunds.provided.card.securityCode) 
+					      { 
+						     console.log("Security code was provided.",response); 
+						     console.log("Session updated with datais id : " + response.session.id);
+                       document.getElementById("security-code").style.borderColor = "green";
+                       proceedToPayAuth= "payAuth" 
+					 }
+					 else
+					 {
+						console.log("Security code was not provided.");
+                  proceedToPayAuth= "Please provide security code"; 
+                 document.getElementById("security-code").style.borderColor = "red"; 
+					 }
+               } 
+				  else if ("fields_in_error" == response.status) 
+				  {
+               proceedToPayAuth=response.status;
+					console.log("Session update failed with field errors."); 
+					if (response.errors.cardNumber) 
+					{ 
+						console.log("Card number invalid or missing."); 
+                  document.getElementById("card-number").style.borderColor = "red";
+					} 
+					if (response.errors.expiryYear) 
+					{ 
+						console.log("Expiry year invalid or missing.");   
+					} 
+					if (response.errors.expiryMonth) 
+					{ 
+						console.log("Expiry month invalid or missing.");  
+					} 
+					if (response.errors.securityCode) 
+					{
+                        console.log("Security code invalid."); 
+               }
+               } else if ("request_timeout" == response.status) { 
+                  proceedToPayAuth=response.status;
+                     console.log("Session update failed with request timeout: " + response.errors.message); 
+               } else if ("system_error" == response.status) { 
+                  proceedToPayAuth=response.status;
+                     console.log("Session update failed with system error: " + response.errors.message); 
+                  }
+               } else { 
+                  proceedToPayAuth="Session update failed";
+                  console.log("Session update failed: " + response); }
+            }
+         }, interaction: { displayControl: { formatCard: "EMBOSSED", invalidFieldCharacters: "REJECT" } }
+      }); 
+	  function pay() { PaymentSession.updateSessionFromForm('card'); }
+      
+	 
+      PaymentSession.onValidityChange(["card.number", "card.securityCode", "card.expiryYear", "card.expiryMonth"], function (selector, result) 
+	  {
+		if (result.isValid) {
+			 document.querySelector(selector).style.borderColor = "green";
+			
+			if("#expiry-month" == selector){
+				checkMonthExp=true; 
+				console.log("Month is valid", selector, "Flag: ", checkMonthExp);
+			}
+			if("#expiry-year" == selector){
+				checkYearExp=true 
+				console.log("Year is valid",selector, "Flag Value: ", checkYearExp);
+			}if(checkMonthExp == true && checkYearExp==true){
+				console.log("Expiry year & month are valid", "Flag Values:", checkMonthExp, checkYearExp);
+				document.getElementById("outerid").style.borderColor = "green";
+               
+			}   
+		} 
+		else if (result.isIncomplete) {
+			  if("#expiry-month" == selector){
+				checkMonthExp=false;
+            document.getElementById("outerid").style.borderColor = "red";
+				console.log("Month is valid", selector, "Flag: ", checkMonthExp); 
+			}
+			if("#expiry-year" == selector){
+				checkYearExp=false 
+            document.getElementById("outerid").style.borderColor = "red";
+			 
+			}
+          if("#security-code" == selector){
+             console.log("The field value is not yet valid"); 
+         }
+		
+         if(("#expiry-month" == selector || "#expiry-year" == selector) && (checkMonthExp == false || checkYearExp==false)){
+				document.getElementById("outerid").style.borderColor = "red";
+               
+			} 
+         	document.querySelector(selector).style.borderColor = "red";
+		}
+		else { 
+         if("#expiry-month" == selector){
+				checkMonthExp=false; 
+				console.log("Month is valid", selector, "Flag: ", checkMonthExp);
+            document.getElementById("outerid").style.borderColor = "red";
+           
+			}
+          if("#expiry-year" == selector){
+				checkYearExp=false 
+            document.getElementById("outerid").style.borderColor = "red"; 
+			} 
+			document.querySelector(selector).style.borderColor  = "red";
+		}
+	});
+   window.getPayAuthMethodCall=function(){
+      	return proceedToPayAuth;
+      } 
+</script>
+</body>
+</html>
+
+<script>
+
+ $("#payNow").click(function (){
+	setTimeout(function() {
+		var repo=window.getPayAuthMethodCall();
+	
+   }, 3000);
+ 
+});
+
+</script>

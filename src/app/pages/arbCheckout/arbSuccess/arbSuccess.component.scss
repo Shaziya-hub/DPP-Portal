@@ -1,0 +1,215 @@
+@import "../../../../css/01-settings.scss";
+
+.card.paidCard {
+    background: #FFFFFF;
+    border: 1px solid #E7EAEE !important;
+    border-radius: 2px;
+    padding-top: 0px !important;
+    padding: 16px;
+
+    img.paidImg {
+        height: 40px;
+        position: relative;
+        width: 40px;
+        top: -23px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .card-body {
+        padding: 0px;
+        padding-bottom: 24px;
+
+        .heading {
+            text-align: center;
+            font-family: 'Frutiger-LT-Arabic-55-Roman' !important;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 20px;
+            text-align: center !important;
+            color: #9C9DB4;
+
+        }
+
+        .bill {
+            font-family: 'Frutiger-LT-Arabic-55-Roman' !important;
+            font-style: normal;
+            font-weight: 800;
+            font-size: 18px;
+            line-height: 150%;
+            text-align: center;
+            color: #000062;
+
+            span {
+                // font-weight: 500;
+                font-size: 14px;
+            }
+        }
+
+        .status {
+            font-family: 'Frutiger-LT-Arabic-55-Roman' !important;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: center;
+            color: #39BA95;
+        }
+
+        .status.red {
+            color: #CA2C2C;
+            ;
+        }
+    }
+
+    .paidDate {
+        display: flex;
+        padding: 10px 11px;
+        text-align: center;
+        background: #F7FAFD;
+        margin-top: 14px;
+        margin-bottom: 8px;
+        font-family: 'Frutiger-LT-Arabic-55-Roman' !important;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 12px;
+        line-height: 20px;
+        align-items: center;
+        color: #353535;
+
+        span {
+            color: #9C9DB4;
+            font-weight: 500;
+            font-size: 12px;
+        }
+
+    }
+
+    label.labelss {
+
+        .key {
+            font-family: 'Frutiger-LT-Arabic-55-Roman' !important;
+            font-style: medium;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 20px;
+            display: flex;
+            align-items: center;
+            text-align: right;
+            color: #9C9DB4;
+        }
+
+
+    }
+
+    .labels {
+        .value {
+            font-family: 'Frutiger-LT-Arabic-55-Roman' !important;
+            font-style: medium;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 20px;
+            display: flex;
+            align-items: center;
+            text-align: right;
+            color: #353535 !important;
+        }
+    }
+
+    ul {
+        column-count: 1;
+    }
+
+    .rectangle {
+
+        width: 5px;
+        height: 5px;
+        border: 1px solid #E7EAEE;
+
+    }
+
+    button.btn.btn-light {
+
+        background: none;
+        padding: 8px 10px;
+        border-radius: 2px;
+        font-family: 'Frutiger-LT-Arabic-55-Roman' !important;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+        margin-top: 16px;
+        color: #BFBFD8;
+    }
+
+    button.btn.btn-primaryy {
+        align-items: center;
+        padding: 8px 10px;
+        gap: 10px;
+        margin-top: 16px;
+        // background: linear-gradient(270deg, #000067 0%, #404089 100%) !important;
+        border-radius: 2px;
+        font-size: 12px !important;
+        color: #FFFFFF;
+        text-align: center !important;
+        font-family: 'Frutiger-LT-Arabic-55-Roman' !important;
+    }
+
+    .col.col-sm-12.col-12.flex-center.bottom {
+        display: flex;
+        justify-content: center;
+        border-radius: 2px;
+        font-size: 12px !important;
+        color: #FFFFFF;
+        text-align: center !important;
+        font-family: 'Frutiger-LT-Arabic-55-Roman' !important;
+    }
+
+    span.btn.btn-primary {
+        padding: 14px 36px !important;
+        font-size: 14px;
+    }
+
+    span.btn.btn-light {
+        padding: 14px 36px !important;
+        font-size: 14px;
+    }
+}
+
+.page-heading {
+    font-family: 'Frutiger LT Arabic mix';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 27px;
+    /* identical to box height */
+    color: #747C91;
+}
+
+.page-heading2 {
+    font-family: 'Frutiger LT Arabic 75 Black' !important;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 48px;
+    color: #1D1556;
+    cursor: pointer;
+}
+
+.subpage-heading2 {
+    font-family: 'FrutigerLTArabic-65Bold';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 48px;
+    color: $cyan-blue;
+}
+
+.pageHeadings hr {
+    background-color: #ECEBEB !important;
+    // border: 1px solid #ECEBEB;
+    opacity: 0.1;
+}

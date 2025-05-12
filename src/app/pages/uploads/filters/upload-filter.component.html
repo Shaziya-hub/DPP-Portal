@@ -1,0 +1,8 @@
+<div id="filter-section">
+     <sadad-filter *ngIf="uploadsPageInfo.pageName == 'nonsadadpmts'" [uploadsPageInfo]="uploadsPageInfo"
+          [pageConfig]="pageConfig" [dataSource]="dataSource"></sadad-filter>
+     <bill-filter *ngIf="uploadsPageInfo.pageName == 'bills'" [uploadsPageInfo]="uploadsPageInfo"
+          [pageConfig]="pageConfig" [dataSource]="dataSource"></bill-filter>
+     <accounts-filter *ngIf="uploadsPageInfo.pageName == 'accounts'" [uploadsPageInfo]="uploadsPageInfo"
+          [pageConfig]="pageConfig" [dataSource]="dataSource"></accounts-filter>
+</div>

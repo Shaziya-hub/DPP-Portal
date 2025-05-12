@@ -1,0 +1,9 @@
+<div class="page-header" id="filter-section">
+    <app-review-refunds *ngIf="operationsPageInfo?.pageName == 'reviewrefunds'" [pageConfig]="pageConfig"
+        [operationsPageInfo]="operationsPageInfo"></app-review-refunds>
+    <app-manual-refunds *ngIf="operationsPageInfo.pageName=='initiaterefunds'"></app-manual-refunds>
+    <app-refund-process *ngIf="operationsPageInfo.pageName=='refundprocess'"
+        [headerConfig]="headerConfig"></app-refund-process>
+    <app-generate-invoices *ngIf="operationsPageInfo.pageName=='generateinvoices'" [pageConfig]="pageConfig"
+        [operationsPageInfo]="operationsPageInfo" [headerConfig]="headerConfig"></app-generate-invoices>
+</div>

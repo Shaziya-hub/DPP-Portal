@@ -1,0 +1,69 @@
+<!-- Showing {{responseCount}} entries out of {{totalItems}} -->
+<div class="row paginationRow" *ngIf="inboxRefunds == null">
+    <div class="col col-lg-6 col-12"><label class="entries">{{showingStr + " " + responseCount + " " + entries + " " +
+            totalItems}}<span
+                *ngIf="totalItems!=totalCountDrop? updateDropdownCnt(totalItems,pageSize):''"></span></label></div>
+    <div class="col col-lg-5 col-12">
+        <ngb-pagination id="pagination" [collectionSize]="totalItems" [(page)]="page" [maxSize]="maxSize"
+            [pageSize]="pageSize" aria-label="Custom pagination" [boundaryLinks]="showBoundaryLinks"
+            (pageChange)="setPage($event)">
+            <ng-template ngbPaginationFirst>{{first}}</ng-template>
+            <ng-template ngbPaginationLast>{{last}}</ng-template>
+        </ngb-pagination>
+    </div>
+    <div class="col col-lg-1 col-12">
+        <div class="btn-group pagination" dropdown #dropdown="bs-dropdown" [dropup]="isDropup">
+            <div class="row">
+                <div class="col col-sm-1 cc">
+                    <label class="addFilter"> {{page}}</label>
+                </div>
+                <div class="col col-sm-1 ccc">
+                    <label class="page-dropdown" id="button-basic" dropdownToggle type="button"
+                        aria-controls="dropdown-basic"></label>
+                    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                        aria-labelledby="button-basic" [ngClass]="ttlPagesCnt > 10? 'height-auto':''">
+                        <a>
+                            <li *ngFor="let a of totalcntDrop" class="menu-item" (click)="changeDropdown(a)">{{a}}</li>
+                        </a>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="inboxRefunds == 'inboxRefunds'" style="margin: 0px; padding: 0px;">
+    <div class="paginationDropdown">
+        <div class="btn-group pagination" dropdown #dropdown="bs-dropdown" [dropup]="isDropup">
+            <div class="row">
+                <div class="col col-sm-1 cc">
+                    <label class="addFilter"> {{page}}</label>
+                </div>
+                <div class="col col-sm-1 ccc">
+                    <label class="page-dropdown" id="button-basic" dropdownToggle type="button"
+                        aria-controls="dropdown-basic"></label>
+                    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                        aria-labelledby="button-basic" [ngClass]="ttlPagesCnt > 10? 'height-auto':''">
+                        <a>
+                            <li *ngFor="let a of totalcntDrop" class="menu-item" (click)="changeDropdown(a)">{{a}}</li>
+                        </a>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="inboxRefunds == 'inboxRefunds'" style="margin: 0px; padding: 0px;">
+
+    <div class="ng-paginate">
+        <ngb-pagination id="pagination2" [collectionSize]="totalItems" [(page)]="page" [maxSize]="maxSize"
+            [pageSize]="pageSize" aria-label="Custom pagination" [boundaryLinks]="showBoundaryLinks"
+            (pageChange)="setPage($event)">
+            <ng-template ngbPaginationFirst>{{first}}</ng-template>
+            <ng-template ngbPaginationLast>{{last}}</ng-template>
+        </ngb-pagination>
+    </div>
+
+</div>

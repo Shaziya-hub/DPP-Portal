@@ -1,0 +1,43 @@
+<div class="common-trx">
+    <app-common-heading></app-common-heading>
+
+    <div class="wrapper-main">
+        <form #identityManagementForm="ngForm" novalidate>
+            <div class="row">
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Roles' | translate}}</label>
+                    <angular2-multiselect name="role" [data]="filterComponent?.pageConfig?.listOfValues?.roles"
+                        [(ngModel)]="searchFilters.roleId" [settings]="getRolesSettings()">
+                    </angular2-multiselect>
+                </div>
+
+
+
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Statuses' | translate}}</label>
+                    <angular2-multiselect name="services" [data]="filterComponent?.pageConfig?.listOfValues?.roleStatus"
+                        [(ngModel)]="searchFilters.roleStatus" [settings]="getRolesStatus()">
+                    </angular2-multiselect>
+                </div>
+                <div class=" d-flex">
+                    <button type="button" class="btn btn-block btn-primary  col-lg-1 left-alignment col applyBtnn"
+                        (click)="search()">
+                        <div class="row applyBtnn-label">
+                            <div class="col col-sm-6 fa-searchIcon"><img src='assets/icons/icon-search.svg'></div>
+                            <div class="col col-sm-6 searchLabel">{{'Search' | translate}}</div>
+                        </div>
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="row additionalFIlter-list">
+        <div class="row transs"><label class="result-trx">{{'Results' | translate}}</label>
+            <button type="button" class="btn btn-block btn-light  col-lg-1 left-alignment col-3 addUserBtn"
+                [disabled]="!isUserHasAccess?.add" (click)=" addRoles()"><img
+                    src="assets/icons/addUser.svg"><span>{{'Add Roles' | translate}}</span></button>
+        </div>
+    </div>
+
+</div>

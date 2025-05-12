@@ -1,0 +1,70 @@
+<div class="common-trx">
+    <div class="modal-header">
+        <h4 class="modal-title">{{'Edit Processor Configuration Details' | translate}}</h4>
+        <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true"><img src="assets/icons/icon-close-new.png"></span>
+        </button>
+    </div>
+
+    <div class="modal-body column-set-wp">
+        <div class="row">
+            <!-- <div class="form-group custom-form">
+                <label class="label">{{'Channel ID' | translate}}</label>
+                <span *ngIf="sensitiveLabel['channelId']" class='icon'><i [ngClass]="processorDetailDataCopy.channelId != '*****' ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showPassword('channelId')"></i></span>
+                <input [type]="[!sensitiveLabel['channelId'] || processorDetailDataCopy.channelId != '*****'? 'text' : 'password']" name="channelId" class="form-control field" [(ngModel)]="processorDetailData.channelId">
+            </div> -->
+
+            <div class="form-group custom-form">
+                <label class="label">{{'Profile ID' | translate}}</label>
+                <span *ngIf="sensitiveLabel['profileId']" class='icon'><i [ngClass]="processorDetailDataCopy.profileId != '*****' ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showPassword('profileId')"></i></span>
+                <input [type]="[!sensitiveLabel['profileId'] || processorDetailDataCopy.profileId != '*****'? 'text' : 'password']" name="profileId" class="form-control field" [(ngModel)]="processorDetailData.profileId">
+    
+                <!-- <input type="text" name="profileId" class="form-control field"
+                    [(ngModel)]="processorDetailData.profileId"> -->
+            </div>
+
+        <div class="form-group custom-form relative">
+            <label class="label">{{'Process Key' | translate}}</label>
+            <span *ngIf="sensitiveLabel['processorKey']" class='icon'><i [ngClass]="processorDetailDataCopy.processorKey != '*****' ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showPassword('processorKey')"></i></span>
+                <input [type]="[!sensitiveLabel['processorKey'] || processorDetailDataCopy.processorKey != '*****'? 'text' : 'password']" name="processorKey" class="form-control field" [(ngModel)]="processorDetailData.processorKey">
+    
+            <!-- <input type="text" name="processorKey" class="form-control field" [(ngModel)]="processorDetailData.processorKey"> -->
+        </div>
+
+        <div class="form-group custom-form relative">
+            <label class="label">{{'Access Key' | translate}}</label>
+            <span *ngIf="sensitiveLabel['accessKey']" class='icon'><i [ngClass]="processorDetailDataCopy.accessKey != '*****' ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showPassword('accessKey')"></i></span>
+            <input [type]="[!sensitiveLabel['accessKey'] || processorDetailDataCopy.accessKey != '*****'? 'text' : 'password']" name="accessKey" class="form-control field" [(ngModel)]="processorDetailData.accessKey">
+
+            <!-- <input type="text" name="accessKey" class="form-control field" [(ngModel)]="processorDetailData.accessKey"> -->
+        </div>
+
+            <div class="form-group custom-form">
+                <label class="label">{{'On Completion URL' | translate}}</label>
+                <input type="text" name="onCompletionUrl" class="form-control field"
+                    [(ngModel)]="processorDetailData.onCompletionUrl">
+            </div>
+
+            <div class="form-group custom-form">
+                <label class="label">{{'On Error URL' | translate}}</label>
+                <input type="text" name="onErrorUrl" class="form-control field"
+                    [(ngModel)]="processorDetailData.onErrorUrl">
+            </div>
+
+            <div class="form-group custom-form">
+                <label class="label">{{'Postback URL' | translate}}</label>
+                <input type="text" name="postbackUrl" class="form-control field"
+                    [(ngModel)]="processorDetailData.postbackUrl">
+            </div>
+
+            <input type="hidden" name="configId" class="form-control field" [(ngModel)]="processorDetailData.configId">
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary col-lg-1 left-alignment col applyBtnn" (click)="save()"><label
+                class="applyBtnn-label">{{'Update' | translate}}</label></button>
+        <button type="button" class="btn  btn-light  col-lg-1 left-alignment col cancelBtnn" (click)="close()"><label
+                class="cancelBtnn-label">{{'Cancel' | translate}}</label></button>
+    </div>
+</div>

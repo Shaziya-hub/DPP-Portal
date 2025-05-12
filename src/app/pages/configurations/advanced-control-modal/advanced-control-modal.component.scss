@@ -1,0 +1,130 @@
+@import "../../../../css/01-settings.scss";
+
+.modal-content {
+    min-height: 300px;
+}
+
+
+.modal-body {
+    padding: 0px;
+    overflow-y: auto;
+    height: 500px;
+}
+
+.modal-header {
+    min-height: 15.428571px;
+    padding: 17px !important;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.modal-title {
+    font-family: FrutigerLTArabic-65Bold;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 24px;
+    color: #000;
+}
+
+.modal-title span {
+    font-size: 18px;
+    padding-left: 10px;
+    font-weight: 500;
+}
+
+.close {
+    background: transparent;
+    color: inherit;
+    min-width: 10px;
+    padding: 0px;
+    height: auto;
+
+    &:focus-visible {
+        outline: 0;
+    }
+
+    span {
+        font-size: 28px;
+        color: $milkwhite;
+    }
+}
+
+.form-group {
+    padding-right: 0px;
+    padding-left: 0px;
+    display: flex;
+    justify-content: space-between;
+
+    .label {
+        width: auto;
+        margin-right: 0px;
+        font-family: "Frutiger-LT-Arabic-55-Roman";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 31px;
+        color: #747C91;
+    }
+
+    .field {
+        width: 70%;
+    }
+}
+
+.form-group {
+    //padding-bottom: 20px;
+}
+
+.form-select {
+    font-size: 14px;
+    background-color: #FFFFFF;
+    color: #cfd1d7;
+    border: 1px solid rgba(116, 124, 145, 0.3);
+    border-radius: 6px;
+    height: 50px;
+    margin: 0px;
+}
+
+.left-right-body {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+
+    .left-body,
+    .right-body {
+        width: 48%;
+
+        .item-list {
+            min-height: 410px;
+            border: 1px solid $gainsboro;
+            border-radius: 4px;
+
+            .header {
+                padding: 10px;
+                background: $skyblue;
+                color: $white;
+                text-align: center;
+                font-size: 18px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .list-item {
+                padding: 10px;
+                border-bottom: 1px solid $gainsboro;
+                font-family: "Frutiger-LT-Arabic-55-Roman";
+                font-style: normal;
+                font-weight: 400;
+                cursor: pointer;
+
+                &:hover {
+                    background: $gainsboro;
+                }
+            }
+        }
+    }
+}
+
+.applyBtnn-label {
+    padding-top: 20px !important;
+}

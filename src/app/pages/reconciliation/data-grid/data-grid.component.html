@@ -1,0 +1,117 @@
+<div *ngIf="dataSource!=null" id="cusCol-download" class="row custom-column height">
+    <div class=" d-flex justify-content-end ">
+        <div class="btn-group" dropdown #dropdown="bs-dropdown" [insideClick]="true"
+            *ngIf="reconciliationPageInfo.pageName == ''">
+            <a id="button-basic" dropdownToggle type="button" class=" dropdown-toggle" aria-controls="dropdown-basic">
+                <img
+                    [src]='dropdown.isOpen? "assets/icons/icon_custcolumnBlue.png" : !dropdown.isOpen?"assets/icons/icon_custcolumn.png":""'></a>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                <div class="container dropdownContainer">
+                    <div class="dropdown-header">
+                        <label class="dropDown-heading">{{'Column Settings' | translate}}</label>
+                    </div>
+                    <ul class="nav nav-tabs ">
+                        <li class="nav-item"><a class="nav-link" [ngClass]="{'active': tabIndex == 0}"
+                                (click)="tabClicked(0)">{{'Main' | translate}}</a></li>
+                        <li class="nav-item"><a class="nav-link " [ngClass]="{'active': tabIndex == 1}"
+                                (click)="tabClicked(1)">{{'Details' | translate}}</a></li>
+                    </ul>
+                    <div class="row">
+                        <div class="block-10"></div>
+                        <div class="col-sm-12 col-lg-6"
+                            *ngFor="let col of tabIndex == 0 ? selectableColumns : selectableColumnsDetails">
+                            <label class="checkbox"><input type="checkbox" [name]="col.id"
+                                    [checked]="col.flag == 'true'"
+                                    (change)="onChange($event, col)"><span>{{col.name}}</span></label>
+                        </div>
+                    </div>
+
+                    <li class="divider dropdown-divider"></li>
+                    <div class="row common-trx">
+                        <button type="button" class="btn btn-primary  col-lg-1 col-md-2 left-alignment col applyBtnn"
+                            (click)="dropdown.isOpen = !dropdown.isOpen;apply()"> <label
+                                class="applyBtnn-label">{{'Apply' |translate}}</label></button>
+                        <button type="button" class="btn  btn-light  col-lg-1 col-md-2 left-alignment col cancelBtnn"
+                            (click)="dropdown.isOpen = !dropdown.isOpen;cancel()"><label
+                                class="cancelBtnn-label">{{'Cancel'
+                                |translate}}</label></button>
+                    </div>
+                </div>
+            </ul>
+        </div>
+        <!-- <a *ngIf="showDownLoad || this.reconciliationPageInfo.pageName== 'pmts'" class="d-load"
+            [ngStyle]="isUserHasAccess?.download == false ? {'pointer-events':'none','opacity':'0.4','cursor':'none'}:{}"><img
+                src='assets/icons/downloadmanager.svg' class="icon-t-download" alt="table download icon"
+                (click)="download()"></a> -->
+
+        <div class="btn-group" dropdown #dropdown="bs-dropdown" [insideClick]="true">
+            <a *ngIf="showDownLoad || this.reconciliationPageInfo.pageName== 'pmts'" id="button-basic" dropdownToggle
+                type="button" class=" dropdown-toggle" aria-controls="dropdown-basic"
+                [ngStyle]="isUserHasAccess?.download == false ? {'pointer-events':'none','opacity':'0.4','cursor':'none'}:{}">
+                <img src='assets/icons/downloadmanager.svg'></a>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu download-menu" role="menu"
+                aria-labelledby="button-basic">
+
+                <div class="row">
+                    <!-- <div class="col col-md-auto"> -->
+                    <a class="dropdown-item"
+                        [ngStyle]="isUserHasAccess?.download == false ? {'pointer-events':'none','opacity':'0.4','cursor':'none'}:{}"
+                        (click)=" downloadXlsx()">{{'Excel' | translate}}</a>
+                </div>
+                <div class="row">
+                    <!-- <div class="col col-md-auto"> -->
+                    <a class="dropdown-item"
+                        [ngStyle]="isUserHasAccess?.download == false ? {'pointer-events':'none','opacity':'0.4','cursor':'none'}:{}"
+                        (click)=" pdfdownload()">{{'PDF' | translate}}</a>
+                    <!-- </div> -->
+                </div>
+                <div class="row">
+                    <a class="dropdown-item"
+                        [ngStyle]="isUserHasAccess?.download == false ? {'pointer-events':'none','opacity':'0.4','cursor':'none'}:{}"
+                        (click)="download()">{{'CSV' | translate}}</a>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+<dx-data-grid [hidden]="showNoRecords || serviceNotResponded" id="reconcilationGridContainer" [dataSource]="dataSource"
+    [keyExpr]="primaryKey" [showBorders]="true" [rtlEnabled]="rtlEnabled" [showColumnLines]="true" [showRowLines]="true"
+    [rowAlternationEnabled]="true" [columnAutoWidth]="true" (onOptionChanged)="onOptionChanged($event)"
+    [customizeColumns]="customizeColumns" [columns]="columns" (onFocusedCellChanging)="onFocusedCellChanging($event)"
+    [customheader]="customheader" (onContextMenuPreparing)="onRightClick($event)" (wheel)="onwheel()">
+    <dxo-load-panel [enabled]="false"></dxo-load-panel>
+    <dxo-paging [enabled]="false"> </dxo-paging>
+    <dxo-master-detail [enabled]="false" template="details"></dxo-master-detail>
+    <dxo-scrolling [useNative]="false" [scrollByContent]="true" [scrollByThumb]="true"></dxo-scrolling>
+
+
+    <div *dxTemplate="let detail of 'details'">
+        <detail-grid [key]="detail.key" [filters]="filters" [pageConfig]="pageConfig"
+            [reconciliationPageInfo]="reconciliationPageInfo" *ngIf="dataSource || showNoRecords"
+            [dataSource]="dataSource" [showNoRecords]="showNoRecords"
+            (downloadEvent)="downloadEvent($event)"></detail-grid>
+    </div>
+    <!-- customizedColumn header adding the download icon -->
+
+    <div *dxTemplate="let data of 'header'">
+        {{ data.column.caption }}
+    </div>
+</dx-data-grid>
+<div class="d-flex justify-content-end" *ngIf="dataSource">
+    <app-pagination class="w-100" [totalItems]="pageSettings.totalRecordsCount" [pageSize]="pageSettings.responseCount"
+        [responseCount]="responseCount" [page]="headerConfig['page-number']" (pageChange)="onPageChange($event)"
+        [ttlPagesCnt]="pageSettings.ttlPagesCnt"></app-pagination>
+</div>
+<div class="wrapper-main noRecords-Todisplay" *ngIf="showNoRecords">
+    <section class="no-records">
+        <img class="mb-3" src="assets/icons/icon-no-record.svg">
+        <div style="clear:both;"></div>
+        <span>{{"No records to display" | translate}}</span>
+    </section>
+</div>
+
+<div class="wrapper-main noRecords-Todisplay" *ngIf="serviceNotResponded">
+    <section class="no-records">
+        <span>{{"Not available at the moment" | translate}}</span>
+    </section>
+</div>

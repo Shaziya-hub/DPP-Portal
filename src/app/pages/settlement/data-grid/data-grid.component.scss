@@ -1,0 +1,176 @@
+@import "../../../../css/01-settings.scss";
+
+::ng-deep #settlementGridContainer {
+    .dx-datagrid .dx-row>td {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 27px;
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        color: #333333;
+
+        &:focus {
+            outline: transparent !important;
+        }
+    }
+
+    .dx-icon {
+        font-family: DXIcons !important;
+    }
+
+    .dx-sort-index-icon {
+        display: none !important;
+    }
+
+    .dx-sort {
+        display: block;
+        position: absolute;
+        top: 20px;
+    }
+
+    .dx-sort-down {
+        top: 24px;
+
+        &::before {
+            content: url(../../../../assets/icons/icon-sort-down.svg) !important;
+        }
+    }
+
+    .dx-sort-up {
+        top: 24px;
+
+        &::before {
+            content: url(../../../../assets/icons/icon-sort-up.svg) !important;
+        }
+    }
+
+    .dx-sort-none {
+        &::before {
+            content: url(../../../../assets/icons/sort.svg) !important;
+            // content: url(../../../../assets/icons/up-down.png) !important;
+        }
+    }
+
+    .dx-datagrid .dx-data-row>td.amount-text {
+        padding-right: 18px !important;
+        font-weight: 700;
+        font-size: 12px;
+    }
+
+    .amount-text {
+        .dx-column-indicators {
+            padding-right: 10px;
+        }
+    }
+
+    .dx-datagrid .dx-data-row>td.fees-text {
+        padding-right: 14px !important;
+        font-weight: 700;
+        font-size: 12px;
+    }
+
+    .fees-text {
+        .dx-column-indicators {
+            padding-right: 10px;
+        }
+    }
+
+    .dx-datagrid.dx-gridbase-container .dx-datagrid-nowrap .dx-header-row>td.fees-text .dx-datagrid-text-content {
+        float: right;
+    }
+
+    .dx-datagrid.dx-gridbase-container .dx-datagrid-nowrap .dx-header-row>td.amount-totalrevenue .dx-datagrid-text-content {
+        float: right;
+    }
+
+    .dx-datagrid .dx-data-row>td.vatonfees-text {
+        padding-right: 37px !important;
+        font-weight: 700;
+        font-size: 12px;
+    }
+
+    .vatonfees-text {
+        .dx-column-indicators {
+            padding-right: 10px;
+        }
+    }
+
+    .dx-datagrid .dx-data-row>td.amount-totalrevenue {
+        //padding-right: 73px !important;
+        font-weight: 700;
+        font-size: 12px;
+    }
+
+    .amount-totalrevenue {
+        .dx-column-indicators {
+            padding-right: 10px;
+        }
+    }
+
+
+    .dx-datagrid-text-content.dx-text-content-alignment-right .dx-template-wrapper {
+        position: absolute;
+    }
+
+    .dx-datagrid-borders>.dx-datagrid-filter-panel,
+    .dx-datagrid-borders>.dx-datagrid-headers {
+        border-bottom: 1px solid $cyan-blue;
+
+    }
+
+    .dx-datagrid.dx-gridbase-container {
+        background: $white;
+        box-sizing: border-box;
+        border: 1px solid $white;
+        border-radius: 4px;
+    }
+
+    .dx-datagrid-borders>.dx-datagrid-headers {
+        border-top: 1px solid $white;
+        border-left: 1px solid $white;
+        border-right: 1px solid $white;
+    }
+
+    .dx-datagrid.dx-gridbase-container .fixed-headers .dx-row.dx-column-lines.dx-header-row {
+        background-color: $white;
+        color: #26273B;
+        font-weight: 700;
+        border-bottom: 1px solid $cyan-blue;
+        /* box-shadow: 0px 3px 4px rgb(0 0 0 / 10%); */
+        height: 58.25px;
+    }
+
+
+
+    .dx-overlay-content.dx-popup-normal.dx-resizable.dx-popup-flex-height {
+        height: 216px !important;
+        width: 265px !important;
+    }
+
+    .bi::before,
+    [class^="bi-"]::before,
+    [class*=" bi-"]::before {
+        font-weight: 700 !important;
+        font-size: 20px;
+    }
+
+}
+
+
+
+.download-menu {
+    width: 90px !important;
+    margin-left: -70px !important;
+    margin-top: 4px !important;
+
+    a.dropdown-item {
+        padding: 7px 40px 4px 40px !important;
+    }
+}
+
+.btn-group {
+    top: 8px !important;
+}
+
+.row.height {
+    top: -60px !important;
+}

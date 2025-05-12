@@ -1,0 +1,66 @@
+<div class="common-trx">
+<form autocomplete="off">
+ <div class="modal-header">
+    <h4 class="modal-title">{{'Edit End Point'| translate}}</h4>
+    <button class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true"><img src="assets/icons/icon-close-new.png"></span>
+    </button>
+</div>
+<div class="modal-body column-set-wp">
+    <div class="row">
+        
+        <div class="form-group custom-form">
+            <label class="label">{{'End Point'| translate}}</label>
+            <span *ngIf="sensitiveLabel['endPoint']" class='icon'><i [ngClass]="endpointsCopy.endPoint != '*****' && endpoints.endPoint != null? 'fa fa-eye' : endpointsCopy.processorPassword == '*****' && endpoints.endPoint != null ? 'fa fa-eye-slash' :''" (click)="showPassword('endPoint')"></i></span>
+            <input [type]="[!sensitiveLabel['endPoint'] || endpointsCopy.endPoint != '*****'? 'text' : 'password']" name="endPoint" class="form-control field" [(ngModel)]="endpoints.endPoint">
+       
+            <!-- <input type="text" name="endPoint" class="form-control field" [(ngModel)]="endpoints.endPoint"> -->
+        </div>
+        <div class="form-group custom-form">
+            <label class="label">{{'System Name'| translate}}</label>
+            <span *ngIf="sensitiveLabel['systemName']" class='icon'><i [ngClass]="endpointsCopy.systemName != '*****' && endpoints.systemName != null? 'fa fa-eye' : endpointsCopy.systemName == '*****' && endpoints.systemName != null ? 'fa fa-eye-slash' :''" (click)="showPassword('systemName')"></i></span>
+            <input [type]="[!sensitiveLabel['systemName'] || endpointsCopy.systemName != '*****'? 'text' : 'password']" name="systemName" class="form-control field" [(ngModel)]="endpoints.systemName">
+       
+            <!-- <input type="text" name="systemName" class="form-control field" [(ngModel)]="endpoints.systemName"> -->
+        </div>
+        <div class="form-group custom-form ">
+            <label class="label">{{'Directory' | translate}}</label>
+            <span *ngIf="sensitiveLabel['directory']" class='icon'><i [ngClass]="endpointsCopy.directory != '*****' && endpoints.directory != null? 'fa fa-eye' : endpointsCopy.directory == '*****' && endpoints.directory != null ? 'fa fa-eye-slash' :''" (click)="showPassword('directory')"></i></span>
+            <input [type]="[!sensitiveLabel['directory'] || endpointsCopy.directory != '*****'? 'text' : 'password']" name="directory" class="form-control field" [(ngModel)]="endpoints.directory">
+       
+            <!-- <input type="text" name="directory" class="form-control field" [(ngModel)]="endpoints.directory"> -->
+        </div>
+        <div class="form-group custom-form relative">
+            <label class="label">{{'Username' | translate}}</label>
+            <span *ngIf="sensitiveLabel['username']" class='icon'><i [ngClass]="endpointsCopy.username != '*****' && endpoints.username != null? 'fa fa-eye' : endpointsCopy.username == '*****' && endpoints.username != null ? 'fa fa-eye-slash' :''" (click)="showPassword('username')"></i></span>
+            <input [type]="[!sensitiveLabel['username'] || endpointsCopy.username != '*****'? 'text' : 'password']" name="username" class="form-control field" [(ngModel)]="endpoints.username" autocomplete="off">
+       
+
+            <!-- <input type="text" name="username" class="form-control field" [(ngModel)]="endpoints.username"> -->
+        </div>
+        <div class="form-group custom-form relative">
+            <label class="label">{{'Password' | translate}}</label>
+            <span *ngIf="sensitiveLabel['password']" class='icon'><i [ngClass]="endpointsCopy.password != '*****' && endpoints.password != null? 'fa fa-eye' : endpointsCopy.password == '*****' && endpoints.password != null ? 'fa fa-eye-slash' :''" (click)="showPassword('password')"></i></span>
+            <input [type]="[!sensitiveLabel['password'] || endpointsCopy.password != '*****'? 'text' : 'password']" name="password" class="form-control field" [(ngModel)]="endpoints.password" autocomplete="off">
+       
+         
+        </div>
+        <div class="form-group custom-form">
+            <label class="label">{{'Timeout (ms)' | translate}}</label>
+            <span *ngIf="sensitiveLabel['timeout']" class='icon'><i [ngClass]="endpointsCopy.timeout != '*****' && endpoints.timeout != null? 'fa fa-eye' : endpointsCopy.timeout == '*****' && endpoints.timeout != null ? 'fa fa-eye-slash' :''" (click)="showPassword('timeout')"></i></span>
+            <input [type]="[!sensitiveLabel['timeout'] || endpointsCopy.timeout != '*****'? 'text' : 'password']" name="timeout" class="form-control field" [(ngModel)]="endpoints.timeout">
+       
+            <!-- <input type="text" name="timeout" class="form-control field" [(ngModel)]="endpoints.timeout"> -->
+        </div>
+
+                <input type="hidden" name="transId" [(ngModel)]="endpoints.transId">
+            </div>
+        </div>
+        <div class="modal-footer">
+
+    <button type="button" class="btn btn-primary col-lg-1 left-alignment col applyBtnn" (click)="save()" ><label class="applyBtnn-label">{{'Update' | translate}}</label></button>
+   <button type="button" class="btn  btn-light  col-lg-1 left-alignment col cancelBtnn" (click)="close()" ><label class="cancelBtnn-label">{{'Cancel' | translate}}</label></button>
+
+        </div>
+    </form>
+</div>

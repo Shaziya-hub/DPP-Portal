@@ -1,0 +1,44 @@
+<div>
+    <div class="wrapper-main padding-20 padding-bottom-45" >
+    <br>
+    <div *ngIf="status =='SUCCESS'">
+        <div class="row"  >
+            <div class="col col-lg-5"></div>
+                <div class="col col-lg-2 col-12 ">
+                    <img src='assets/icons/Success-Transparent-Background.png' class="height" >
+                </div>
+        </div>
+        <br><br>
+        <div class="row" >
+            <div class="col col-lg-2"></div>
+            <div class="col col-lg-8 col-12">
+                    <div class="alert alert-success" style="color: black; text-align: center; vertical-align: center;">{{combinedMessage}}</div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="status == 'ERROR'">
+        <div class="row"  >
+            <div class="col col-lg-5"></div>
+                <div class="col col-lg-2 col-12 ">
+                    <img src='assets/icons/banError.png' class="height" >
+                </div>
+        </div>
+        <br><br>
+        <div class="row" >
+            <div class="col col-lg-2"></div>
+            <div class="col  col-12">
+                    <div class="alert alert-danger" style="color: black; text-align: center; vertical-align: center;">{{combinedMessage}}</div>
+            </div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col col-lg-5"></div>
+            <div class="col col-lg-2 col-12 link"> 
+                <div>
+                    <a routerLink="/dpp/chnlhndlr/channelhandler" routerLinkActive="active" ariaCurrentWhenActive="page">Back to pay other Services
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

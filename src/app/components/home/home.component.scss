@@ -1,0 +1,165 @@
+@import "../../../css/01-settings.scss";
+
+.margin-top-50px {
+    margin-top: 50px;
+}
+
+.margin-bottom-50px {
+    margin-bottom: 50px;
+}
+
+iframe {
+    border: 0;
+    width: 100%;
+    height: 50%;
+}
+
+.homeHeading {
+    font-family: 'Frutiger_LT_Arabic_75_Black';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 48px;
+    text-transform: capitalize;
+    color: #1D1556;
+    padding: 21px 20px;
+}
+
+.card {
+    //height: 119px;
+    padding-bottom: 26px;
+}
+
+.card-img {
+    height: 33px;
+    width: 33px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 13.5px;
+}
+
+.carousel-padding {
+    padding: 30px 21px;
+}
+
+.carousel {
+    background: #F6F8FA;
+    min-height: 393px;
+    padding: 62px 20px 20px 82px;
+
+    .carousel-heading {
+        font-family: 'Frutiger_LT_Arabic_75_Black';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 40px;
+        line-height: 48px;
+        text-transform: capitalize;
+        color: #1D1556;
+        width: 450px;
+        padding: 0px 8px;
+        margin-left: 11%;
+    }
+
+    .carousel-sub-heading {
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 31px;
+        color: #747C91;
+        max-width: 339px;
+        margin-top: 16px;
+        margin-left: 11%;
+    }
+
+    .carousel-control-next-icon {
+        background-image: url(../../../assets/icons/right-arraow.svg) !important;
+        height: 50px;
+        width: 50px;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        top: 47% !important;
+    }
+
+    .carousel-control-prev {
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 16px;
+    }
+
+    .carousel-control-next {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 16px;
+
+    }
+
+    .carousel-control-prev-icon {
+        background-image: url(../../../assets/icons/left-icon-arrow.svg) !important;
+        height: 50px;
+        width: 50px;
+    }
+
+    .carousel-indicators button {
+        box-sizing: content-box;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        width: 30px;
+        height: 3px;
+        margin-right: 3px;
+        margin-left: 3px;
+        text-indent: -999px;
+        cursor: pointer;
+        background-color: rgba(116, 124, 145, 0.3);
+        background-clip: padding-box;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        opacity: .5;
+        transition: opacity .6s ease;
+    }
+
+    .carousel-indicators .active {
+        opacity: 1;
+        box-sizing: content-box;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        width: 30px;
+        height: 3px;
+        cursor: pointer;
+        opacity: .5;
+        transition: opacity .6s ease;
+        background: #3498DB;
+        background-clip: padding-box;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+    }
+
+    .carousel-indicators {
+        position: absolute;
+        right: 65%;
+        bottom: 10%;
+        left: 0;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        /* margin-right: 15%; */
+        margin-bottom: 1rem;
+        margin-left: 10%;
+        list-style: none;
+    }
+}
+
+.text-center {
+    font-family: 'Frutiger-LT-Arabic-55-Roman';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #747C91;
+}

@@ -1,0 +1,155 @@
+<div class="common-trx">
+    <div class="pageHeadings">
+        <span class="page-heading2">{{"Identity Management" | translate}} &nbsp;<span
+                class="subpage-heading2">/&nbsp;{{searchFilters.userId == null || searchFilters.azureLogin ? ("Add
+                User" | translate) : ("Update User" | translate)}}</span></span>
+        <hr>
+    </div>
+
+    <div class="wrapper-main" id="idm">
+        <form #usersForm="ngForm" autocomplete="off" [appMatchPassword]="['password', 'confirmPassword']">
+            <div class="row">
+                <div class="personal-head">{{"Personal Details" | translate}}</div>
+            </div>
+            <div class="row">
+                <div class="form-group custom-form col-md-4 col-sm-4 col-6">
+                    <label class="label required">{{'Username' | translate}}</label>
+                    <!-- [pattern]="pattern" -->
+                    <input type="text" appNoSpace class="form-control"
+                        [placeholder]="'Only alphabets allowed' | translate" name="userName"
+                        [(ngModel)]="searchFilters.userName" #userName="ngModel" required
+                        [ngClass]="{'redBorder' :(usersForm.submitted && searchFilters.userName==null) || ( userName.touched && userName.invalid) || (searchFilters.azureLogin == false && userName?.errors?.['pattern'])}"
+                        [disabled]="searchFilters.userId!=null">
+                </div>
+                <div class="form-group col-md-4 col-sm-4 col-6 marginTop"
+                    *ngIf="searchFilters.userId == null || (searchFilters.userId != null && searchFilters.azureLogin == true)">
+
+                    <!-- Label change from "sso login" to "Fetch User Details" -->
+                    <label class="checkbox"><input type="checkbox" name="azureLogin"
+                            [checked]="searchFilters.azureLogin == true"
+                            [disabled]="searchFilters.userName == null && azureFlag == true"
+                            (change)="azureLogin($event); searchFilters.status =  null "><span>{{'Fetch User Details' |
+                            translate}}</span></label>
+
+                </div>
+            </div>
+            <input type="hidden" class="form-control" name="userId" [(ngModel)]="searchFilters.userId">
+            <div class="row">
+                <div class="form-group custom-form col-md-4 col-sm-4 col-6">
+                    <label class="label required">{{'First Name' | translate}}</label>
+                    <input type="text" class="form-control" [placeholder]="'Only alphabets allowed' | translate"
+                        name="firstName" [(ngModel)]="searchFilters.firstName" #firstName="ngModel" required
+                        pattern="^[a-zA-Z]+$" minlength="3"
+                        [ngClass]="{'redBorder' :(usersForm.submitted && searchFilters.firstName==null) || ( firstName.touched && firstName.invalid) || (firstName?.errors?.['pattern'])}">
+                </div>
+                <div class="form-group custom-form col-md-4 col-sm-4 col-6">
+                    <label class="label required">{{'Last Name' | translate}}</label>
+                    <input type="text" class="form-control" [placeholder]="'Only alphabets allowed' | translate"
+                        name="lastName" [(ngModel)]="searchFilters.lastName" #lastName="ngModel" required
+                        pattern="^[a-zA-Z]+$"
+                        [ngClass]="{'redBorder' :(usersForm.submitted && searchFilters.lastName==null) || ( lastName.touched && lastName.invalid) || (lastName?.errors?.['pattern'])}">
+                </div>
+                <div class="form-group custom-form col-md-4 col-sm-4 col-6">
+                    <label class="label required">{{'Email Id' | translate}}</label>
+                    <input type="text" class="form-control" [placeholder]="'dppportal@amconsultcorp.com'" name="emailId"
+                        [(ngModel)]="searchFilters.emailId" #emailId="ngModel" required
+                        pattern="[a-zA-Z][a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+                        [ngClass]="{'redBorder' :(usersForm.submitted && searchFilters.emailId==null) || ( emailId.touched && emailId.invalid) || (emailId?.errors?.['pattern'])}">
+                </div>
+                <div class="form-group col-md-4 col-sm-4 col-6">
+                    <label class="label">{{'Phone Number' | translate}}</label>
+                    <input type="text" class="form-control"
+                        [placeholder]="'Valid landline or mobile number' | translate" name="phoneNumber"
+                        [(ngModel)]="searchFilters.phoneNumber" pattern="[0-9]{10}" #phoneNumber="ngModel"
+                        minlength='10' maxlength='10'
+                        [ngClass]="{'redBorder' : (phoneNumber?.errors?.['pattern'] || phoneNumber?.errors?.['minlength'] )}">
+
+                </div>
+                <div class="form-group custom-form col-md-4 col-sm-4 col-6">
+                    <label class="label"
+                        [ngClass]="searchFilters.userId == null || searchFilters.azureLogin ? 'required' : ''">{{'Password'
+                        | translate}}</label>
+                    <input type="password" class="form-control"
+                        [placeholder]="'Please choose a strong password' | translate" autocomplete="new-password"
+                        name="password" [(ngModel)]="searchFilters.password" #password="ngModel"
+                        [ngClass]="{'redBorder' :((searchFilters.userId==null || searchFilters.azureLogin) && ((usersForm.submitted && (searchFilters.password==null || searchFilters.password.length==0)) || ( password.touched && (searchFilters.password==null || searchFilters.password.length==0)) ))}">
+                </div>
+                <div class="form-group custom-form col-md-4 col-sm-4 col-6">
+                    <label class="label"
+                        [ngClass]="searchFilters.userId == null || searchFilters.azureLogin? 'required' : ''">{{'Confirm
+                        Password' | translate}}</label>
+                    <input type="password" class="form-control"
+                        [placeholder]="'Repeat your choosen password' | translate" name="confirmPassword"
+                        [(ngModel)]="searchFilters.confirmPassword" #confirmPassword="ngModel"
+                        [ngClass]="{'redBorder' :((searchFilters.userId == null || searchFilters.azureLogin) && ((usersForm.submitted && (searchFilters.confirmPassword==null || searchFilters.confirmPassword.length==0)) || ( confirmPassword?.touched && confirmPassword?.invalid) || confirmPassword?.errors?.['matching']))}">
+                </div>
+            </div>
+            <div class="block-40"></div>
+            <div class="personal-head">{{"Product Details" | translate}}</div>
+            <div class="row">
+                <div class="form-group custom-form col-md-4 col-sm-4 col-6">
+                    <label class="label required">{{'Bussiness Services' | translate}}</label>
+                    <angular2-multiselect name="services" id="bizDropdown" [data]="bizServicesList"
+                        [(ngModel)]="searchFilters.productDetails" #serviceId="ngModel"
+                        [settings]="getBizServicesSetting()" (ngModelChange)="onChangeValue($event,'select',null)"
+                        (onClose)="onClose($event)" (onSelect)="onChangeValue($event,'select','bizDropdown')"
+                        (onDeSelect)="onChangeValue($event,'deSelect','bizDropdown')"
+                        (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)"
+                        (onOpen)="onOpen($event)">
+
+                    </angular2-multiselect>
+                </div>
+                <div class="form-group custom-form col-md-4 col-sm-4 col-6">
+                    <label class="label required">{{'Status' |translate}}</label>
+                    <select class="form-select" name="status" [(ngModel)]="searchFilters.status" #status='ngModel'
+                        [ngClass]="{'redBorder' :(usersForm.submitted && searchFilters.status==null) || ( status.touched && status.pristine && searchFilters.status==null),'selected':searchFilters.status!=null}">
+                        <option [ngValue]="null" [disabled]="true">{{'Select Status' | translate}}</option>
+                        <option ngValue="ACTIVE">{{"ACTIVE"}}</option>
+                        <option ngValue="INACTIVE">{{"INACTIVE"}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="block-40"></div>
+            <div class="personal-head">{{"Assign Roles" | translate}}<span>&nbsp;&nbsp;[{{roleIdArray?.length}}]</span>
+            </div>
+            <div class="assignroles">
+                <ngx-spinner bdColor="rgba(0, 0, 0, 0.1)" size="medium" color="#000" type="ball-clip-rotate"
+                    [fullScreen]="false">
+                    <p style="color: black;">{{'Loading...' | translate}}</p>
+                </ngx-spinner>
+                <div *ngFor="let roleData of roleData" class="row">
+                    <div class="col-lg roleRows"
+                        [ngClass]="usersForm.submitted && roleIdArray?.length == 0 ? 'redBorder' : ''">
+                        <label class="switch">
+                            <input id="toggele-button-value" type="checkbox"
+                                [checked]="roleData.flag == 'true' || roleData.flag == true || roleData.flag == 'na'"
+                                [name]="roleData?.roleId" (change)="selectRoleId($event, roleData)"
+                                [disabled]="roleData.flag == 'na'">
+                            <span class="slider round" [ngStyle]="roleData.flag == 'na'? {'opacity':'0.5'}:{}"></span>
+                        </label>
+                        <label
+                            [ngClass]="roleData?.flag == 'true' || roleData?.flag == 'na' ? 'selectAllLabel' : 'unSelectAllLabel'">{{roleData?.roleName
+                            | translate}}</label>
+                        <div class="infoIcon"><img src="assets/icons/icon_info.png" alt=""
+                                (click)="displayResources(roleData)" [ngStyle]="{'cursor':'pointer'}"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <app-pagination class="w-100" [totalItems]="pageSettings.totalRecordsCount"
+                    [pageSize]="pageSettings.responseCount" [responseCount]="responseCount"
+                    [page]="headerConfig['page-number']" (pageChange)="onPageChange($event)"
+                    [ttlPagesCnt]="pageSettings.ttlPagesCnt"></app-pagination>
+            </div>
+            <div class="block-40"></div>
+            <div class="d-flex">
+                <button type="submit" class="btn btn-block btn-primary btn-primary-custom col-lg-1 col-md col applyBtnn"
+                    (click)="save(usersForm)"><span class="applyBtnn-label">{{(searchFilters.userId==null ||
+                        (searchFilters.userId != null && searchFilters.azureLogin == true))?('Save' | translate) :
+                        ('Update' | translate)}}</span></button>&nbsp;
+                <button type="button" class="btn btn-block btn-light btn-light-custom col-lg-1 col-md-3 col  cancelBtnn"
+                    (click)="close()"><span class="cancelBtnn-label">{{'Cancel' | translate}}</span></button>
+            </div>
+        </form>
+    </div>
+</div>

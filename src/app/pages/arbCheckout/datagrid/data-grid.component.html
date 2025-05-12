@@ -1,0 +1,27 @@
+<dx-data-grid id="gridContainer" [hidden]="showNoRecords || serviceNotResponded" [dataSource]="dataSource"
+    [showBorders]="true" [rtlEnabled]="rtlEnabled" [showColumnLines]="true" [showRowLines]="true"
+    [rowAlternationEnabled]="true" [columns]="columns" [columnAutoWidth]="true">
+
+    <dxo-load-panel [enabled]="false"></dxo-load-panel>
+    <dxo-paging [enabled]="false"> </dxo-paging>
+    <dxo-master-detail [enabled]="false" template="details"></dxo-master-detail>
+    <dxo-scrolling [useNative]="false" [scrollByContent]="true" [scrollByThumb]="true">
+    </dxo-scrolling>
+    <div *dxTemplate="let data of 'header'">
+        {{ data.column.caption }}
+    </div>
+</dx-data-grid>
+
+<div class="wrapper-main noRecords-Todisplay" *ngIf="showNoRecords">
+    <section class="no-records">
+        <img class="mb-3" src="assets/icons/icon-no-record.svg">
+        <div style="clear:both;"></div>
+        <span>{{"No records to display" | translate}}</span>
+    </section>
+</div>
+<div class="wrapper-main noRecords-Todisplay" *ngIf="serviceNotResponded">
+    <section class="no-records">
+        <div style="clear:both;"></div>
+        <span>{{"Not available at the moment" | translate}}</span>
+    </section>
+</div>

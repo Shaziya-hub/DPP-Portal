@@ -1,0 +1,260 @@
+<div class="common-trx">
+    <app-common-heading></app-common-heading>
+</div>
+<div class="dashboardContainer">
+    <div class="row filterPadding">
+        <div class="col-lg-3 col-md-3 col-sm-12 col dropCss">
+            <angular2-multiselect name="service" [data]="filtersComponent?.pageConfig?.listOfValues?.bizServices"
+                [(ngModel)]="searchFilters.serviceId" [settings]="getBizServicesSetting()"
+                (ngModelChange)="onChange($event)" (onClose)="onClose($event)">
+            </angular2-multiselect>
+        </div>
+        <div class="col-md-9 col-lg-9 filter-box">
+            <div class="row">
+                <div class="col-lg-8 col-md-8">
+                    <div class="row filter">
+                        <div class="col-md-3 col-sm-3 col-6">
+                            <label class="today-btn" (click)="customDate($event,'Today')">{{'Today' |
+                                translate}}</label>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-6">
+                            <label class="date-link" (click)="customDate($event,'Yesterday')">{{'Yesterday' |
+                                translate}}</label>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-6">
+                            <label class="date-link" (click)="customDate($event,'This Week')">{{'This Week' |
+                                translate}}</label>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-6">
+                            <label class="date-link marginLeft0" (click)="customDate($event,'This Month')">{{'This
+                                Month' | translate}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-12">
+                    <app-dateTimepicker id="dashBoardcontainer" [fromdateInputFlag]="fromdateInputFlag"
+                        [dashboardFlag]="dashboardFlag" [bsRangeValueFromDashBoard]="bsRangeValueFromDashBoard"
+                        (dateRange)="dateRangeChange($event)"
+                        [bsConfig]="{showWeekNumbers: false, keepDatepickerOpened: true, rangeInputFormat : 'MM/DD/YYYY',dateInputFormat: 'MMMM Do YYYY',monthLabel: 'MMM'}">
+                    </app-dateTimepicker>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row" id="gauge-chart-id">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="card gaugecard">
+                <ngx-spinner name="gaugeCardSpinner" bdColor="rgba(0, 0, 0, 0.6)" size="small" color="#fff"
+                    type="square-jelly-box" [fullScreen]="false">
+                    <p style="color: white"> {{'Loading' | translate}} </p>
+                </ngx-spinner>
+                <div class="card-body" *ngIf="pmtGaugeData;else noGaugeRecord">
+                    <div class="expandicon" *ngIf="pmtGaugeData !=undefined && (pmtGaugeData|json) != '{}'">
+                        <p class="title">{{'Payment Fulfillment' | translate}} &nbsp;
+                            <b>{{(+pmtGaugeData.ttlPmtCnt).toLocaleString()}}</b> &nbsp; <span>{{'Payments' |
+                                translate}}</span>
+                        </p>
+                        <button class="close" aria-label="Close"
+                            (click)="openModal('google-chart','Payment Fulfillment')" [disabled]="gaugeChartDisabled">
+                            <span aria-hidden="true"><img src="assets/icons/icon-expand-new.png"></span>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-7 col-md-7 col-lg-7"
+                            *ngIf="chart !=undefined && chart !='' && chart !=null">
+                            <google-chart *ngIf="chart !=undefined && chart !='' && chart !=null" [type]="chart?.type"
+                                [data]="chart?.data" [options]="chart.options" class="guageChartBox">
+                            </google-chart>
+                        </div>
+                        <div class="col-12 col-sm-5 col-md-5 col-lg-5 legendAlign">
+                            <div class="legend-containerGuage">
+                                <ul>
+                                    <li>
+                                        <span class="span bg-success"></span>
+                                        <p class="labelValue">{{'Success' | translate}}</p>
+                                        <p class="valueLabel">{{((+pmtGaugeData.successPmtCnt).toLocaleString())}}</p>
+                                    </li>
+                                    <li>
+                                        <span class="span bg-danger"></span>
+                                        <p class="labelValue">{{'Failed' | translate}}</p>
+                                        <p class="valueLabel">{{((+pmtGaugeData.failurePmtCnt).toLocaleString())}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row" *ngIf="pmtCardData;else cardTemplate">
+                <div *ngFor="let cardData of pmtCardData;let i = index " class="col-md-6">
+                    <div class="card PmtAddtnlStatsCard" id="card{{i}}">
+                        <ngx-spinner name='pmtCardSpinner' bdColor="rgba(0, 0, 0, 0.6)" size="small" color="#fff"
+                            type="square-jelly-box" [fullScreen]="false">
+                            <p style="color: white"> {{'Loading' | translate }}</p>
+                        </ngx-spinner>
+                        <div class="card-body">
+                            <p class="total">{{cardData?.Key == "ttlNoOfCusts" ? ('Total Paid Customers' | translate) :
+                                cardData?.Key == 'highestPayingCust' ? ('Top Paid Customer' | translate):cardData?.Key
+                                ==
+                                "ttlNoOfNewCusts" ? ('Total New Customers' | translate): ('Highest Paid Amount' |
+                                translate)}}</p>
+                            <p class="total-counts"
+                                [ngClass]="i==0?'darkBlue':i==1?'text-info':i==2?'text-warning':'text-success'">
+                                {{cardData?.Value}}</p>
+                            <!-- <p class="total-footer">{{i<3 ?'Customers' : 'SAR'}}</p> -->
+                            <p class="total-footer">{{cardData?.Description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row" *ngIf="pmtDoughnutData;else noDoughnutChartData">
+        <div *ngFor="let data of pmtDoughnutData; let i=index" class="col-md-3">
+            <div id="doughnutChartId" class="card chart">
+                <ngx-spinner name='pmtDoughnutSpinner' bdColor="rgba(0, 0, 0, 0.6)" size="small" color="#fff"
+                    type="square-jelly-box" [fullScreen]="false">
+                    <p style="color: white"> {{'Loading' | translate }} </p>
+                </ngx-spinner>
+                <div class="card-body">
+                    <div class="expandicon">
+                        <span class="heading">{{(PmtStats[i]?.statType  | translate)}}</span>
+                        <button class="close" aria-label="Close" (click)="openModal('chart'+i, PmtStats[i]?.statType)"
+                            [disabled]="data.statsDetails && data.statsDetails[0].ttlCnt != '0'? false : true">
+                            <span aria-hidden="true"><img src="assets/icons/icon-expand-new.png"></span>
+                        </button>
+                    </div>
+                    <div class="doughnutChartBox">
+                        <canvas id="chart{{i}}"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card" [ngStyle]="pmtLineData?{}:{'height':'410px'}">
+                <ngx-spinner name="pmtLineSpinner" bdColor="rgba(0, 0, 0, 0.6)" size="small" color="#fff"
+                    type="square-jelly-box" [fullScreen]="false">
+                    <p style="color: white"> {{'Loading' | translate }} </p>
+                </ngx-spinner>
+                <div class="card-body" *ngIf="pmtLineData;else noLineRecord">
+                    <div class="expandicon">
+                        <span class="heading">{{"Payments Graph" | translate}}</span>
+                        <button class="close" aria-label="Close" (click)="openModal('lineChart','Payment Graph')">
+                            <span aria-hidden="true"><img src="assets/icons/icon-expand-new.png"></span>
+                        </button>
+                    </div>
+                    <div class="lineChartBox">
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 report  col-sm-12 col-12">
+            <div class="card" [ngStyle]="pmtReportData?{}:{'height':'410px'}">
+                <ngx-spinner name="pmtReportSpinner" bdColor="rgba(0, 0, 0, 0.6)" size="small" color="#fff"
+                    type="square-jelly-box" [fullScreen]="false">
+                    <p style="color: white"> {{'Loading' | translate }} </p>
+                </ngx-spinner>
+                <div *ngIf="pmtReportData != undefined && pmtReportData != null && (pmtReportData | json) != '[]' && (pmtReportData | json) != '{}' && (pmtReportData[0] | json) != '{}'"
+                    class="card-header" style="display: flex;justify-content: space-between;" class="card-header"
+                    style="display: flex;justify-content: space-between;">
+                    <span class="heading">{{'Payment Details' | translate}}</span><span class="more"
+                        (click)="morePayment()">{{'More' | translate}}</span>
+                </div>
+                <div class="card-body"
+                    *ngIf="pmtReportData != undefined && pmtReportData != null && (pmtReportData | json) != '[]' && (pmtReportData | json) != '{}' && (pmtReportData[0] | json) != '{}';else noReportRecord">
+                    <div class="dashboardTable">
+                        <table>
+                            <thead>
+                                <th>{{'Payment Reference' | translate}}</th>
+                                <th>{{'Receive Date' | translate}}</th>
+                                <th class="amountAlign">{{'Trans Amount' | translate}}</th>
+                                <th class="emptyTh"></th>
+                                <th>{{'Reason Code' | translate}}</th>
+                                <th>{{'Process Status' | translate}}</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let payments of pmtReportData, let i=index,">
+                                    <td>{{payments.paymentRef}}</td>
+                                    <td>{{payments.receivedDate}}</td>
+                                    <td class="amountAlign">{{payments.transAmount}}</td>
+                                    <th class="emptyTh"></th>
+                                    <td>{{payments.reasonCode}}</td>
+                                    <td><label
+                                            [ngClass]="payments.processStatus == 'COMPLETED' || payments.processStatus == 'PROCESSED  '? 'text-success':payments.processStatus == 'CANCELLED' || payments.processStatus == 'FAILED' || payments.processStatus == 'REJECTED'? 'text-danger':'text-warning'">{{payments.processStatus}}</label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<ng-template #noGaugeRecord>
+    <section *ngIf="(pmtGaugeData | json) == '{}'" class="no-records">
+        <img class="mb-3" src="assets/icons/icon-no-record.svg">
+        <div style="clear:both;"></div>
+        <span>{{'No records to display' | translate}}</span>
+    </section>
+</ng-template>
+
+<ng-template #noLineRecord>
+    <section *ngIf="lineError" class="no-records">
+        <span>{{'Not available at the moment' | translate}}</span>
+    </section>
+</ng-template>
+
+<ng-template #noReportRecord>
+    <section
+        *ngIf="pmtReportData == undefined || pmtReportData == null || (pmtReportData | json) == '[]' || (pmtReportData[0] | json) == '{}'"
+        class="no-records">
+        <img class="mb-3" src="assets/icons/icon-no-record.svg">
+        <div style="clear:both;"></div>
+        <span>{{'No records to display' | translate}}</span>
+    </section>
+    <section *ngIf="(pmtReportData | json) == '{}'">
+        <span>{{'Not available at the moment' | translate}}</span>
+    </section>
+</ng-template>
+<ng-template #noDoughnutChartData>
+    <div class="row">
+        <div *ngFor="let data of [1,2,3,4]" class="col-md-3">
+            <div class="card" style="height: 281px;">
+                <ngx-spinner name="pmtDoughnutSpinner" *ngIf="pmtDoughnutData == undefined || pmtDoughnutData == null"
+                    bdColor="rgba(0, 0, 0, 0.6)" size="small" color="#fff" type="square-jelly-box" [fullScreen]="false">
+                    <p style="color: white"> {{'Loading' | translate }} </p>
+                </ngx-spinner>
+                <section *ngIf="doughnutError" class="no-records">
+                    <span>{{'Not available at the moment' | translate}}</span>
+                </section>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #cardTemplate>
+    <div class="row">
+        <div *ngFor="let data of [1,2,3,4]" class="col-md-6">
+            <div class="card" style="height: 138px;">
+                <ngx-spinner name='pmtCardSpinner' bdColor="rgba(0, 0, 0, 0.6)" size="small" color="#fff"
+                    type="square-jelly-box" [fullScreen]="false">
+                    <p style="color: white"> {{'Loading' | translate }} </p>
+                </ngx-spinner>
+                <section *ngIf="cardError" class="no-records">
+                    <span>{{'Not available at the moment' | translate}}</span>
+                </section>
+            </div>
+        </div>
+    </div>
+</ng-template>

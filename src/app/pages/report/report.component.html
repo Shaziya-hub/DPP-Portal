@@ -1,0 +1,160 @@
+<app-filters [pageConfig]="pageConfig" [reportPageInfo]="reportPageInfo" (selectedValue)="onUrlChange($event)"
+    [headerConfig]="headerConfig" (applyFiltersEvent)="applyFilters($event)" [dataSource]="dataSource"
+    (selectedFromDate)="bsValueChange($event)" (selectedToDate)="onMonthlyChange($event)" [url]="url"
+    [pageConfig2]="pageConfig2"></app-filters>
+
+<div class="common-trx">
+    <div class="wrapper-main" id="htmlData" #htmlData *ngIf="reportPageInfo.attributeName == 'Details' && dataSource">
+
+
+        <div class="row justify-content-md-center" *ngIf="searchFilter.reportType== 'PMT_RECON'">
+
+            <div class="col col-md-12 col-12 reportTypeHeader" id="head"><label class="header-eml">{{'Reconciled payment
+                    reports' | translate}}</label></div>
+
+
+        </div>
+        <div class="row between-stretch" *ngIf="searchFilter.reportType== 'PMT_UNRECON'">
+
+            <div class="col col-md-12 col-12 reportTypeHeader" id="head"><label class="header-eml">{{'Unreconciled
+                    payment reports' | translate}}</label></div>
+
+        </div>
+
+
+        <div class="row summary-row">
+            <label class="report-Summary">{{'Summary' | translate}}</label>
+        </div>
+        <div class="wrapper-main summary-border row ">
+            <div class="row">
+                <div class="col col-lg-4  col-12 ">
+                    <label class="label"><b>{{'Bussiness Service' | translate}}</b></label>
+                    <div> <label class="lab">{{bizService}}</label> </div>
+                </div>
+
+                <div class="col col-lg-4 col-12 ">
+                    <label class="label"><b>{{'Gateways' | translate}} :</b></label>
+                    <div> <label class="lab">{{pmtGateways}}</label></div>
+                </div>
+            </div>
+            <div class="row dateRangeRow">
+                <div class="col col-lg-6 col-12 ">
+                    <label class="label"><b>{{'Date range' | translate}} :</b></label>
+                    <div> <label class="lab arabic">{{fromdate}} &nbsp; - &nbsp;{{todate}}</label></div>
+                </div>
+            </div>
+        </div>
+
+
+        <data-grid
+            *ngIf="reportPageInfo.attributeName == 'Details' && dataSource  || showNoRecords || serviceNotResponded"
+            [dataSource]="dataSource" [pageConfig2]="pageConfig2" [responseCount]="responseCount"
+            [pageConfig]="pageConfig" [headerConfig]="headerConfig" (applyFiltersEvent)="applyFilters($event)"
+            [filters]="filters" [bizService]="bizService" [merchant]="merchant" [pmtGateways]="pmtGateways"
+            [reportDate]="[reportDate]" [pageSettings]="pageSettings" [showNoRecords]="showNoRecords"
+            [reportPageInfo]="reportPageInfo" [fromdate]="fromdate" [todate]="todate"
+            [serviceNotResponded]="serviceNotResponded" [reportId]="reportId">
+        </data-grid>
+    </div>
+
+    <div class="wrapper-main" *ngIf="reportPageInfo.attributeName != 'Details' && dataSource == null || showNoRecords">
+        <section class="no-records">
+            <img class="mb-3" src="assets/icons/icon-no-record.svg">
+            <div style="clear:both;"></div>
+            <span>{{'No records to display'}}</span>
+        </section>
+    </div>
+
+
+    <ng-template #template>
+        <div id="convertPDF">
+            <div class="modal-body row">
+
+                <div class="row">
+                    <div class="col col-md-10 col-12 reportTypeHeaderr"><label class="headeremll"><b>{{'Unreconciled
+                                payments Reports' | translate}}</b></label></div>
+                </div>
+
+                <div class="reportDetails-row">
+                    <label class="reportsDetails">{{'Summary' | translate}}</label>
+
+                </div>
+
+                <div class="summary-borderr  row ">
+                    <div class="col col-lg-3  col-12 ">
+                        <label class="label">{{'Bussiness Service' | translate}}</label>
+                        <div> <label class="lab">{{bizService}}</label> </div>
+                    </div>
+                    <div class="col col-lg-3  col-12 ">
+                        <label class="label">{{'Merchant Name' | translate}}</label>
+                        <div> <label class="lab">{{merchant}}</label> </div>
+                    </div>
+                    <div class="col col-lg-6 col-12 ">
+                        <label class="label">{{'Date range' | translate}}</label>
+                        <div> <label class="lab">{{fromdate}}-{{todate}}</label></div>
+                    </div>
+                </div>
+                <div class="reportDetails-row">
+                    <label class="reportsDetails">{{'Details' | translate}}</label>
+                </div>
+                <div class="total-records">
+
+                    <div *ngFor="let data of dataSource">
+
+                        <div class="records row">
+                            <div class="col col-lg-6 col-12">
+
+                                <div class="row">
+                                    <div class="key"><label>{{'Business Service' | translate}}</label></div>
+                                    <div class="value"><label>{{data.serviceName}}</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="key"><label>{{'Payment Method' | translate}}</label></div>
+                                    <div class="value"><label>{{data.pmtMethodName}}</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="key"><label>{{'Payment reference' | translate}}</label></div>
+                                    <div class="value"><label>{{data.paymentRef}}</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="key"><label>{{'Transaction process date' | translate}}</label></div>
+                                    <div class="value"><label>{{data.transProcessDate}}</label></div>
+                                </div>
+                            </div>
+                            <div class="col col-lg-6 col-12">
+                                <div class="row">
+                                    <div class="key"><label>{{'Service type' | translate}}</label></div>
+                                    <div class="value"><label>{{data.serviceTypeName}}</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="key"><label>{{'Merchant Account' | translate}}</label></div>
+                                    <div class="value"><label>{{data.merchantId}}</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="key"><label>{{'Applied amount' | translate}}</label></div>
+                                    <div class="value"><label>{{data.appliedAmount}}</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="modal-footer common-trx">
+            <button type="button" class="btn btn-block btn-primary  col-lg-1 left-alignment col applyBtnn"
+                (click)="generatePDF()">
+                <div class="row applyBtnn-label">
+                    <div class="col col-sm-6 fa-searchIcon"><img src='assets/icons/list-view.svg'></div>
+                    <div class="col col-sm-6 searchLabel">{{'Print' | translate}}</div>
+                </div>
+            </button>
+            <button type="button" class="btn btn-block btn-light  col-lg-1 left-alignment col cancelBtnn">
+                <div class="cancelBtnn-label">{{'Cancel' | translate}}</div>
+            </button>
+        </div>
+
+    </ng-template>
+
+</div>

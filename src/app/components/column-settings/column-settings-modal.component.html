@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{'Column Settings' | translate}}</h4>
+    <button class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body column-set-wp">
+    <ul class="nav nav-tabs ">
+        <li class="nav-item">
+            <a class="nav-link" [ngClass]="{'active': tabIndex == 0}" (click)="tabClicked(0)">{{'Main' | translate}}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " [ngClass]="{'active': tabIndex == 1}" (click)="tabClicked(1)">{{'Details' |
+                translate}}</a>
+        </li>
+    </ul>
+
+    <div class="row">
+        <div class="block-10"></div>
+        <div class="col-sm-12 col-lg-6"
+            *ngFor="let col of tabIndex == 0 ? selectableColumns : selectableColumnsDetails">
+            <label class="checkbox"><input type="checkbox" [name]="col.id" [checked]="col.flag == 'true'"
+                    (change)="onChange($event, col)"><span>{{col.name}}</span></label>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row foot">
+        <div class="col-lg-6">
+            <button type="button" class="btn btn-primary margin16" (click)="apply()">{{'Apply' | translate}}</button>
+        </div>
+        <div class="col-lg-6"> <button type="button" class="btn btn-light " (click)="close()">{{'Cancel' |
+                translate}}</button></div>
+
+
+    </div>
+
+
+</div>
+
+<!-- <h1>Modal</h1> -->

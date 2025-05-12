@@ -1,0 +1,96 @@
+<div class="common-trx">
+    <div class="modal-header">
+        <h4 class="modal-title">{{'Edit Limit And Locks'| translate}}</h4>
+        <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true"><img src="assets/icons/icon-close-new.png"></span>
+        </button>
+    </div>
+    <div class="modal-body column-set-wp">
+        <div class="row">
+
+            <div class="form-group custom-form ">
+                <label class="label ">{{'Daily Transaction Count'| translate}}</label>
+                <span *ngIf="sensitiveLabel['dailyTrxsCount']" class='icon'><i
+                        [ngClass]="limitlocksCopy.dailyTrxsCount != '*****' && limitlocks.dailyTrxsCount != null? 'fa fa-eye' : limitlocksCopy.dailyTrxsCount == '*****' && limitlocks.dailyTrxsCount != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('dailyTrxsCount')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['dailyTrxsCount'] || limitlocksCopy.dailyTrxsCount != '*****'? 'text' : 'password']"
+                    name="dailyTrxsCount" class="form-control field" [(ngModel)]="limitlocks.dailyTrxsCount">
+
+
+            </div>
+            <div class="form-group custom-form ">
+                <label class="label">{{'Daily Transaction Amount'| translate}}</label>
+                <span *ngIf="sensitiveLabel['dailyTrxsAmount']" class='icon'><i
+                        [ngClass]="limitlocksCopy.dailyTrxsAmount != '*****' && limitlocks.dailyTrxsAmount != null? 'fa fa-eye' : limitlocksCopy.processorPassword == '*****' && limitlocks.dailyTrxsAmount != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('dailyTrxsAmount')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['dailyTrxsAmount'] || limitlocksCopy.dailyTrxsAmount != '*****'? 'text' : 'password']"
+                    name="dailyTrxsAmount" class="form-control field" [(ngModel)]="limitlocks.dailyTrxsAmount">
+
+
+            </div>
+            <div class="form-group custom-form ">
+                <label class="label">{{'Weekly Transaction Count' | translate}}</label>
+                <span *ngIf="sensitiveLabel['weeklyTrxsCount']" class='icon'><i
+                        [ngClass]="limitlocksCopy.weeklyTrxsCount != '*****' && limitlocks.weeklyTrxsCount != null? 'fa fa-eye' : limitlocksCopy.processorPassword == '*****' && limitlocks.weeklyTrxsCount != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('weeklyTrxsCount')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['weeklyTrxsCount'] || limitlocksCopy.weeklyTrxsCount != '*****'? 'text' : 'password']"
+                    name="weeklyTrxsCount" class="form-control field" [(ngModel)]="limitlocks.weeklyTrxsCount">
+
+                <!-- <input type="text" name="weeklyCount" class="form-control field"
+                    [(ngModel)]="limitlocks.weeklyTrxsCount"> -->
+            </div>
+            <div class="form-group custom-form">
+                <label class="label">{{'Weekly Transaction Amount' | translate}}</label>
+                <span *ngIf="sensitiveLabel['weeklyTrxsCount']" class='icon'><i
+                        [ngClass]="limitlocksCopy.weeklyTrxsAmount != '*****' && limitlocks.weeklyTrxsAmount != null? 'fa fa-eye' : limitlocksCopy.processorPassword == '*****' && limitlocks.weeklyTrxsAmount != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('weeklyTrxsAmount')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['weeklyTrxsAmount'] || limitlocksCopy.weeklyTrxsAmount != '*****'? 'text' : 'password']"
+                    name="weeklyTrxsAmount" class="form-control field" [(ngModel)]="limitlocks.weeklyTrxsAmount">
+
+                <!-- <input type="text" name="weeklyAmount" class="form-control field"
+                    [(ngModel)]="limitlocks.weeklyTrxsAmount"> -->
+            </div>
+            <div class="form-group custom-form ">
+                <label class="label ">{{'Monthly Transaction Count' | translate}}</label>
+                <span *ngIf="sensitiveLabel['monthlyTrxsCount']" class='icon'><i
+                        [ngClass]="limitlocksCopy.monthlyTrxsCount != '*****' && limitlocks.monthlyTrxsCount != null? 'fa fa-eye' : limitlocksCopy.processorPassword == '*****' && limitlocks.monthlyTrxsCount != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('monthlyTrxsCount')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['monthlyTrxsCount'] || limitlocksCopy.monthlyTrxsCount != '*****'? 'text' : 'password']"
+                    name="monthlyTrxsCount" class="form-control field" [(ngModel)]="limitlocks.monthlyTrxsCount">
+
+                <!-- <input type="text" name="monthlyCount" class="form-control field"
+                    [(ngModel)]="limitlocks.monthlyTrxsCount"> -->
+            </div>
+            <div class="form-group custom-form">
+                <label class="label">{{'Monthly Transaction Amount' | translate}}</label>
+                <span *ngIf="sensitiveLabel['monthlyTrxsAmount']" class='icon'><i
+                        [ngClass]="limitlocksCopy.monthlyTrxsAmount != '*****' && limitlocks.monthlyTrxsAmount != null? 'fa fa-eye' : limitlocksCopy.processorPassword == '*****' && limitlocks.monthlyTrxsAmount != null ? 'fa fa-eye-slash' :''"
+                        (click)="showPassword('monthlyTrxsAmount')"></i></span>
+                <input
+                    [type]="[!sensitiveLabel['monthlyTrxsAmount'] || limitlocksCopy.monthlyTrxsAmount != '*****'? 'text' : 'password']"
+                    name="monthlyTrxsAmount" class="form-control field" [(ngModel)]="limitlocks.monthlyTrxsAmount">
+                <!--            
+                <input type="text" name="monthlyAmount" class="form-control field"
+                    [(ngModel)]="limitlocks.monthlyTrxsAmount"> -->
+            </div>
+            <div class="form-group custom-form">
+
+                <input type="hidden" name="transId" class="form-control field" [(ngModel)]="limitlocks.transId">
+                <input type="hidden" name="organizationId" class="form-control field"
+                    [(ngModel)]="limitlocks.organizationId">
+                <input type="hidden" name="pmtMethodId" class="form-control field" [(ngModel)]="limitlocks.pmtMethodId">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary col-lg-1 left-alignment col applyBtnn" (click)="save()"><label
+                class="applyBtnn-label">{{'Update' | translate}}</label></button>
+        <button type="button" class="btn  btn-light col-lg-1 left-alignment col cancelBtnn" (click)="close()"><label
+                class="cancelBtnn-label">{{'Cancel' | translate}}</label></button>
+    </div>
+</div>

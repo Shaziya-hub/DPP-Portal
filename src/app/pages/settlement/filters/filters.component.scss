@@ -1,0 +1,27 @@
+@import "../../../../css/01-settings.scss";
+
+::ng-deep #filter-section {
+
+    opacity: 1 !important;
+
+    .line-1 {
+        width: calc(100% + 20px);
+        max-width: calc(100% + 20px);
+        margin-top: 15px;
+        border: 0px;
+        height: 1px;
+        background: $gray90;
+        margin-left: -10px;
+    }
+
+    .w-40 {
+        width: 47.5%;
+    }
+
+    .amount-label,
+    .range {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

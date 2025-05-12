@@ -1,0 +1,210 @@
+<div *ngIf="dataSource!=null" id="cusCol-download" class="row custom-column height">
+    <div class=" d-flex justify-content-end ">
+        <div class="btn-group" dropdown #dropdown="bs-dropdown" [insideClick]="true">
+            <a id="button-basic" dropdownToggle type="button" class=" dropdown-toggle column-dropdown"
+                aria-controls="dropdown-basic" (click)="togglePosition()"> <img
+                    [src]='dropdown.isOpen? "assets/icons/icon_custcolumnBlue.png" : !dropdown.isOpen?"assets/icons/icon_custcolumn.png":""'></a>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu columnScrolling_Dropdown" role="menu"
+                aria-labelledby="button-basic">
+                <div class="container dropdownContainer">
+                    <div class="dropdown-header">
+                        <label class="dropDown-heading">{{'Column Settings' | translate}}</label>
+                    </div>
+                    <ul class="nav nav-tabs ">
+                        <li class="nav-item"><a class="nav-link" [ngClass]="{'active': tabIndex == 0}"
+                                (click)="tabClicked(0)">{{'Main' | translate}}</a></li>
+                        <li class="nav-item"><a class="nav-link " [ngClass]="{'active': tabIndex == 1}"
+                                (click)="tabClicked(1)">{{'Details' | translate}}</a></li>
+                    </ul>
+                    <div class="row">
+                        <div class="block-10"></div>
+                        <div class="col-sm-12 col-lg-6"
+                            *ngFor="let col of tabIndex == 0 ? selectableColumns : selectableColumnsDetails">
+                            <label class="checkbox"><input type="checkbox" [name]="col.id"
+                                    [checked]="col.flag == 'true'"
+                                    (change)="onChange($event, col)"><span>{{col.name}}</span></label>
+                        </div>
+                    </div>
+
+                    <li class="divider dropdown-divider"></li>
+                    <div class="row common-trx">
+                        <button type="button" class="btn btn-primary  col-lg-1 col-md-2 left-alignment col applyBtnn"
+                            (click)="dropdown.isOpen = !dropdown.isOpen;apply()"> <label
+                                class="applyBtnn-label">{{'Apply' |translate}}</label></button>
+                        <button type="button" class="btn  btn-light  col-lg-1 col-md-2 left-alignment col cancelBtnn"
+                            (click)="dropdown.isOpen = !dropdown.isOpen;cancel()"><label
+                                class="cancelBtnn-label">{{'Cancel'
+                                |translate}}</label></button>
+                    </div>
+                </div>
+            </ul>
+        </div>
+        <!-- <a class="d-load"
+            [ngStyle]="isUserHasAccess?.download == false ? {'pointer-events':'none','opacity':'0.4','cursor':'none'}:{}"><img
+                src='assets/icons/downloadmanager.svg' class="icon-t-download" alt="table download icon"
+                (click)="download()"></a> -->
+        <div class="btn-group" dropdown #dropdown="bs-dropdown" [insideClick]="true">
+            <a id="button-basic" dropdownToggle type="button" class=" dropdown-toggle" aria-controls="dropdown-basic"
+                [ngStyle]="isUserHasAccess?.download == false ? {'pointer-events':'none','opacity':'0.4','cursor':'none'}:{}">
+                <img src='assets/icons/downloadmanager.svg'></a>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu download-menu" role="menu"
+                aria-labelledby="button-basic">
+
+                <div class="row">
+                   
+                    <a class="dropdown-item"
+                        [ngStyle]="isUserHasAccess?.download == false ? {'pointer-events':'none','opacity':'0.4','cursor':'none'}:{}"
+                        (click)=" downloadXlsx()">{{'Excel' | translate}}</a>
+                   
+                </div>
+                <div class="row">
+                   
+                    <a class="dropdown-item" (click)=" pdfdownload()">{{'PDF' | translate}}</a>
+                </div>
+                <div class="row">
+                    <a class="dropdown-item"
+                        [ngStyle]="isUserHasAccess?.download == false ? {'pointer-events':'none','opacity':'0.4','cursor':'none'}:{}"
+                        (click)="download()">{{'CSV' | translate}}</a>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- <drag-scroll [drag-scroll-y-disabled]="true"> -->
+<dx-data-grid [hidden]="showNoRecords || serviceNotResponded" id="gridContainer" [dataSource]="dataSource"
+    [keyExpr]="primaryKey" [showBorders]="true" [rtlEnabled]="rtlEnabled" [showColumnLines]="true" [showRowLines]="true"
+    [rowAlternationEnabled]="true" [columns]="columns" [columnAutoWidth]="true"
+    (onContextMenuPreparing)="onRightClick($event)" (onCellClick)="transIdCellTemplate($event)"
+    (onCellClick)="openVerticallyCentered($event,content)" (onContextMenuPreparing)="onRefIconClick($event)"
+    (onOptionChanged)="onOptionChanged($event)" (onFocusedCellChanging)="onFocusedCellChanging($event)"
+    (wheel)="onwheel()" (onContentReady)="onContentReady($event)">
+    <!-- [customizeColumns]="customizeColumns"> -->
+    <dxo-load-panel [enabled]="false"></dxo-load-panel>
+    <dxo-paging [enabled]="false"> </dxo-paging>
+    <dxo-master-detail [enabled]="false" template="details"></dxo-master-detail>
+    <dxo-scrolling [useNative]="false" [scrollByContent]="true" [scrollByThumb]="true">
+    </dxo-scrolling>
+    <div id="detailsCard" *dxTemplate="let detail of 'details'">
+        <detail-grid [key]="detail.key" [pageConfig]="pageConfig" (instanceIdEvent)="transIdCellTemplate($event)"
+            [filters]="filters" [transactionsPageInfo]="transactionsPageInfo"></detail-grid>
+    </div>
+    <div *dxTemplate="let data of 'header'">
+        {{ data.column.caption }}
+    </div>
+</dx-data-grid>
+<!-- </drag-scroll> -->
+<!-- <div class="block-20" *ngIf="dataSource"></div> -->
+<div class="d-flex justify-content-end" *ngIf="dataSource">
+    <app-pagination class="w-100" [totalItems]="pageSettings.totalRecordsCount" [pageSize]="pageSettings.responseCount"
+        [responseCount]="responseCount" [page]="headerConfig['page-number']" [ttlPagesCnt]="pageSettings.ttlPagesCnt"
+        (pageChange)="onPageChange($event)"></app-pagination>
+</div>
+<div class="wrapper-main noRecords-Todisplay" *ngIf="showNoRecords">
+    <section class="no-records">
+        <img class="mb-3" src="assets/icons/icon-no-record.svg">
+        <div style="clear:both;"></div>
+        <span>{{"No records to display" | translate}}</span>
+    </section>
+</div>
+<div class="wrapper-main noRecords-Todisplay" *ngIf="serviceNotResponded">
+    <section class="no-records">
+        <div style="clear:both;"></div>
+        <span>{{"Not available at the moment" | translate}}</span>
+    </section>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modalHeader}}</h4>
+        <button class="close pull-right" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true"><img src="assets/icons/icon-close-new.png"></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row" *ngIf="noData == true ">
+            <span class="no-data"> {{"No Data"}}</span>
+        </div>
+
+        <div class="row" *ngIf="noData == false && (modalHeader=='Seller Details' || modalHeader=='Buyer Details') "
+            style="padding: 24px !important;">
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <div><label class="modal-label">{{'ID' | translate}}</label></div>
+                <div class="dataLabel"><span>{{data?.id != null?data?.id:'--'}}</span></div>
+            </div>
+            <!-- Add 'ID Type' to buyer details pop-up -->
+            <div class="form-group col col-lg-3 col-12 custom-form" *ngIf="modalHeader=='Buyer Details'">
+                <div><label class="modal-label">{{'ID Type' | translate}}</label></div>
+                <div class="dataLabel"><span>{{data?.idType != null?data?.idType:'--'}}</span></div>
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <div><label class="modal-label">{{'Name' | translate}}</label></div>
+                <div class="dataLabel"><span>{{data?.name != null?data?.name:'--'}}</span></div>
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <div><label class="modal-label">{{'VAT No' | translate}}</label></div>
+                <div class="dataLabel"><span>{{data?.VATNo != null?data?.VATNo:'--'}}</span></div>
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <div><label class="modal-label">{{'Street' | translate}}</label></div>
+                <div class="dataLabel"><span>{{data?.street != null?data?.street:'--'}}</span></div>
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <div><label class="modal-label">{{'Additional Street' | translate}}</label></div>
+                <div class="dataLabel"><span>{{data?.addtnlStreet != null?data?.addtnlStreet:'--'}}</span></div>
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <div><label class="modal-label">{{'Building No' | translate}}</label></div>
+                <div class="dataLabel"><span>{{data?.buildingNo != null?data?.buildingNo:'--'}}</span></div>
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <div><label class="modal-label">{{'Additional No' | translate}}</label></div>
+                <div class="dataLabel"><span>{{data?.addtnlNo != null?data?.addtnlNo:'--'}}</span></div>
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <div><label class="modal-label">{{'City' | translate}}</label></div>
+                <div class="dataLabel"><span>{{data?.city != null?data?.city:'--'}}</span></div>
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <div><label class="modal-label">{{'Postal Code' | translate}}</label></div>
+                <div class="dataLabel"><span>{{data?.postalCode != null?data?.postalCode:'--'}}</span></div>
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <div><label class="modal-label">{{'State' | translate}}</label></div>
+                <div class="dataLabel"><span>{{data?.state != null?data?.state:'--'}}</span></div>
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <div><label class="modal-label">{{'District' | translate}}</label></div>
+                <div class="dataLabel"><span>{{data?.district != null?data?.district:'--' }}</span></div>
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <div><label class="modal-label">{{'Country Code' | translate}}</label></div>
+                <div class="dataLabel"><span>{{data?.countryCode != null?data?.countryCode:'--'}}</span></div>
+            </div>
+        </div>
+        <div class="row" *ngIf="noData == false && modalHeader == 'Tax Total'">
+            <dx-data-grid id="gridContainer" [dataSource]="taxTotalData" [keyExpr]="ePrimaryKey" [showBorders]="true"
+                [rtlEnabled]="rtlEnabled" [showColumnLines]="true" [showRowLines]="true" [rowAlternationEnabled]="true"
+                [columns]="eInvoiceColumns" [columnAutoWidth]="true"
+                (onFocusedCellChanging)="onFocusedCellChanging($event)">
+                <dxo-load-panel [enabled]="false"></dxo-load-panel>
+                <dxo-paging [enabled]="false"> </dxo-paging>
+                <dxo-master-detail [enabled]="false" template="edetails"></dxo-master-detail>
+                <dxo-scrolling [useNative]="false" [scrollByContent]="true" [scrollByThumb]="true">
+                </dxo-scrolling>
+                <div id="detailsCard" *dxTemplate="let detail of 'edetails'">
+                    <!-- <app-envoice-detail-grid [key]="detail.key"></app-envoice-detail-grid> -->
+                    <dx-data-grid [dataSource]="taxTotalDataDetails" [showBorders]="true" [rtlEnabled]="rtlEnabled"
+                        [showColumnLines]="true" [showRowLines]="true" [rowAlternationEnabled]="true"
+                        [columnAutoWidth]="true" [columns]="eInvoiceColumnsDetails">
+
+                    </dx-data-grid>
+                    <!-- <detail-grid [key]="detail.key" [data]="eInvoiceColumnsDetails" [eInvoice]="eInvoice"></detail-grid> -->
+                </div>
+                <div *dxTemplate="let data of 'header'">
+                    {{ data.column.caption }}
+                </div>
+            </dx-data-grid>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,15 @@
+.reload{
+    position: absolute;
+    top: 15%;
+    right: 10%;;
+}
+/* 
+.is-invalid{
+    border: 1px solid red;
+} */
+
+.ng-message{
+    color: red;
+    text-align: left;
+    margin: 20px 0px 0px 0px;
+}

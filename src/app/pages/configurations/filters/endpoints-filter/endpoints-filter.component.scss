@@ -1,0 +1,10 @@
+@import "../../../../../css/01-settings.scss";
+
+// input.ng-touched.ng-valid, select.ng-touched.ng-valid {
+//     border: 1px solid $cream-violet !important;
+// }
+
+
+::ng-deep .custom-form .validation .cuppa-dropdown{
+    border: 1px solid $error !important;
+  }

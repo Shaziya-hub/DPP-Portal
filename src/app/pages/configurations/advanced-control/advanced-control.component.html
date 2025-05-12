@@ -1,0 +1,136 @@
+<div class="advanced-control-container">
+    <div class="advanced-control-map-header show-on-pc">
+        <div>{{'Payment Channels' | translate}}</div>
+        <div></div>
+        <div>{{'Service Types' | translate}}</div>
+        <div></div>
+        <div>{{'Payment Methods' | translate}}</div>
+    </div>
+    <div class="advanced-control-row" *ngFor="let advancedControlRow of advancedControlData;let i = index">
+        <div class="payment-channels">
+            <div class="show-on-mobile">{{'Payment Channels' | translate}}</div>
+            <div class="control-box"
+                [ngClass]="{'control-box-border':advancedControlRow.channels,'success-chip-wp':advancedControlRow.makeGreen && advancedControlRow.makeGreen.channels && advancedControlRow.channels && advancedControlRow.channels.length>0}">
+                <div class="control-box-close" (click)="clear(i,'channels')" *ngIf="advancedControlRow.channels"
+                    [ngStyle]="isUserHasAccess?.delete == false && advancedControlRow.configId != null? {'pointer-events':'none','opacity':'0.4'}:{}">
+                    x</div>
+                <div class="control-box-items" (mouseleave)="itemLeave('channels',i)"
+                    (mouseenter)="itemHovered('channels',i)" *ngIf="advancedControlRow.channels">
+                    <div *ngFor="let channel of advancedControlRow?.channels">
+                        <div class="control-box-item">
+                            {{channel.channelName}}
+                        </div>
+                        <div class="block-10"></div>
+                    </div>
+                </div>
+                <div class="control-box-empty" *ngIf="!advancedControlRow.channels"
+                    (click)="initiateItem(i,'channels')">
+                    <img class="add-tile-icon" src='assets/icons/add-tile-icon.png' alt="add">
+                </div>
+                <div class="three-dots-extra" [id]="'channels-'+i"
+                    *ngIf="advancedControlRow.channels && advancedControlRow.channels.length>5">
+                    ...
+                </div>
+                <div class="control-box-add"
+                    [ngStyle]="isUserHasAccess?.edit == false && advancedControlRow.configId != null ? {'pointer-events':'none'}:{}">
+                    <div class="green-add" (click)="add(i,'channels')" *ngIf="advancedControlRow.channels"
+                        [ngStyle]="isUserHasAccess?.edit == false && advancedControlRow.configId != null ? {'opacity':'0.4'}:{}">
+                        +</div>
+                </div>
+            </div>
+        </div>
+        <div class="connecter-line">
+            <div class="connecter-line-template" *ngIf="advancedControlRow.channels && advancedControlRow.channels.length>0 && 
+                advancedControlRow.serviceTypes && advancedControlRow.serviceTypes.length>0">
+                <div class="left-half-circle"></div>
+                <div class="connecting-line"></div>
+                <div class="right-half-circle"></div>
+            </div>
+        </div>
+        <div class="service-types">
+            <div class="show-on-mobile">{{'Service Types' | translate}}</div>
+            <div class="control-box"
+                [ngClass]="{'control-box-border':advancedControlRow.serviceTypes,'success-chip-wp':advancedControlRow.makeGreen && advancedControlRow.makeGreen.serviceTypes && advancedControlRow.serviceTypes && advancedControlRow.serviceTypes.length>0}">
+                <div class="control-box-close" (click)="clear(i,'serviceTypes')" *ngIf="advancedControlRow.serviceTypes"
+                    [ngStyle]="isUserHasAccess?.delete == false && advancedControlRow.configId != null? {'pointer-events':'none','opacity':'0.4'}:{}">
+                    x</div>
+                <div class="control-box-items" (mouseleave)="itemLeave('serviceTypes',i)"
+                    (mouseenter)="itemHovered('serviceTypes',i)" *ngIf="advancedControlRow.serviceTypes">
+                    <div *ngFor="let serviceType of advancedControlRow.serviceTypes">
+                        <div class="control-box-item">
+                            {{serviceType.serviceTypeName}}
+                        </div>
+                        <div class="block-10"></div>
+                    </div>
+                </div>
+                <div class="control-box-empty" *ngIf="!advancedControlRow.serviceTypes"
+                    (click)="initiateItem(i,'serviceTypes')">
+                    <img class="add-tile-icon" src='assets/icons/add-tile-icon.png' alt="add">
+                </div>
+                <div class="three-dots-extra" [id]="'serviceTypes-'+i"
+                    *ngIf="advancedControlRow.serviceTypes && advancedControlRow.serviceTypes.length>5">
+                    ...
+                </div>
+                <div class="control-box-add"
+                    [ngStyle]="isUserHasAccess?.edit == false && advancedControlRow.configId != null ? {'pointer-events':'none'}:{}">
+                    <div class="green-add" (click)="add(i,'serviceTypes')" *ngIf="advancedControlRow.serviceTypes"
+                        [ngStyle]="isUserHasAccess?.edit == false && advancedControlRow.configId != null ? {'opacity':'0.4'}:{}">
+                        +</div>
+                </div>
+            </div>
+        </div>
+        <div class="connecter-line">
+            <div class="connecter-line-template" *ngIf="advancedControlRow.methods && advancedControlRow.methods.length>0 && 
+                advancedControlRow.serviceTypes && advancedControlRow.serviceTypes.length>0">
+                <div class="left-half-circle"></div>
+                <div class="connecting-line"></div>
+                <div class="right-half-circle"></div>
+            </div>
+        </div>
+        <div class="payment-methods">
+            <div class="show-on-mobile">{{'Payment Methods' | translate}}</div>
+            <div class="control-box"
+                [ngClass]="{'control-box-border':advancedControlRow.methods,'success-chip-wp':advancedControlRow.makeGreen && advancedControlRow.makeGreen.methods && advancedControlRow.methods && advancedControlRow.methods.length>0}">
+                <div class="control-box-close" (click)="clear(i, 'methods')" *ngIf="advancedControlRow.methods"
+                    [ngStyle]="isUserHasAccess?.delete == false && advancedControlRow.configId != null? {'pointer-events':'none','opacity':'0.4'}:{}">
+                    x</div>
+                <div class="control-box-items" (mouseleave)="itemLeave('methods',i)"
+                    (mouseenter)="itemHovered('methods',i)" *ngIf="advancedControlRow.methods">
+                    <div *ngFor="let paymentMethod of advancedControlRow.methods">
+                        <div class="control-box-item">
+                            {{paymentMethod.pmtMethodName}}
+                        </div>
+                        <div class="block-10"></div>
+                    </div>
+                </div>
+                <div class="control-box-empty" *ngIf="!advancedControlRow.methods" (click)="initiateItem(i,'methods')">
+                    <img class="add-tile-icon" src='assets/icons/add-tile-icon.png' alt="add">
+                </div>
+                <div class="three-dots-extra" [id]="'methods-'+i"
+                    *ngIf="advancedControlRow.methods && advancedControlRow.methods.length>5">
+                    ...
+                </div>
+                <div class="control-box-add" *ngIf="advancedControlRow.methods"
+                    [ngStyle]="isUserHasAccess?.edit == false && advancedControlRow.configId != null ? {'pointer-events':'none'}:{}">
+                    <div class="green-add" (click)="add(i, 'methods')"
+                        [ngStyle]="isUserHasAccess?.edit == false && advancedControlRow.configId != null ? {'opacity':'0.4'}:{}">
+                        +</div>
+                </div>
+            </div>
+        </div>
+        <div class="delete-icon"
+            *ngIf="(!advancedControlRow.channels || (advancedControlRow.channels && advancedControlRow.channels.length==0)) &&
+                                        (!advancedControlRow.serviceTypes || (advancedControlRow.serviceTypes && advancedControlRow.serviceTypes.length==0)) &&
+                                        (!advancedControlRow.methods || (advancedControlRow.methods && advancedControlRow.methods.length==0))"
+            [ngStyle]="isUserHasAccess?.delete == false && advancedControlRow.configId != null ? {'pointer-events':'none','opacity':'0.4'}:{}">
+            <img (click)="deleteRow(i)" src="assets/icons/remove.png" alt="delete">
+        </div>
+    </div>
+    <div class="plus-check-div col col-12 col-sm-12 col-xs-12 col-md-12">
+        <img *ngIf="edited" (click)="save()" class="add-tile-icon plus-img-class plus-icon-height"
+            src='assets/icons/check.png' alt="check">
+        <button class="btn-crl btn-crl-add" *ngIf="canAdd" (click)="addRow()" [disabled]="isUserHasAccess?.add == false"
+            [ngStyle]="isUserHasAccess?.add == false ? {'pointer-events':'none'}:{}"><img
+                src="assets/icons/icon-plus.svg" class="plus-img-class add-tile-icon" alt="Add button"></button>
+    </div>
+</div>

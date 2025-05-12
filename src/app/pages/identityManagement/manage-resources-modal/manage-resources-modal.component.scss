@@ -1,0 +1,162 @@
+@import "../../../../css/01-settings.scss";
+
+.modal-body {
+    //padding: 0px;
+
+}
+
+.modal-header {
+    padding: 0px 10px;
+    padding-bottom: 12px;
+    border-radius: 6px 0px 0px 0px;
+    //height: 50px;
+    align-items: inherit;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+}
+
+.modal-title {
+    font-size: 22px;
+    line-height: 42px;
+    font-family: "FrutigerLTArabic-65Bold";
+    font-style: normal;
+    font-weight: 700;
+}
+
+.modal-title span {
+    font-size: 18px;
+    padding-left: 10px;
+    font-weight: 500;
+}
+
+.close {
+    background: transparent;
+    color: inherit;
+    min-width: 10px;
+    padding: 0px;
+    height: auto;
+
+    &:focus-visible {
+        outline: 0;
+    }
+
+    span {
+        font-size: 28px;
+        color: $milkwhite;
+    }
+}
+
+.parentLabel {
+    font-weight: 600;
+}
+
+.childLabel {
+    font-weight: 500;
+}
+
+.fa-check {
+    color: $green;
+}
+
+.fa-times {
+    color: $bright-red;
+}
+
+.block-18 {
+    height: 18px;
+    display: block;
+}
+
+.block-28 {
+    height: 28px;
+    display: block;
+}
+
+.userheading {
+    font-weight: 600;
+    text-align: center;
+    font-family: "Frutiger-LT-Arabic-55-Roman";
+    font-style: normal;
+    color: #1d1556;
+}
+
+.right-row {
+    // text-align: right;
+    font-weight: 400;
+    padding-top: 5px;
+    font-family: "Frutiger-LT-Arabic-55-Roman";
+    font-style: normal;
+}
+
+.parent-row {
+    // text-align: right;
+    font-weight: 600;
+    margin-top: 6px;
+    font-family: "Frutiger-LT-Arabic-55-Roman";
+    font-style: normal;
+    color: #1d1556;
+}
+
+
+.access-ctl-acc .accordion-body {
+    background: $alice-blue;
+    padding: 10px;
+    background: $alice-blue;
+    max-height: 450px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.access-ctl-acc .accordion-item .acc-heading {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1D1556;
+    font-family: "FrutigerLTArabic-65Bold";
+    font-style: normal;
+}
+
+// .access-ctl-acc .row div {
+//     padding: 0px;
+//     margin-top: 7px;
+// }
+.modal-body {
+    padding: 22px;
+    max-height: 800px;
+
+}
+
+.checkbox>span {
+    color: #1d1556;
+    font-family: "Frutiger-LT-Arabic-55-Roman";
+    font-style: normal;
+    padding: 7px 7px 5px 5px;
+}
+
+.moduleName {
+    font-family: "FrutigerLTArabic-65Bold";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 31px;
+    color: #1D1556;
+}
+
+.pageName {
+    font-family: 'Frutiger-LT-Arabic-55-Roman';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 31px;
+    color: #747C91;
+}
+
+.tableHead {
+    font-family: 'FrutigerLTArabic-65Bold';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 27px;
+    color: #747C91;
+    text-align: center;
+}

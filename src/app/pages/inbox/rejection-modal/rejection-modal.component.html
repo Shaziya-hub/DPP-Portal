@@ -1,0 +1,33 @@
+<div class="common-trx">
+    <div class="modal-header">
+        <h4 class="modal-title">{{'Rejection Reason'| translate}}</h4>
+        <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true"><img src="assets/icons/X.svg"></span>
+        </button>
+    </div>
+    <div class="modal-body column-set-wp">
+        <form #manualRefund="ngForm">
+            <div class="row">
+                <div class="form-group custom-form ">
+                    <label class="label">{{'Rejection Reason'| translate}}</label>
+                    <!-- <input type="text" name="dailyAmount" class="form-control field" [(ngModel)]="comment"
+                        [ngClass]="comment == null && formSubmit? 'redBorder':''"> -->
+                    <textarea type="text" placeholder="{{'Please provide a suitable rejection reason' | translate}}"
+                        name='dailyAmount' class="form-control field" [(ngModel)]="comment"
+                        [ngClass]="comment == null && formSubmit? 'redBorder':''"></textarea>
+                </div>
+
+                <div class="form-group custom-form">
+
+                    <input type="hidden" name="transId" class="form-control field" [(ngModel)]="manualdata.transId">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary col-lg-1 left-alignment col applyBtnn"
+            (click)="updateRefunds()"><label class="applyBtnn-label">{{'Save' | translate}}</label></button>
+        <button type="button" class="btn  btn-lights col-lg-1 left-alignment col cancelBtnn" (click)="close()"><label
+                class="cancelBtnn-label">{{'Cancel' | translate}}</label></button>
+    </div>
+</div>

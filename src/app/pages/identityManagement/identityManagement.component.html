@@ -1,0 +1,9 @@
+<app-filters [pageConfig]="pageConfig" [headerConfig]="headerConfig" (applyFiltersEvent)="applyFilters($event)"
+    [dataSource]="dataSource" [identitymanagementPageInfo]="identitymanagementPageInfo"></app-filters>
+
+<idm-data-grid *ngIf="dataSource || showNoRecords || serviceNotResponded" [dataSource]="dataSource"
+    [responseCount]="responseCount" [pageConfig]="pageConfig" [headerConfig]="headerConfig"
+    (applyFiltersEvent)="applyFilters($event)" [filters]="filters" [pageSettings]="pageSettings"
+    [showNoRecords]="showNoRecords" [identitymanagementPageInfo]="identitymanagementPageInfo"
+    [serviceNotResponded]="serviceNotResponded">
+</idm-data-grid>

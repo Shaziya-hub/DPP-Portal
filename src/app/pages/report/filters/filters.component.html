@@ -1,0 +1,4 @@
+<app-standardreports *ngIf="reportPageInfo.pageName == 'standardreports'" [pageConfig]="pageConfig"
+    [reportPageInfo]="reportPageInfo" (selectedValue)="onUrlChange($event)" [url]="url" [dataSource]="dataSource"
+    (selectedFromDate)="bsValueChange($event)" (selectedToDate)="onMonthlyChange($event)"
+    [pageConfig2]="pageConfig2"></app-standardreports>

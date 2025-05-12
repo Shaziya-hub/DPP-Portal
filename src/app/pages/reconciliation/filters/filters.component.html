@@ -1,0 +1,11 @@
+<div class="page-header" id="filter-section" style="opacity: 1;">
+  <payments-filter *ngIf="reconciliationPageInfo.pageName == 'pmts'" [reconciliationPageInfo]="reconciliationPageInfo"
+    [pageConfig]="pageConfig" [summaryDataSource]="summaryDataSource" [dataSource]="dataSource"
+    [dataLoading]="dataLoading" [cardsUrl]="cardsUrl" [reasonPharse]="reasonPharse"></payments-filter>
+
+  <app-logsUI *ngIf="reconciliationPageInfo.pageName == 'logs'" [reconciliationPageInfo]="reconciliationPageInfo"
+    [pageConfig]="pageConfig" [dataSource]="dataSource"></app-logsUI>
+  <app-enterpriceLogs *ngIf="reconciliationPageInfo.pageName == 'enterpriselogs'"
+    [reconciliationPageInfo]="reconciliationPageInfo" [pageConfig]="pageConfig" [logVal]="logVal"
+    [searchFilter]="searchFilter"></app-enterpriceLogs>
+</div>

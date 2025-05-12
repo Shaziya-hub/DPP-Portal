@@ -1,0 +1,26 @@
+@import "../../../../css/01-settings.scss";
+
+::ng-deep #detail-grid {
+
+    .total-count {
+        height: 34px;
+    }
+}
+
+::ng-deep #reconcilationDetailGridContainer {
+
+    .dx-sort {
+        display: block;
+        position: absolute;
+        margin-top: 0px !important;
+
+    }
+
+    .dx-datagrid-text-content.dx-text-content-alignment-right {
+        padding-right: 0px !important;
+    }
+
+    .dx-widget.dx-datagrid-pager.dx-pager {
+        display: none;
+    }
+}

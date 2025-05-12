@@ -1,0 +1,170 @@
+<div class="common-trx">
+    <div class="pageHeadings">
+        <span class="page-heading2">{{"Identity Management" | translate}} &nbsp;<span
+                class="subpage-heading2">/&nbsp;{{searchFilters.roleId == null ? ("Add Role" | translate) : ("Update
+                Role" | translate)}}</span></span>
+        <hr>
+    </div>
+    <div class="wrapper-main" id="idmrole">
+        <div class="row">
+            <ul class="nav nav-tabs ">
+                <li class="nav-item">
+                    <a class="nav-link" [ngClass]="{'active': tabIndex == 0}" (click)="tabClicked(0)">{{'Role Details' |
+                        translate}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " [ngClass]="{'active': tabIndex == 1}">{{'Manage Resources' | translate}}</a>
+                </li>
+            </ul>
+        </div>
+        <form #rolesForm="ngForm">
+            <div id="roleDetails" *ngIf="tabIndex == 0;else roleResources">
+                <div class="row formPadding">
+                    <input type="hidden" class="form-control field" name="roleId">
+                    <div class="form-group custom-form col-md-6 col-sm-6 col-12">
+                        <label class="label required">{{'Role Name' | translate}}</label>
+                        <input type="text" class="form-control" name="roleName"
+                            placeholder="{{'Name to summarize role resources' | translate}}"
+                            [(ngModel)]="searchFilters.roleName" #roleName="ngModel" required
+                            [ngClass]="{'redBorder' :(rolesForm.submitted && searchFilters.roleName==null) || ( roleName.touched && roleName.invalid)}">
+                    </div>
+                    <div class="form-group custom-form col-md-6 col-sm-6 col-12">
+                        <label class="label required">{{'Role Status' |translate}}</label>
+                        <select class="form-select" name="status" [(ngModel)]="searchFilters.status" #status="ngModel"
+                            [ngClass]="{'redBorder' :(rolesForm.submitted && searchFilters.status==null) || ( status.touched && status.invalid),'selected':(searchFilters.status!=null)}">
+                            <option [ngValue]="null" [disabled]="true">{{'Role Status' |translate}}</option>
+                            <option ngValue="ACTIVE">{{"ACTIVE" | translate}}</option>
+                            <option ngValue="INACTIVE">{{"INACTIVE" | translate}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group custom-form col-md-12 col-sm-12 col-12">
+                        <label class="label required">{{'Role Description' | translate}}</label>
+                        <textarea class="form-control" name="roledesc"
+                            placeholder="{{'Few lines to describe the role and its privilege' | translate}}"
+                            [(ngModel)]="searchFilters.roleDesc" #roleDesc="ngModel" rows="10"
+                            [ngClass]="{'redBorder' :(rolesForm.submitted && searchFilters.roleDesc==null) || ( roleDesc.touched && roleDesc.invalid)}"></textarea>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <button type="submit" class="btn btn-block btn-primary btn-primary-custom col-md-2 col applyBtnn"
+                        (click)="saveAndContinue(rolesForm)"><span>{{searchFilters.roleId==null? ('Save and Continue' |
+                            translate) : ('Update and Continue' | translate)}}</span></button>
+                    <button type="button"
+                        class="btn btn-block btn-light btn-light-custom col-lg-1 col-md-3 col cancelBtnn"
+                        (click)="close() ">{{'Cancel' | translate}}</button>
+                </div>
+            </div>
+
+            <ng-template #roleResources>
+                <div class="row rowTopPadding" *ngIf="mainMenu">
+                    <div class="col-md-3 col-sm-3" id="resourcesDetail">
+                        <!-- <nav  class="nav flex-column" [ngStyle]="{'border-bottom': '1px solid transparent'}">
+                            <a class="nav-link"></a>
+                        </nav> -->
+                        <nav class="nav flex-column" *ngFor="let roles of mainMenu,let i = index">
+                            <a class="nav-link" [ngStyle]="i == 0?{'margin-top': '50px'}:{}"
+                                [ngClass]="i == selectedMenu ?'active' : ''" (click)="moduleSelected(i)">
+                                {{roles.displayName |translate}}</a>
+                        </nav>
+                        <nav class="nav flex-column" [ngStyle]="{'border-bottom': '1px solid transparent'}">
+                            <a class="nav-link"></a>
+                        </nav>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col" id="resourceCheck"
+                        *ngIf="serviceNotAvailable == false;else serviceNotAvailabeTemp">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col"></div>
+                            <div *ngFor="let head of roleHeading" class="col-md-1 col-sm-1 col text-center"><span
+                                    class="roleHeading">{{head | translate}}</span></div>
+                        </div>
+                        <hr [ngStyle]="{'background': '#E1E4E8'}">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-12 moduleName">
+                                <span>{{(mainMenu[selectedMenu]?.displayName | translate)}}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-3">
+                            <label class="checkbox">
+                                <input type="checkbox" [(ngModel)]="selectDemo[mainMenu[selectedMenu]?.displayName]"
+                                    [checked]="selectDemo[mainMenu[selectedMenu]?.displayName]==true"
+                                    [name]="mainMenu[selectedMenu]?.displayName"
+                                    [disabled]="selectDisabled[mainMenu[selectedMenu]?.id]=='true'"
+                                    (click)="selectAll($event,mainMenu[selectedMenu],mainMenu[selectedMenu].id)">
+                                <span>{{'Select All' | translate}}</span>
+                            </label>
+                        </div>
+                        <div *ngFor="let submenu of mainMenu[selectedMenu]?.subMenu">
+                            <div class="row" *ngFor="let permission of submenuPass">
+                                <div class="col-md-6 col-sm-6 col subMenuName">{{submenu.displayName
+                                    ==permission.displayName && submenu.id==permission.id? (submenu.displayName |
+                                    translate):'' }}</div>
+                                <div class="col-md-1 col-sm-1 col text-center"
+                                    *ngIf="submenu.displayName ==permission.displayName && submenu.id==permission.id">
+                                    <label class="checkbox checkboxAlign"><input type="checkbox"
+                                            [checked]="permission?.permissions?.viewPermission?.flag=='true'"
+                                            [disabled]="permission?.permissions?.viewPermission?.view=='N' && permission?.permissions?.viewPermission?.flag ==false"
+                                            (change)="onChange($event,mainMenu[selectedMenu],submenu.id,mainMenu[selectedMenu].id,'View')"></label>
+                                </div>
+                                <div class="col-md-1 col-sm-1 col text-center"
+                                    *ngIf="submenu.displayName ==permission.displayName && submenu.id==permission.id">
+                                    <label class="checkbox checkboxAlign"><input type="checkbox"
+                                            [checked]="permission?.permissions?.previewPermission?.flag=='true'"
+                                            [disabled]="permission?.permissions?.previewPermission?.preview=='N' && permission?.permissions?.previewPermission?.flag==false"
+                                            (change)="onChange($event,mainMenu[selectedMenu],submenu.id,mainMenu[selectedMenu].id,'PrivView')"></label>
+                                </div>
+                                <div class="col-md-1 col-sm-1 col text-center"
+                                    *ngIf="submenu.displayName ==permission.displayName && submenu.id==permission.id">
+                                    <label class="checkbox checkboxAlign"><input type="checkbox"
+                                            [checked]="permission?.permissions?.downloadPermission?.flag=='true'"
+                                            [disabled]="permission?.permissions?.downloadPermission?.download=='N' && permission?.permissions?.downloadPermission?.flag==false"
+                                            (change)="onChange($event,mainMenu[selectedMenu],submenu.id,mainMenu[selectedMenu].id,'Download')"></label>
+                                </div>
+                                <div class="col-md-1 col-sm-1 col text-center"
+                                    *ngIf="submenu.displayName ==permission.displayName && submenu.id==permission.id">
+                                    <label class="checkbox checkboxAlign"><input type="checkbox"
+                                            [checked]="permission?.permissions?.editPemission?.flag=='true'"
+                                            [disabled]="permission?.permissions?.editPemission?.edit=='N' && permission?.permissions?.editPemission?.flag==false"
+                                            (change)="onChange($event,mainMenu[selectedMenu],submenu.id,mainMenu[selectedMenu].id,'Edit')"></label>
+                                </div>
+                                <div class="col-md-1 col-sm-1 col text-center"
+                                    *ngIf="submenu.displayName ==permission.displayName && submenu.id==permission.id">
+                                    <label class="checkbox checkboxAlign"><input type="checkbox"
+                                            [checked]="permission?.permissions?.deletePermission?.flag=='true'"
+                                            [disabled]="permission?.permissions?.deletePermission?.delete=='N' && permission?.permissions?.deletePermission?.flag==false"
+                                            (change)="onChange($event,mainMenu[selectedMenu],submenu.id,mainMenu[selectedMenu].id,'Delete')"></label>
+                                </div>
+                                <div class="col-md-1 col-sm-1 col text-center"
+                                    *ngIf="submenu.displayName ==permission.displayName && submenu.id==permission.id">
+                                    <label class="checkbox checkboxAlign"><input type="checkbox"
+                                            [checked]="permission?.permissions?.addPermission?.flag=='true'"
+                                            [disabled]="permission?.permissions?.addPermission?.add=='N' && permission?.permissions?.addPermission?.flag==false"
+                                            (change)="onChange($event,mainMenu[selectedMenu],submenu.id,mainMenu[selectedMenu].id,'Add')"></label>
+                                </div>
+
+                                <hr *ngIf="submenu.displayName ==permission.displayName && submenu.id==permission.id"
+                                    [ngStyle]="{'background': '#E1E4E8'}">
+                            </div>
+                        </div>
+                    </div>
+                    <ng-template #serviceNotAvailabeTemp>
+                        <div class="noRecords-Todisplay margin0">
+                            <section class="no-records">
+                                <span>{{"Not available at the moment" | translate}}</span>
+                            </section>
+                        </div>
+                    </ng-template>
+                    <div class="block-20"></div>
+                    <div class="d-flex">
+                        <button type="submit"
+                            class="btn btn-block btn-primary btn-primary-custom col-md-2 col applyBtnn"
+                            (click)="saveORupdate(rolesForm)"><span>{{searchFilters.roleId==null? ('Save and Finish' |
+                                translate) : ('Update and Finish' | translate)}}</span></button>
+                        <button type="button"
+                            class="btn btn-block btn-light btn-light-custom col-lg-1 col-md-3 col cancelBtnn"
+                            (click)="close() ">{{'Cancel' | translate}}</button>
+                    </div>
+                </div>
+            </ng-template>
+        </form>
+    </div>
+</div>

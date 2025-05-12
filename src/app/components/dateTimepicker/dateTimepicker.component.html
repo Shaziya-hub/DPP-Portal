@@ -1,0 +1,74 @@
+<div autocomplete="off" *ngIf="todateInputFlag" class="date-picker1">
+    <div *ngIf="timepickerClose" (clickOutside)="onClickedOutside()">
+        <div class="card timepicker" *ngIf="timeVisible"
+            [ngStyle]="timeVisible?{'display': 'block'} : {'display': 'none'}">
+            <div>
+                <timepicker [hoursPlaceholder]="hoursPlaceholder" [minutesPlaceholder]="minutesPlaceholder"
+                    [showMeridian]="false" [(ngModel)]="myEndTime" (ngModelChange)="changed()" placement="bottom">
+                </timepicker>
+            </div>
+
+            <div style="padding:5px">
+                <span class="btn-group pull-left" style="margin-right:10px;">
+                    <button type=button class="btn btn-sm btn-light now" (click)="now()">{{ 'Now' | translate}}</button>
+                    <button type=button class="btn btn-sm btn-light clear" (click)="clear()">{{'Clear' |
+                        translate}}</button>
+                </span>
+                <span class="btn-group pull-left">
+                    <button appDoubleClick type=button class="btn btn-sm btn-light date"
+                        (singleClick)="showDate($event)">{{'Date' | translate}} </button>
+                </span>
+                <span class=clearfix></span>
+                <button appDoubleClick type=button class="btn btn-sm btn-light close"
+                    (singleClick)="close($event)">{{'Close' | translate}}</button>
+            </div>
+        </div>
+    </div>
+
+    <input type="text" autocomplete="off" bsDatepicker appDoubleClick class="form-control" ngDefaultControl
+        [(ngModel)]="myEndTime" [(bsValue)]="(reset2)? date2:myStartDateValue" [(bsValue)]="reset2"
+        [ngClass]="(fromDateFlag ==true)? 'color-border':'form-control'" (bsValueChange)="onValueChange($event)"
+        [bsConfig]="bsConfig" [minDate]="minDate" placement="bottom" (click)="loadCal()" [isOpen]="isOpen"
+        (singleClick)="isOpen=true" [outsideClick]="true" [container]="'.date-picker1'" />
+
+
+</div>
+
+
+
+<div *ngIf="reconciliationFlag || generateInvoiceFlag || ((settlementFlag && fromPickerDisplay) || (settlementFlag && monthDisplay))"
+    class="date-picker2">
+
+    <input type="text" autocomplete="off" bsDatepicker appDoubleClick class="calender-icon" ngDefaultControl
+        [(bsValue)]="reset?'':myDateValue" (bsValueChange)="onChangedate($event)" [(bsValue)]="myDateValue"
+        [(ngModel)]="myDateValue"
+        [ngClass]="(fromDateFlag ==true || dateFlag == true || toDateFlag==true)? 'color-border':'form-control'"
+        [bsConfig]="bsConfig" [minDate]="minDate" [maxDate]="minMaxDate" [placeholder]="setPlaceHolder"
+        (click)="loadCal()" [isOpen]="isOpen" (singleClick)="isOpen=true" [outsideClick]="true" placement="bottom"
+        [container]="'.date-picker2'" />
+
+</div>
+
+<div *ngIf="settlementFlag && toPickerDisplay" class="date-picker3">
+
+
+    <input type="text" autocomplete="off" bsDatepicker appDoubleClick class="form-control" ngDefaultControl
+        [(bsValue)]="reset?'':myDateValue" (bsValueChange)="onChangedate($event)" [(bsValue)]="myDateValue"
+        [(ngModel)]="myDateValue"
+        [ngClass]="(fromDateFlag ==true || dateFlag == true || toDateFlag==true)? 'color-border':'form-control'"
+        [bsConfig]="bsConfig" [minDate]="minDate" [placeholder]="setPlaceHolder" (click)="loadCal()" [isOpen]="isOpen"
+        (singleClick)="isOpen=true" [outsideClick]="true" placement="bottom" [container]="'.date-picker3'" />
+
+</div>
+
+<div class="input-group mb-3" autocomplete="off" *ngIf="fromdateInputFlag" class="date-picker">
+    <input type="text" autocomplete="off" appDoubleClick #daterangepicker="bsDaterangepicker" bsDaterangepicker
+        [ngClass]="dashboardFlag?'customTextwidth' : ''"
+        [placeholder]="dashboardFlag? ('Custom Date' | translate): ('From-To' | translate)" ngDefaultControl
+        [(ngModel)]="(reset3)? bsdateRange:dashboardFlag?bsRangeValueFromDashBoard:bsRangeValue" [bsConfig]="bsConfig"
+        (bsValueChange)="dateRangeChange($event)" [maxDate]="bsEndDateValue" placement="bottom" (click)="loadCal()"
+        [isOpen]="isOpen" (singleClick)="isOpen=true" [outsideClick]="true" [container]="'.date-picker'" />
+    <div [ngClass]="dashboardFlag?'input-group-append' : 'input-group-appendTrx'">
+        <span><img src="assets/icons/icon_calendar.png" (click)="daterangepicker.toggle()"></span>
+    </div>
+</div>

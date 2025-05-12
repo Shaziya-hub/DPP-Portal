@@ -1,0 +1,23 @@
+<div class="page-header" id="filter-section">
+    <access-control *ngIf="configurationsPageInfo.pageName == 'accesscontrol'" [pageConfig]="pageConfig"
+        [headerConfig]="headerConfig"></access-control>
+    <parameters *ngIf="configurationsPageInfo.pageName == 'parameters'"
+        [configurationsPageInfo]="configurationsPageInfo" [pageConfig]="pageConfig" [headerConfig]="headerConfig"
+        [dataSource]="dataSource"></parameters>
+    <limitlock *ngIf="configurationsPageInfo.pageName == 'limitslocks'"
+        [configurationsPageInfo]="configurationsPageInfo" [pageConfig]="pageConfig" [dataSource]="dataSource">
+    </limitlock>
+    <processor-config *ngIf="configurationsPageInfo.pageName=='processconfig'"
+        [configurationsPageInfo]="configurationsPageInfo" [pageConfig]="pageConfig"
+        [dataSource]="dataSource"></processor-config>
+    <paymentchannel-filter *ngIf="configurationsPageInfo.pageName=='paymentchannels'"
+        [configurationsPageInfo]="configurationsPageInfo" [pageConfig]="pageConfig"></paymentchannel-filter>
+    <endpoints-filter *ngIf="configurationsPageInfo.pageName=='endpoints'"
+        [configurationsPageInfo]="configurationsPageInfo" [pageConfig]="pageConfig"
+        [dataSource]="dataSource"></endpoints-filter>
+    <advanced-control-filter *ngIf="configurationsPageInfo.pageName == 'advaccesscontrol'" [pageConfig]="pageConfig"
+        [headerConfig]="headerConfig"></advanced-control-filter>
+    <masterdata-filter *ngIf="configurationsPageInfo.pageName == 'masterdata'"
+        [configurationsPageInfo]="configurationsPageInfo" [pageConfig]="pageConfig"
+        [dataSource]="dataSource"></masterdata-filter>
+</div>

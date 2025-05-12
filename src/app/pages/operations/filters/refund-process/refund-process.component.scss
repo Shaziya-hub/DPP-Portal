@@ -1,0 +1,138 @@
+.common-trx {
+    .block-20 {
+        height: 20px;
+    }
+
+    .summaryHeading {
+        color: #000;
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        font-size: 21px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 36px;
+        padding: 0px 10px;
+
+    }
+
+    .eligibleHead {
+        color: #000;
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 36px;
+        padding: 0px 10px;
+        text-align: end;
+
+        span {
+            color: #009696 !important;
+            font-weight: 800 !important;
+        }
+    }
+
+    .refundsummary {
+        border-radius: 4px;
+        border: 1px solid rgba(116, 124, 145, 0.15);
+        background: #F6F8FA;
+        padding: 20px;
+
+        .summaryLabel {
+            color: #000;
+            font-family: 'Frutiger-LT-Arabic-55-Roman';
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        .leftPadding {
+            width: 114px;
+            text-align: end;
+        }
+
+        .summaryValue {
+            font-family: 'FrutigerLTArabic-65Bold';
+            font-style: normal;
+            font-weight: 8Ks00;
+            font-size: 20px;
+            line-height: 38px;
+            color: #000;
+            margin-bottom: 16px;
+        }
+
+    }
+
+    .wrapper-main {
+        .fa-info-circle {
+            color: #acadc1;
+            font-size: 18px;
+            margin-left: 5px;
+        }
+    }
+
+    .successHead {
+        color: #1D1556;
+        font-family: 'FrutigerLTArabic-65Bold';
+        font-size: 21px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .errHead {
+        color: #E53012 !important;
+    }
+
+    .refHead {
+        color: #818181;
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+
+        span {
+            color: #000;
+            font-weight: 700 !important;
+        }
+    }
+
+    .refHeadCopy {
+        color: #000;
+        font-weight: 700;
+    }
+
+    .link {
+        color: #000;
+        font-family: 'Frutiger-LT-Arabic-55-Roman';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+
+        a {
+            color: #009696;
+            text-decoration-line: underline;
+        }
+    }
+
+    .link2 {
+        color: #009696;
+        text-decoration-line: underline;
+    }
+
+    .alert {
+        max-width: 100%;
+        text-align: left !important;
+        margin: 10px 20px 5px 0px;
+    }
+}
+
+::ng-deep .tooltip {
+    .tooltip-inner {
+        background-color: #acadc1;
+        stroke-width: 0.5px;
+        stroke: rgba(116, 124, 145, 0.23);
+        filter: drop-shadow(0px 2px 10px rgba(61, 85, 128, 0.10));
+    }
+}

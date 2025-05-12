@@ -1,0 +1,42 @@
+@import "../../../../../css/01-settings.scss";
+
+input.ng-touched.ng-valid,
+select.ng-touched.ng-valid {
+    border: 1px solid $cream-violet ;
+}
+
+.row.transs {
+    //   margin-left: 10px !important;
+    margin-top: 16px !important;
+    /* top: calc(50% - 24px/2 - 109px); */
+}
+
+.addUserBtn {
+    background: #3498DB;
+    border-radius: 4px;
+    min-width: 120px;
+    height: 56px;
+    min-width: 159px;
+
+    img {
+        padding-right: 26px;
+    }
+
+    span {
+        font-family: 'FrutigerLTArabic-65Bold';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+        color: #FFFFFF;
+    }
+}
+
+.fa-plus::before {
+    position: absolute;
+    left: 30px;
+    width: 22px;
+    height: 2px;
+    color: #FFFFFF;
+    top: 63px;
+}

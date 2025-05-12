@@ -1,0 +1,295 @@
+@import "../../../../css/01-settings.scss";
+
+.advanced-control-container {
+    margin-top: 30px;
+
+    .advanced-control-map-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $gainsboro;
+        padding-bottom: 20px;
+
+        div {
+            width: 20%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            font-family: 'FrutigerLTArabic-65Bold';
+        }
+    }
+
+    .advanced-control-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid $gainsboro;
+
+        .payment-channels,
+        .service-types,
+        .payment-methods {
+            width: 20%;
+
+            .control-box-border {
+                border: 1px solid $cream-violet;
+            }
+
+            .control-box {
+                border-radius: 4px;
+                padding: 15px;
+
+                .control-box-close {
+                    float: right;
+                    margin-top: -20px;
+                    margin-right: -10px;
+                    font-size: 24px;
+                    font-weight: bold;
+                    color: $error;
+                    cursor: pointer;
+                }
+
+                .control-box-items {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    // justify-content: center;
+                    max-height: 150px;
+                    overflow: hidden;
+
+                    &:hover {
+                        max-height: max-content !important;
+
+                        .three-dots-extra {
+                            display: none !important;
+                        }
+                    }
+
+                    .control-box-item {
+                        text-align: center;
+                        padding: 2px;
+                        font-weight: 600;
+                        word-break: break-word;
+                        background: $lavender;
+                        border-radius: 100px;
+                        min-height: 22px;
+                        color: $white;
+                        font-weight: 500;
+                        font-size: 14px;
+                        display: inline-block;
+                        padding: 0 12px;
+                        font-family: 'Frutiger-LT-Arabic-55-Roman';
+                    }
+
+                }
+
+                .three-dots-extra {
+                    margin-top: -10px;
+                    font-weight: 600;
+                    font-size: 20px;
+                    text-align: center;
+                }
+
+                .control-box-empty {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+
+                    .add-tile-icon {
+                        width: 70px;
+                        height: 70px;
+                    }
+                }
+
+                .control-box-add {
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 7px;
+
+                    .green-add {
+                        width: 20px;
+                        height: 20px;
+                        display: flex;
+                        color: $white;
+                        background: $success;
+                        font-weight: bold;
+                        border-radius: 4px;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 24px;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .is-green {
+                background: $lime-green;
+                color: $white !important;
+            }
+        }
+
+        .delete-icon {
+            width: 35px;
+            height: 35px;
+            margin-right: -60px;
+            margin-left: 20px;
+
+            img {
+                height: 100%;
+                width: 100%;
+                cursor: pointer;
+            }
+        }
+
+        .connecter-line {
+            width: 20%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .connecter-line-template {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .connecting-line {
+                border: 1px solid $success;
+                width: calc(100% - 20px);
+            }
+
+            .left-half-circle {
+                width: 15px;
+                height: 20px;
+                background: $success;
+                border-radius: 0px 100px 100px 0px;
+            }
+
+            .right-half-circle {
+                width: 15px;
+                height: 20px;
+                background: $success;
+                border-radius: 100px 0px 0px 100px;
+            }
+        }
+
+        .payment-channels {}
+
+        .service-types {}
+
+        .payment-methods {}
+    }
+
+    .plus-check-div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        margin-top: 10px;
+        margin-right: -65px;
+        width: 104.6%;
+
+        img {
+            height: 40px;
+            // margin-right: -65px;
+            cursor: pointer;
+            //margin-right: -50px;
+            // margin-left: 20px;
+        }
+    }
+
+    .show-on-mobile {
+        display: none;
+    }
+
+    @media (max-width:576px) {
+        .show-on-mobile {
+            display: block !important;
+            font-weight: 600 !important;
+            width: 35% !important;
+            word-break: break-word;
+        }
+
+        .show-on-pc {
+            display: none !important;
+        }
+
+        .payment-channels,
+        .service-types,
+        .payment-methods {
+            display: flex !important;
+            width: 100% !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+        }
+
+        .advanced-control-row {
+            flex-direction: column !important;
+        }
+
+        .control-box {
+            width: 60% !important;
+        }
+
+        .connecter-line-template {
+            flex-direction: column !important;
+            width: 60% !important;
+        }
+
+        .left-half-circle {
+            width: 20px !important;
+            height: 10px !important;
+            background: $success !important;
+            border-radius: 0px 0px 100px 100px !important;
+        }
+
+        .right-half-circle {
+            width: 20px !important;
+            height: 10px !important;
+            background: $success !important;
+            border-radius: 100px 100px 0px 0px !important;
+        }
+
+        .connecter-line {
+            width: 100% !important;
+            justify-content: flex-end !important;
+            min-height: 25px !important;
+        }
+
+        .connecting-line {
+            border: 1px solid $success !important;
+            width: 0px !important;
+            height: 25px !important;
+        }
+
+        .delete-icon {
+            width: 100% !important;
+            margin-top: 10px !important;
+            display: flex !important;
+            justify-content: flex-end !important;
+            margin-right: 0px !important;
+            margin-left: 0px !important;
+
+            img {
+                width: 40px !important;
+            }
+        }
+    }
+
+    .plus-img-class {
+        height: 40px;
+        cursor: pointer;
+        margin-right: -1px;
+        margin-left: 0px;
+        max-height: 20px;
+    }
+
+    .plus-icon-height {
+        margin-right: 14px;
+        margin-bottom: 10px;
+        max-height: 25px;
+    }
+}

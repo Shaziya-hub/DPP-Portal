@@ -1,0 +1,9 @@
+<upload-filter [pageConfig]="pageConfig" [headerConfig]="headerConfig" (applyFiltersEvent)="applyFilters($event)"
+    [uploadsPageInfo]="uploadsPageInfo" [dataSource]="dataSource"></upload-filter>
+
+<data-grid *ngIf="dataSource || showNoRecords || serviceNotResponded" [dataSource]="dataSource"
+    [responseCount]="responseCount" [pageConfig]="pageConfig" [headerConfig]="headerConfig"
+    (applyFiltersEvent)="applyFilters($event)" [filters]="filters" [pageSettings]="pageSettings"
+    [showNoRecords]="showNoRecords" [uploadsPageInfo]="uploadsPageInfo" [serviceNotResponded]="serviceNotResponded"
+    [primaykeydata]="primaykeydata">
+</data-grid>

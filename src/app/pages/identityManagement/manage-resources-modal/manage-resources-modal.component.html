@@ -1,0 +1,41 @@
+<div class="common-trx">
+    <div class="modal-header">
+        <h4 class="modal-title">{{roleData?.roleName | translate}}</h4>
+        <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true"><img src="assets/icons/icon-close-new.png"></span>
+        </button>
+    </div>
+    <div class="modal-body column-set-wp">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-6"> </div>
+            <div class="col-md-1 col-sm-1 col-1 tableHead" *ngFor="let head of heading">{{head | translate}}</div>
+        </div>
+        <hr>
+        <div class="col moduleName" *ngFor="let menu of roleData.resourceDetails?.menu">{{menu.displayName | translate}}
+            <div *ngFor="let submenu of menu.subMenu"><!--submenu loop starts-->
+                <div class="row" *ngFor="let permission of displayPermission(submenu.permissions)">
+                    <!--permission row starts-->
+                    <!-- <hr> -->
+                    <div class="col-sm-6 col pageName">{{submenu.displayName | translate}}</div>
+                    <div class="col-sm-1 col  text-center"><i [ngClass]="(permission.view=='N')? '': 'fa fa-check'"></i>
+                    </div>
+                    <div class="col-sm-1 col text-center"> <i
+                            [ngClass]="(permission.preview=='N')? '': 'fa fa-check'"></i></div>
+                    <div class="col-sm-1 col text-center"> <i
+                            [ngClass]="(permission.download=='N')? '': 'fa fa-check'"></i></div>
+                    <div class="col-sm-1 col text-center"> <i [ngClass]="(permission.edit=='N')? '': 'fa fa-check'"></i>
+                    </div>
+                    <div class="col-sm-1 col text-center"> <i
+                            [ngClass]="(permission.delete=='N')? '': 'fa fa-check'"></i></div>
+                    <div class="col-sm-1 col text-center"> <i [ngClass]="(permission.add=='N')? '': 'fa fa-check'"></i>
+                    </div>
+
+                </div><!--permission row end-->
+                <hr>
+            </div><!--submenu loop end-->
+            <!-- <hr> -->
+            <div class="block-20"></div>
+        </div><!--parent-row end-->
+
+    </div>
+</div>

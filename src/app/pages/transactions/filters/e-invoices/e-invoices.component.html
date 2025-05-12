@@ -1,0 +1,250 @@
+<div class="common-trx">
+    <app-common-heading></app-common-heading>
+
+    <div class="wrapper-main page-header" id="filter-section">
+        <form>
+            <div class="row">
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Business Services' | translate}}</label>
+                    <angular2-multiselect name="services"
+                        [data]="filtersComponent?.pageConfig?.listOfValues?.bizServices"
+                        [(ngModel)]="searchFilters.serviceId" [settings]="getBizServicesSetting()"
+                        (onClose)="onServiceChange()" (onDeSelectAll)="onServiceChange()">
+                    </angular2-multiselect>
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Service Types' | translate}}</label>
+                    <angular2-multiselect name="serviceTypes"
+                        [data]="filtersComponent?.pageConfig?.listOfValues?.serviceTypes"
+                        [(ngModel)]="searchFilters.serviceTypeId" [settings]="getServiceTypesSetting()">
+                    </angular2-multiselect>
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Invoice Types' | translate}}</label>
+                    <angular2-multiselect name="invoiceType"
+                        [data]="filtersComponent?.pageConfig?.listOfValues?.eInvoiceTypes"
+                        [(ngModel)]="searchFilters.invoiceType" [settings]="getInvoiceTypeSetting()">
+                    </angular2-multiselect>
+                </div>
+
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Invoice Statuses' | translate}}</label>
+                    <angular2-multiselect name="processStatus"
+                        [data]="filtersComponent?.pageConfig?.listOfValues?.eInvoiceStatus || []"
+                        [(ngModel)]="searchFilters.processStatus" [settings]="getPaymentStatusSetting()">
+                    </angular2-multiselect>
+                </div>
+
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Date Range' | translate}}</label>
+                    <app-dateTimepicker id="container" [fromdateInputFlag]="fromdateInputFlag" [reset3]="reset3"
+                        [bsdateRange]="bsdateRange" [logVal]="logVal" [searchFilter]="searchFilter"
+                        (dateRange)="dateRangeChange($event)" [landingDateRange]="landingDateRange"
+                        [bsConfig]="{withTimepicker: true,showWeekNumbers: false, keepDatepickerOpened: true, rangeInputFormat : 'MM/DD/YYYY,HH:mm',dateInputFormat: 'MMMM Do YYYY, HH:mm',monthLabel: 'MMM'}">
+                    </app-dateTimepicker>
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'Invoice No' | translate}}</label>
+                    <input type="text" name="invoiceNo" class="form-control" [(ngModel)]="searchFilters.invoiceNo"
+                        placeholder="{{'Invoice No'| translate}}">
+                </div>
+                <div class="form-group col col-lg-3 col-12 custom-form">
+                    <label>{{'External System Ref. ID' | translate}}</label>
+                    <input type="text" name="extSysRefId" class="form-control" [(ngModel)]="searchFilters.extSysRefId"
+                        placeholder="{{'External System Ref. ID'| translate}}">
+                </div>
+
+            </div>
+            <div class=" d-flex">
+                <button type="button" class="btn btn-block btn-primary  col-lg-1 left-alignment col applyBtnn"
+                    (click)="search()">
+                    <div class="row applyBtnn-label">
+                        <div class="col col-sm-6 fa-searchIcon"><img src='assets/icons/icon-search.svg'></div>
+                        <div class="col col-sm-6 searchLabel">{{'Search' | translate}}</div>
+                    </div>
+                </button>
+                <button type="button" class="btn btn-block btn-light  col-lg-1 left-alignment col cancelBtnn"
+                    (click)="resetForm()">
+                    <div class="cancelBtnn-label">{{'Reset' | translate}}</div>
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <div *ngIf="additionalFilter==true || dataSource != null">
+
+        <div class="row transs">
+            <label class="result-trx">{{'Results' | translate}}</label>
+        </div>
+        <div class="row additionalFIlter-list">
+            <div class="form-group col col-lg-10 col-12">
+                <div class="tags-container">
+                    <!-- list of additional filter -->
+                    <div *ngIf="addFilters!=null" class="tags-list">
+                        <li *ngIf="searchFilters.profileId != null && searchFilters.profileId != '' && searchFilters.profileId != undefined  && extraFilter.addProfileID==false "
+                            class="tag-item"><span class="tag-label">{{'Profile ID' |
+                                translate}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                (click)="searchFilters.profileId=null;inputFilters.profileId=null"><img
+                                    src='assets/icons/icon_cross.svg'></a>&nbsp;&nbsp;</li>
+                        <li *ngIf="searchFilters.sellerId != null && searchFilters.sellerId != '' && searchFilters.sellerId != undefined && extraFilter.addSellerId==false"
+                            class="tag-item"><span class="tag-label">{{'Seller ID' |
+                                translate}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                (click)="searchFilters.sellerId=null;inputFilters.sellerId=null"><img
+                                    src='assets/icons/icon_cross.svg'></a>&nbsp;&nbsp;</li>
+                        <li *ngIf="searchFilters.buyerId != null && searchFilters.buyerId != '' && searchFilters.buyerId != undefined && extraFilter.addBuyerId==false"
+                            class="tag-item"><span class="tag-label">{{'Buyer ID' |
+                                translate}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                (click)="searchFilters.buyerId=null;inputFilters.buyerId=null"><img
+                                    src='assets/icons/icon_cross.svg'></a></li>
+                        <li *ngIf="searchFilters.invoiceIdentifier != null && searchFilters.invoiceIdentifier != '' && searchFilters.invoiceIdentifier != undefined && extraFilter.addInvoiceIdentifier==false"
+                            class="tag-item"><span class="tag-label">{{'Invoice Identifier' |
+                                translate}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                (click)="searchFilters.invoiceIdentifier=null;inputFilters.invoiceIdentifier=null"><img
+                                    src='assets/icons/icon_cross.svg'></a>&nbsp;&nbsp;</li>
+                        <li *ngIf="searchFilters.orderRefId != null && searchFilters.orderRefId != '' && searchFilters.orderRefId != undefined && extraFilter.addOrderRefId==false"
+                            class="tag-item"><span class="tag-label">{{'Order ID' |
+                                translate}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                (click)="searchFilters.orderRefId=null;inputFilters.orderRefId=null"><img
+                                    src='assets/icons/icon_cross.svg'></a>&nbsp;&nbsp;</li>
+                        <li *ngIf="searchFilters.sourceSystem != null && searchFilters.sourceSystem != '' && searchFilters.sourceSystem != undefined && extraFilter.addSourceSystem==false"
+                            class="tag-item"><span class="tag-label">{{'Source System' |
+                                translate}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                (click)="searchFilters.sourceSystem=null;inputFilters.sourceSystem=null"><img
+                                    src='assets/icons/icon_cross.svg'></a></li>
+                    </div>
+                    <div class="btn-group insideClick" dropdown #dropdown="bs-dropdown" [autoClose]="autoclose">
+                        <button id="button-basic" dropdownToggle type="button"
+                            class="btn btn-block btn-light  additionalFilter" aria-controls="dropdown-basic"> <label
+                                class="addFilter insideClick"> {{'Add Filter' | translate}}</label><label
+                                class="funnel insideClick">
+                                <img src='assets/icons/icon_filter.svg'>
+                            </label></button>
+
+                        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu insideClick" role="menu"
+                            aria-labelledby="button-basic">
+                            <div class="container dropdownContainer insideClick">
+                                <div class="dropdown-header insideClick">
+                                    <label class="dropDown-heading insideClick">{{'Additional Filters' |
+                                        translate}}</label>
+                                </div>
+                                <div *ngIf="extraFilter.filterhide==false" class="menuitem-height insideClick">
+                                    <li role="menuitem" class="row menuitem-border testing insideClick"
+                                        (click)="addProfileId('addProfileID','Profile ID')">
+                                        <div class="col col-sm-auto chev insideClick"><label
+                                                class="dropdown-item insideClick">{{'Profile ID' | translate}}</label>
+                                        </div>
+                                        <div class="col col-sm-auto cheev insideClick"><a
+                                                class="chevron-right insideClick"><img class="insideClick"
+                                                    src='assets/icons/chevron-right.svg'></a></div>
+                                    </li>
+                                </div>
+                                <div *ngIf="extraFilter.filterhide==false" class="menuitem-height insideClick">
+                                    <li role="menuitem" class="row menuitem-border insideClick"
+                                        (click)="addBuyerId('addBuyerId','Buyer ID')">
+                                        <div class="col col-sm-auto chev insideClick"><label
+                                                class="dropdown-item insideClick">{{'Buyer ID' | translate}}</label>
+                                        </div>
+                                        <div class="col col-sm-auto cheev insideClick"><a
+                                                class="chevron-right insideClick"><img class="insideClick"
+                                                    src='assets/icons/chevron-right.svg'></a></div>
+                                    </li>
+                                </div>
+                                <div *ngIf="extraFilter.filterhide==false" class="menuitem-height insideClick">
+                                    <li role="menuitem" class="row menuitem-border insideClick"
+                                        (click)="addSellerId('addSellerId','Seller ID')">
+                                        <div class="col col-sm-auto chev insideClick"><label
+                                                class="dropdown-item insideClick">{{'Seller ID' | translate}}</label>
+                                        </div>
+                                        <div class="col col-sm-auto cheev insideClick"><a
+                                                class="chevron-right insideClick"><img class="insideClick"
+                                                    src='assets/icons/chevron-right.svg'></a></div>
+                                    </li>
+                                </div>
+                                <div *ngIf="extraFilter.filterhide==false" class="menuitem-height insideClick">
+                                    <li role="menuitem" class="row menuitem-border insideClick"
+                                        (click)="addInvoiceId('addInvoiceIdentifier','Invoice Identifier')">
+                                        <div class="col col-sm-auto chev insideClick"><label
+                                                class="dropdown-item insideClick">{{'Invoice Identifier' |
+                                                translate}}</label></div>
+                                        <div class="col col-sm-auto cheev insideClick"><a
+                                                class="chevron-right insideClick"><img class="insideClick"
+                                                    src='assets/icons/chevron-right.svg'></a></div>
+                                    </li>
+                                </div>
+                                <div *ngIf="extraFilter.filterhide==false" class="menuitem-height insideClick">
+                                    <li role="menuitem" class="row menuitem-border insideClick"
+                                        (click)="addOrderId('addOrderRefId','Order ID')">
+                                        <div class="col col-sm-auto chev insideClick"><label
+                                                class="dropdown-item insideClick">{{'Order ID' | translate}}</label>
+                                        </div>
+                                        <div class="col col-sm-auto cheev insideClick"><a
+                                                class="chevron-right insideClick"><img class="insideClick"
+                                                    src='assets/icons/chevron-right.svg'></a></div>
+                                    </li>
+                                </div>
+                                <div *ngIf="extraFilter.filterhide==false" class="menuitem-height insideClick">
+                                    <li role="menuitem" class="row menuitem-border insideClick"
+                                        (click)="addSourceSystem('addSourceSystem','Source System')">
+                                        <div class="col col-sm-auto chev insideClick"><label
+                                                class="dropdown-item insideClick">{{'Source System' |
+                                                translate}}</label></div>
+                                        <div class="col col-sm-auto cheev insideClick"><a
+                                                class="chevron-right insideClick"><img class="insideClick"
+                                                    src='assets/icons/chevron-right.svg'></a></div>
+                                    </li>
+                                </div>
+
+                                <div *ngIf="extraFilter.filterhide==true " class="menu insideClick">
+                                    <div class="row insideClick">
+                                        <div
+                                            class="form-group col col-lg-12 col-12 custom-form inputAddFilter insideClick">
+                                            <label class="additional-label insideClick">{{extraFilter.labelName|
+                                                translate}}</label>
+                                            <input *ngIf="extraFilter.addProfileID==true" type="text" name="profileId"
+                                                class="form-control insideClick" [(ngModel)]="inputFilters.profileId"
+                                                placeholder="{{'Profile ID' | translate}}">
+                                            <!-- <input *ngIf="addTransAmt==true" type="text" name="transAmt" class="form-control additional insideClick" [(ngModel)]="searchFilters.transactionAmount" placeholder="{{'Trans Amount' | translate}}"> -->
+                                            <input *ngIf="extraFilter.addSellerId==true" type="text" name="batchId"
+                                                class="form-control  insideClick" [(ngModel)]="inputFilters.sellerId"
+                                                placeholder="{{'Seller ID' | translate}}">
+                                            <input *ngIf="extraFilter.addBuyerId==true" type="text" name="profileId"
+                                                class="form-control insideClick" [(ngModel)]="inputFilters.buyerId"
+                                                placeholder="{{'Buyer ID' | translate}}">
+                                            <input *ngIf="extraFilter.addInvoiceIdentifier==true" type="text"
+                                                name="externalRef" class="form-control insideClick"
+                                                [(ngModel)]="inputFilters.invoiceIdentifier"
+                                                placeholder="{{'Invoice Identifier' | translate}}">
+                                            <input *ngIf="extraFilter.addOrderRefId==true" type="text" name="productId"
+                                                class="form-control insideClick" [(ngModel)]="inputFilters.orderRefId"
+                                                placeholder="{{'Order ID' | translate}}">
+                                            <input *ngIf="extraFilter.addSourceSystem==true" type="text"
+                                                name="reasonCode" class="form-control insideClick"
+                                                [(ngModel)]="inputFilters.sourceSystem"
+                                                placeholder="{{'Source System' | translate}}">
+
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row insideClick">
+                                        <button type="button"
+                                            class="btn btn-primary  col-lg-1 left-alignment col applyBtnn"
+                                            (click)="dropdown.isOpen = !dropdown.isOpen;additionalFIlters()"><label
+                                                class="applyBtnn-label">{{'Apply' |translate}}</label></button>
+                                        <button type="button"
+                                            class="btn  btn-light  col-lg-1 left-alignment col cancelBtnn"
+                                            (click)="dropdown.isOpen = !dropdown.isOpen;addFilterHide()"><label
+                                                class="cancelBtnn-label">{{'Cancel' |translate}}</label></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group col col-lg-2 col-12"></div>
+
+    </div>
+</div>

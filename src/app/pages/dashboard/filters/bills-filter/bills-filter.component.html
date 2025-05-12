@@ -1,0 +1,227 @@
+<div class="common-trx">
+    <app-common-heading></app-common-heading>
+</div>
+<div class="dashboardContainer">
+    <div class="billcontainer">
+        <div class="row filterPadding">
+            <div class="col-md-3 col-sm-12 dropCss">
+                <angular2-multiselect name="service" [data]="filtersComponent?.pageConfig?.listOfValues?.bizServices"
+                    [(ngModel)]="searchFilters.serviceId" [settings]="getBizServicesSetting"
+                    (ngModelChange)="onChange($event)" (onClose)="onClose($event)">
+                </angular2-multiselect>
+            </div>
+            <div class="col-md-9 filter-box">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                        <div class="row filter">
+                            <div class="col-md-3 col-sm-3 col-6">
+                                <label class="today-btn" (click)="customDate($event,'Today')">{{'Today' |
+                                    translate}}</label>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-6">
+                                <label class="date-link" (click)="customDate($event,'Yesterday')">{{'Yesterday' |
+                                    translate}}</label>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-6">
+                                <label class="date-link" (click)="customDate($event,'This Week')">{{'This Week' |
+                                    translate}}</label>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-6">
+                                <label class="date-link marginLeft0" (click)="customDate($event,'This Month')">{{'This
+                                    Month' |
+                                    translate}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <app-dateTimepicker id="dashBoardcontainer" [fromdateInputFlag]="fromdateInputFlag"
+                            [dashboardFlag]="dashboardFlag" [bsRangeValueFromDashBoard]="bsRangeValueFromDashBoard"
+                            (dateRange)="dateRangeChange1($event)"
+                            [bsConfig]="{showWeekNumbers: false, keepDatepickerOpened: true, rangeInputFormat : 'MM/DD/YYYY',dateInputFormat: 'MMMM Do YYYY',monthLabel: 'MMM'}">
+                        </app-dateTimepicker>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="card " [ngClass]="billDoughnutData?'':'doughnutHeight'">
+                    <ngx-spinner name="billDoughnutSpinner" #billDoughnutSpinner bdColor="rgba(0, 0, 0, 0.6)"
+                        size="small" color="#fff" type="square-jelly-box" [fullScreen]="false">
+                        <p style="color: white"> {{'Loading' | translate }} </p>
+                    </ngx-spinner>
+
+                    <div class="card-body" *ngIf="billDoughnutData;else noDoughnutChartRecord">
+                        <div class="expandicon">
+                            <span class="heading">{{'Summary Invoice' | translate}}</span>
+                            <button class="close" aria-label="Close"
+                                (click)="openModal('billDoughnutChart','Summary Invoice')"
+                                [disabled]="disabledDoughnutChart">
+                                <span aria-hidden="true"><img src="assets/icons/icon-expand-new.png"></span>
+                            </button>
+                        </div>
+                        <div class="row">
+                            <div class="doughnutChart  col-12 col-sm-7 col-md-7 col-lg-7">
+                                <canvas id="billDoughnutChart"></canvas>
+                            </div>
+                            <div class="col-12 col-sm-5 col-md-5 col-lg-5 legend-container1">
+                                <!-- <div class="legend-container1"></div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row" *ngIf="billCardData;else cardTemplate">
+                    <div *ngFor="let cardData of billCardData; let i = index" class="col-md-6">
+                        <div class="card PmtAddtnlStatsCard" id="card{{i}}">
+                            <ngx-spinner name="billCardDataSpinner" bdColor="rgba(0, 0, 0, 0.6)" size="small"
+                                color="#000" type="square-jelly-box" [fullScreen]="false">
+                                <p style="color: white"> {{'Loading' | translate }} </p>
+                            </ngx-spinner>
+                            <div class="card-body">
+                                <!-- <p class="total">{{cardData.Key=='ttlAmt' ? 'Total Invoice Amount' : cardData.Key == 'paidAmt' ? 'Paid Invoice Amount' : cardData.Key == 'unpaidAmt' ? 'Unpaid Invoice Amount': cardData.Key == 'expiredInvoices'? 'Expired Invoice Amount':cardData.Key}}</p> -->
+                                <p class="total">{{cardData.Key=='ttlAmt' ? ('Total Invoice Amount' | translate) :
+                                    cardData.Key == 'higestAmt' ? ('Highest Invoice Amount' | translate) : cardData.Key
+                                    == 'changeInPercent' ? ('Change In Count' | translate): cardData.Key ==
+                                    'mostUsedService'? ('Most Invoiced Service' | translate):cardData.Key}}</p>
+                                <p class="total-counts"
+                                    [ngClass]="i==0?'darkBlue':i==1?'text-success':i==2?'text-warning':'text-danger'">
+                                    {{cardData.Value}}</p>
+                                <p class="total-footer">{{cardData.Description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row rowPadding">
+            <div class="card" id='barchartId' [ngStyle]="billBarData?{'height':'378px'}:{}">
+                <ngx-spinner name='billBarDataSpinner' #billBarDataSpinner bdColor="rgba(0, 0, 0, 0.6)" size="small"
+                    color="#fff" type="square-jelly-box" [fullScreen]="false">
+                    <p style="color: white"> {{'Loading' | translate }} </p>
+                </ngx-spinner>
+                <div class="card-body" *ngIf="billBarData != undefined && billBarData != '{}';else noBarChartRecord">
+                    <span class="heading">{{'Invoices By Type' | translate}}</span>
+                    <div class="chartBox">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card" [ngClass]="billLineData?'':'heightClass'">
+                    <ngx-spinner name="billLineSpinner" #billLineSpinner bdColor="rgba(0, 0, 0, 0.6)" size="small"
+                        color="#fff" type="square-jelly-box" [fullScreen]="false">
+                        <p style="color: white"> {{'Loading' | translate }}</p>
+                    </ngx-spinner>
+                    <div class="card-body" *ngIf="billLineData;else nolineChartRecord">
+                        <div class="expandicon">
+                            <span class="heading">{{'Invoices Graph' | translate}}</span>
+                            <button class="close" aria-label="Close" (click)="openModal('lineChart', 'Invoices Graph')">
+                                <span aria-hidden="true"><img src="assets/icons/icon-expand-new.png"></span>
+                            </button>
+                        </div>
+                        <!-- <span class="heading expandChart" (click)="openModal('lineChart')">{{'Number Of Bills'}}</span> -->
+                        <div class="lineChartchartBox">
+                            <canvas id="lineChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 report">
+                <div class="card rowMargin" [ngClass]="billReportData?'':'heightClass'">
+                    <ngx-spinner name='billReportSpinner' #billReportSpinner bdColor="rgba(0, 0, 0, 0.6)" size="small"
+                        color="#000" type="square-jelly-box" [fullScreen]="false">
+                        <p style="color: white"> {{'Loading' | translate }} </p>
+                    </ngx-spinner>
+                    <div *ngIf="billReportData && billReportData != undefined && billReportData != null && (billReportData | json) != '[]' && (billReportData | json) != '{}' && (billReportData[0] | json) != '{}'"
+                        class="card-header" style="display: flex;justify-content: space-between;">
+                        <span class="heading">{{'Invoice Details' | translate}}</span><span class="more"
+                            (click)="moreBills()">{{'More' | translate}}</span>
+                    </div>
+                    <div class="card-body"
+                        *ngIf="billReportData && billReportData != undefined && billReportData != null && (billReportData | json) != '[]' && (billReportData | json) != '{}' && (billReportData[0] | json) != '{}' ;else noRecord">
+                        <div class="dashboardTable">
+                            <table>
+                                <thead>
+                                    <th>{{'Invoice No' | translate}}</th>
+                                    <th class="amountAlign">{{'Amount' | translate}}</th>
+                                    <th class="emptyTh"></th>
+                                    <th>{{'Received Date' | translate}}</th>
+                                    <th>{{'Bill Type' | translate}}</th>
+                                    <th>{{'Status' | translate}}</th>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let billData of billReportData">
+                                        <td>{{billData.invoiceNo}}</td>
+                                        <td class="amountAlign">{{billData.amount}}</td>
+                                        <td class="emptyTh">{{""}}</td>
+                                        <td>{{billData.receivedDate}}</td>
+                                        <td>{{billData.billType}}</td>
+                                        <td><label
+                                                [ngClass]="billData.status == 'COMPLETED'|| billData.status == 'PROCESSED  '? 'text-success':billData.status == 'FAILED' || billData.status == 'REJECTED' || billData.status == 'CANCELLED ' ? 'text-danger':'text-warning'">{{billData.status}}</label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #noRecord>
+    <!-- <ngx-spinner #noRecordData bdColor = "rgba(0, 0, 0, 0.6)" size = "small" color = "#fff" type = "square-jelly-box" [fullScreen] = "false"></ngx-spinner> -->
+    <section
+        *ngIf="billReportData == undefined || billReportData == null || (billReportData | json) == '[]' || (billReportData[0] | json) == '{}'"
+        class="no-records">
+        <img class="mb-3" src="assets/icons/icon-no-record.svg">
+        <div style="clear:both;"></div>
+        <span>{{'No records to display' | translate}}</span>
+    </section>
+    <section *ngIf="(billReportData | json) == '{}'">
+        <span>{{'Not available at the moment' | translate}}</span>
+    </section>
+</ng-template>
+<ng-template #cardTemplate>
+    <div class="row">
+        <div *ngFor="let data of [1,2,3,4]" class="col-md-6">
+            <div class="card" style="height: 164px;">
+                <ngx-spinner name='billCardDataSpinner' bdColor="rgba(0, 0, 0, 0.6)" size="small" color="#fff"
+                    type="square-jelly-box" [fullScreen]="false">
+                    <p style="color: white"> {{'Loading' | translate }}</p>
+                </ngx-spinner>
+                <section *ngIf="cardError" class="no-records">
+                    <span>{{'Not available at the moment' | translate}}</span>
+                </section>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #noBarChartRecord>
+    <!-- <ngx-spinner #noRecordData bdColor = "rgba(0, 0, 0, 0.6)" size = "small" color = "#fff" type = "square-jelly-box" [fullScreen] = "false"></ngx-spinner> -->
+    <section *ngIf="barError" class="no-records">
+        <span>{{'Not available at the moment' | translate}}</span>
+    </section>
+</ng-template>
+<ng-template #noDoughnutChartRecord>
+    <!-- <ngx-spinner #noRecordData bdColor = "rgba(0, 0, 0, 0.6)" size = "small" color = "#fff" type = "square-jelly-box" [fullScreen] = "false"></ngx-spinner> -->
+    <section *ngIf="doughnutError" class="no-records">
+        <span>{{'Not available at the moment' | translate}}</span>
+    </section>
+</ng-template>
+<ng-template #nolineChartRecord>
+    <!-- <ngx-spinner #noRecordData bdColor = "rgba(0, 0, 0, 0.6)" size = "small" color = "#fff" type = "square-jelly-box" [fullScreen] = "false"></ngx-spinner> -->
+    <section *ngIf="lineError" class="no-records">
+        <span>{{'Not available at the moment' | translate}}</span>
+    </section>
+</ng-template>

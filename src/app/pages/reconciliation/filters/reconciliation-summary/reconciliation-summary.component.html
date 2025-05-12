@@ -1,0 +1,172 @@
+<div class="row topMargin" id="reconSumarry" *ngIf="summaryDataSource!=null && dataLoading==false">
+  <div class="col col-md-3 col-12 ">
+    <span class="card PmtAddtnlStatsCard first-cardAllign">
+      <div class="card-body">
+        <p class="total">{{'TRX COUNT' | translate}}</p>
+        <div class="sumaryLabel">
+          <p class="dppMerchant">{{'Merchant' | translate}}</p>
+          <p class="dppMerchantVal">{{summaryDataSource.merchantTrx?summaryDataSource.merchantTrx:"--"}}</p>
+        </div>
+        <div class="sumaryLabel">
+          <p class="dppMerchant">{{'DPP' | translate}}</p>
+          <p class="dppMerchantVal dpp">{{summaryDataSource.DPPTrx?summaryDataSource.DPPTrx:"--"}}</p>
+        </div>
+        <div class="sumaryLabel mismatch"
+          *ngIf="summaryDataSource.mismatchedTrx != 0 && summaryDataSource.mismatchedTrx != null">
+          <p class="mismatch-head">{{'Mismatch' | translate}}</p>
+          <p class="mismatch-value">{{summaryDataSource.mismatchedTrx?summaryDataSource.mismatchedTrx:"--"}}</p>
+        </div>
+        <div class="sumaryLabel match" *ngIf="summaryDataSource.mismatchedTrx == 0 && !reasonPharse">
+          <p class="match-head">{{'Match' | translate}}</p>
+        </div>
+        <div class="sumaryLabel recon" *ngIf="reasonPharse">
+          <p class="recon-head">{{reasonPharse}}</p>
+        </div>
+        <p class="total-footer"></p>
+      </div>
+    </span>
+  </div>
+  <div class="col col-md-3 col-12 ">
+    <span class="card PmtAddtnlStatsCard">
+      <div class="card-body">
+        <p class="total">{{'TRX AMOUNT' | translate}}</p>
+        <div class="sumaryLabel">
+          <p class="dppMerchant">{{'Merchant' | translate}}</p>
+          <p class="dppMerchantVal">{{summaryDataSource.merchantAmt?summaryDataSource.merchantAmt:"--"}}</p>
+        </div>
+        <div class="sumaryLabel">
+          <p class="dppMerchant">{{'DPP' | translate}}</p>
+          <p class="dppMerchantVal dpp">{{summaryDataSource.DPPAmt?summaryDataSource.DPPAmt:"--"}}</p>
+        </div>
+        <div class="sumaryLabel mismatch"
+          *ngIf="summaryDataSource.mismatchedAmt != 0  && summaryDataSource.mismatchedAmt != null">
+          <p class="mismatch-head">{{'Mismatch' | translate}}</p>
+          <p class="mismatch-value">{{summaryDataSource.mismatchedAmt?summaryDataSource.mismatchedAmt:"--"}}</p>
+        </div>
+        <div class="sumaryLabel match" *ngIf="summaryDataSource.mismatchedAmt == 0 && !reasonPharse">
+          <p class="match-head">{{'Match' | translate}}</p>
+        </div>
+        <div class="sumaryLabel recon" *ngIf="reasonPharse">
+          <p class="recon-head">{{reasonPharse}}</p>
+        </div>
+        <p class="total-footer"></p>
+      </div>
+    </span>
+  </div>
+  <div class="col col-md-6 col-12 ">
+    <span class="card PmtAddtnlStatsCard summarry">
+      <div class="card-body">
+        <p class="total">{{'Summary' | translate}} </p>
+        <div class="row sumRows">
+          <div class="col col-lg-6 col-12 firstCol">
+            <div class="row insideCOl">
+              <div class="col col-lg-6 col-12 key"><span class="fees">{{'Charges' | translate}}</span></div>
+              <div class="col col-lg-6 col-12 value"><span
+                  class="feesVal">{{summaryDataSource.merchantApplFees?summaryDataSource.merchantApplFees:"--"}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col col-lg-6 col-12 secondCol">
+            <div class="row insideCOl">
+              <div class="col col-lg-6 col-12 key"><span class="fees">{{'VAT' | translate}}</span></div>
+              <div class="col col-lg-6 col-12 value"><span
+                  class="feesVal">{{summaryDataSource.merchantApplVAT?summaryDataSource.merchantApplVAT:"--"}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row sumRows">
+          <div class="col col-lg-6 col-12 firstCol">
+            <div class="row insideCOl">
+              <div class="col col-lg-6 col-12 key"><span class="fees">{{'Credit TRX' | translate}}</span></div>
+              <div class="col col-lg-6 col-12 value"><span
+                  class="feesVal">{{summaryDataSource.merchantCrTrx?summaryDataSource.merchantCrTrx:"--"}}</span></div>
+            </div>
+          </div>
+          <div class="col col-lg-6 col-12 secondCol">
+            <div class="row insideCOl">
+              <div class="col col-lg-6 col-12 key"><span class="fees">{{'Credit Amount' | translate}}</span></div>
+              <div class="col col-lg-6 col-12 value"><span
+                  class="feesVal">{{summaryDataSource.merchantCrAmt?summaryDataSource.merchantCrAmt:"--"}}</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="row sumRows">
+          <div class="col col-lg-6 col-12 firstCol">
+            <div class="row insideCOl">
+              <div class="col col-lg-6 col-12 key"><span class="fees">{{'Reversed TRX' | translate}}</span></div>
+              <div class="col col-lg-6 col-12 value"><span
+                  class="feesVal">{{summaryDataSource.merchantRevTrx?summaryDataSource.merchantRevTrx:"--"}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col col-lg-6 col-12 secondCol">
+            <div class="row insideCOl">
+              <div class="col col-lg-6 col-12 key"><span class="fees">{{'Reversed Amount' | translate}}</span></div>
+              <div class="col col-lg-6 col-12 value"><span
+                  class="feesVal">{{summaryDataSource.merchantRevAmt?summaryDataSource.merchantRevAmt:"--"}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row sumRows">
+          <div class="col col-lg-6 col-12 firstCol">
+            <div class="row insideCOl">
+              <div class="col col-lg-6 col-12 key"><span class="fees">{{'DPP Calc. VAT' | translate}}</span></div>
+              <div class="col col-lg-6 col-12 value"><span
+                  class="feesVal">{{summaryDataSource.DPPCalcVAT?summaryDataSource.DPPCalcVAT:"--"}}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="row topMargin" *ngIf="summaryDataSource==null && dataLoading==false">
+  <div class="col col-md-3 col-12 ">
+    <span class="card first-cardAllign nodata">
+      <div class="card-body">
+        <span>{{'No data available' | translate}}</span>
+      </div>
+    </span>
+  </div>
+  <div class="col col-md-3 col-12 ">
+    <span class="card  nodata">
+      <div class="card-body">
+        <span>{{'No data available' | translate}}</span>
+      </div>
+    </span>
+  </div>
+  <div class="col col-md-6 col-12 ">
+    <span class="card summarry nodataa">
+      <div class="card-body">
+        <span>{{'No data available' | translate}}</span>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="row topMargin" *ngIf="dataLoading==true">
+  <div class="col col-md-3 col-12 ">
+    <span class="card first-cardAllign nodata">
+      <div class="card-body">
+        <span>{{'Loading...' | translate}}</span>
+      </div>
+    </span>
+  </div>
+  <div class="col col-md-3 col-12 ">
+    <span class="card  nodata">
+      <div class="card-body">
+        <span>{{'Loading...' | translate}}</span>
+      </div>
+    </span>
+  </div>
+  <div class="col col-md-6 col-12 ">
+    <span class="card summarry nodataa">
+      <div class="card-body">
+        <span>{{'Loading...' | translate}}</span>
+      </div>
+    </span>
+  </div>
+</div>

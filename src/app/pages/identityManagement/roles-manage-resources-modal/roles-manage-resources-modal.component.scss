@@ -1,0 +1,128 @@
+@import "../../../../css/01-settings.scss";
+
+.modal-header {
+    padding: 0 10px;
+    border-radius: 6px 0px 0px 0px;
+    height: 50px;
+    align-items: inherit;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-family: "FrutigerLTArabic-65Bold";
+    font-style: normal;
+    font-weight: 700;
+}
+
+.modal-title span {
+    font-size: 18px;
+    padding-left: 10px;
+    font-weight: 500;
+}
+
+.close {
+    background: transparent;
+    color: inherit;
+    min-width: 10px;
+    padding: 0px;
+    height: auto;
+
+    &:focus-visible {
+        outline: 0;
+    }
+
+    span {
+        font-size: 28px;
+        color: $milkwhite;
+    }
+}
+
+.parentLabel {
+    font-weight: 600;
+}
+
+.childLabel {
+    font-weight: 500;
+}
+
+.fa-check {
+    color: $green;
+}
+
+.fa-ban {
+    color: $bright-red;
+}
+
+.block-18 {
+    height: 18px;
+    display: block;
+}
+
+.block-28 {
+    height: 28px;
+    display: block;
+}
+
+.roleright-row {
+    margin-right: 0px;
+    //text-align: right;
+    font-weight: 400;
+    padding-top: 5px;
+    font-family: "Frutiger-LT-Arabic-55-Roman";
+    font-style: normal;
+}
+
+.parent-row {
+    margin: 0px;
+    // text-align: right;
+    font-weight: 600;
+    margin-top: 6px;
+    font-family: "Frutiger-LT-Arabic-55-Roman";
+    font-style: normal;
+    color: #1d1556;
+}
+
+.checked {
+    margin-left: 46% !important;
+}
+
+.checkbox>span {
+    color: #1d1556;
+    font-family: "Frutiger-LT-Arabic-55-Roman";
+    font-style: normal;
+    padding: 7px 7px 5px 5px;
+}
+
+.heading {
+    font-weight: 600;
+    text-align: center;
+}
+
+.modal-body {
+    max-height: 532px;
+}
+
+.checkboxAlign>input:checked {
+    content: url(../../../../assets/icons/icon-checkbox.svg);
+    display: block;
+    text-align: center;
+    color: $sea-green;
+    padding: 3px;
+    // position: absolute;
+    // left: 11px;
+    // top: 8px;
+}
+
+.fa-ban {
+    padding-top: 10px;
+
+}
+
+.edit-offset {
+    margin-left: 8.3%;
+    ;
+}
+
+.view-offset {
+    margin-left: 7.6%;
+}

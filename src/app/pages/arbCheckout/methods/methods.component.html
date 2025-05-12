@@ -1,0 +1,66 @@
+<div class="pageHeadings">
+    <span class="page-heading2">{{'Payment'}} &nbsp;<span class="subpage-heading2">/&nbsp;{{'Methdos'}}</span></span>
+    <hr>
+</div>
+
+<div class="wrapper-main page-header" id="filter-section">
+    <div class="row" style="margin-top: 24px;">
+        <div class="col col-md-4 col-12">
+            <div class="card paidCard">
+                <img src="assets/icons/unpaid.png" class="paidImg">
+                <div class="card-body">
+                    <div class="heading">{{'Bill Amount' | translate}}</div>
+                    <div class="bill"><span>{{methods.amount}}&nbsp;{{'sar' | translate}}</span> </div>
+                    <div class="status red">{{'Unpaid' | translate}}</div>
+
+
+                </div>
+
+                <div class="between-stretch" style="margin-bottom: 16px;margin-top: 16px;">
+                    <label class="labelss unpay">
+                        <div class="key">{{"Service type" | translate}}</div>
+                        <div class="key" style="padding-top: 8px;">{{'Bill number' | translate}}</div>
+                    </label>
+                    <label class="labels">
+
+                        <div class="value">{{methods.serviceType}}</div>
+                        <div class="value" style="padding-top: 8px;">{{methods.billNumber}}</div>
+                    </label>
+                </div>
+                <div class="row" style="height: 5px; overflow: hidden;">
+                    <label class="rotated-half-circle-left"></label><label style="width: 5px;margin-right: 14px;"
+                        *ngFor="let index of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+                        <div class="rectangle"></div>
+                    </label><label class="rotated-half-circle-right"></label>
+                    <!-- <img class="col col-sm-auto col-12" src="assets/icons/rectanglee.png" *ngFor="let index of [0,1,2,3,4,5,6,7,8,9,10,11]" style="height: 9px; width: 23px;"> -->
+                </div>
+                <div class="paidDate">&nbsp;&nbsp;<img src="assets/icons/calender-icon.png"
+                        style="height: 15.99px;width: 15.99px;">&nbsp;&nbsp;<span>{{'Billing due date' |
+                        translate}}</span>&nbsp;&nbsp;{{methods.expiryTimestamp}}&nbsp;&nbsp;</div>
+
+            </div>
+        </div>
+
+        <div class="col col-md-8 col-12 method-col">
+            <div class="row above"><label>{{'Choose the payment method' | translate}}</label></div>
+
+            <a>
+                <div>
+                    <div class="row pay-cards" (click)="sadadPayment()">
+                        <div class="apple"><img src="assets/icons/sadad_icon.png"></div><span>{{'Sadad' | translate}}
+                        </span>&nbsp;&nbsp;
+                    </div>
+                </div>
+            </a>
+            <a>
+                <div>
+                    <div class="row pay-cards" (click)="cardPayments()">
+                        <div class="apple"><img src="assets/icons/visa_icon.png"></div><span>{{'Credit Card/MADA' |
+                            translate}}</span>&nbsp;&nbsp;
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</div>

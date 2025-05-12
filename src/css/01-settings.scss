@@ -1,0 +1,125 @@
+// used with preprocessors and contain font, colors definitions, etc.
+// Colors
+$primary: #3c8dbc;
+$secondary: #ecf0f5;
+$tertiary: #d2d6de;
+$accent: #000;
+$default: #333333;
+$success: #00a65a;
+$lime-green: #48ff00;
+$warning: #f39c12;
+$vibrant-orange: #ff7300;
+$yellow: #fffb00;
+$error: #dd4b39;
+$bright-red: #ff0000;
+$Geraldine: #F1736A;
+$fuchsia-pink: #ff00c8;
+$gray: #9FABB3;
+$darkgray: #abaaaa;
+$gray90: #E5E5E5;
+$gray95: #f2f2f2;
+$gray98: #fafafa;
+$lightgray: #F6F6F6;
+$very-light-gray: #ddd;
+$athens-grey: #DBDDDD;
+$bright-gray: #e9edf0;
+$medium-gray: #aaa;
+$carbon: #7B808B;
+$black: #000000;
+$white: #FFFFFF;
+$whitesmoke: #F5FAFD;
+$swan-white: #f3f3f3;
+$milkwhite: #d2ccdf;
+$spa: #ceece7;
+$very-white: #f8f8f8;
+$anti-flash-white: #f1f1f1;
+$light-grayish-blue: #ced4da;
+$white-blue: #F0F0F5;
+$alice-blue: #F3F5F6;
+$safe-blue: #F9FCFF;
+$seashell: #FFFAF6;
+$solitude: #E3E4E6;
+$paleblue: #dee2e6;
+$cyan: #00ffd5;
+$cyan-blue: #3498DB;
+$dark-cyan-blue: #0d6efd;
+$royal-blue: #002bff;
+$skyblue: #87CEEB;
+$pattens-blue: #E4E6E7;
+$platinum: #E7E9EA;
+$loblolly: #BFC7CC;
+$mischka: #D7D8E1;
+$gainsboro: #dcdcdc;
+$chinese-silver: #cccc;
+$stormy-oceans: #70828E;
+$oyster-bay: #D7F0EC;
+$waterfall: #38B6A0;
+$sea-green: #41B883;
+$maritime-blue: #26273B;
+$black-blue: #0F172A;
+$blue-whale: #102E42;
+$dark-blue: #34495E;
+$blizzard-blue: #A7D0EB;
+$blue-black: #090E19;
+$steel-blue: #C2CEE3;
+$cream-violet: #ACADC1;
+$gun-powder: #454560;
+$periwinkle: #CFD0DD;
+$lavender: #9476C9;
+$passion: #695696;
+$indigo: #7a00ff;
+$digit-ocean: #9aaec1;
+$maroon: #7a0000;
+$olive: #7f7b07;
+$primary-blue: #2196F3;
+$primary-royal: #0a58ca;
+$light-orange: #d0a93f;
+$darkturquoise: #00ced1;
+$icy-blue: #428bca;
+$darkish-grey: #585858;
+$deepskyblue: #00BFFF;
+$shadow-blue: 0 0 10px 0 rgb(81, 179, 232);
+$shadown-grey: 1px 1px 1px 0 #d3d3d3;
+$shadow-black: rgba(0, 0, 0, 0.1);
+
+$light-sky-blue : #87CEFA;
+
+//Figma colours define
+$red : #E63212;
+$green : #09B39C;
+$darkBlue : #1D1557;
+$Raven : #747C91;
+$lightBlue : #0D9AFF;
+
+//Ministry of tourisum colours
+$mintGreen: #e5f4f4;
+$aquaGreen: #009696;
+$darkGreen: #113132;
+$LightGreen: #32d2a0;
+$dangerRed: #dc3545;
+$mtAquaGreen: #007846;
+$mtyellow: '#ffc107';
+
+
+// Typography
+$smallest: 0.2rem;
+$smaller: 0.4rem;
+$small: 0.8rem;
+$regular-flat: 1.2rem;
+$regular: 14px;
+$regular-sharp: 2.0rem;
+$large: 2.4rem;
+$larger: 3.2rem;
+$half-jumbo: 4.0rem;
+$jumbo: 4.8rem;
+$jumbo-plus: 5.6rem;
+// Breakpoints
+$bp-desktop: "all and (min-width:1200px)";
+$bp-tablet: "all and (min-width: 960px) and (max-width: 1199px)";
+$bp-phablet: "all and (min-width: 768px) and (max-width: 959px)";
+$bp-phone: "all and (min-width: 480px) and (max-width: 767px)";
+$bp-small: "all and (max-width: 479px)";
+
+//font family
+$open-sans: 'Open Sans';
+$Frutiger-LT-Arabic-75-Black: 'Frutiger LT Arabic 75 Black';

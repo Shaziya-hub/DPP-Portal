@@ -1,0 +1,128 @@
+<div class="common-trx">
+    <app-common-heading></app-common-heading>
+
+    <div class="wrapper-main">
+        <div class="row">
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <label>{{'Business Service' | translate}}</label>
+                <angular2-multiselect name="services" id="singleSelect" class="redBorderBizService"
+                    [data]="pageConfig?.listOfValues?.bizServices" [(ngModel)]="searchFilters.serviceId"
+                    [settings]="getBizServicesSetting()" (onSelect)=" onServiceChange($event)"
+                    (click)="event('serviceId',searchFilters.serviceId)">
+                </angular2-multiselect>
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <label>{{'Service Type' | translate}}</label>
+                <angular2-multiselect name="serviceTypes" id="singleSelect" class="redBorderServiceType"
+                    [data]="pageConfig?.listOfValues?.serviceTypes"
+                    (onSelect)=" updateBillCategory(searchFilters.serviceTypeId)"
+                    [(ngModel)]="searchFilters.serviceTypeId" [settings]="getServiceTypesSetting()"
+                    (click)="event('serviceTypeId',searchFilters.serviceId)">
+                </angular2-multiselect>
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <label>{{'Bill Category' | translate}}</label>
+                <angular2-multiselect name="billCategory" id="singleSelect" class="redBorderBillCategory"
+                    [data]="pageConfig?.listOfValues?.billCategory" [(ngModel)]="searchFilters.billCategory"
+                    [settings]="getBillCategorySetting()" (onSelect)=" gfscode(searchFilters.billCategory)"
+                    (click)="event('billCategory',searchFilters.billCategory)">
+                </angular2-multiselect>
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form ">
+                <label class="label">{{'GFS Code'| translate}}</label>
+                <input type="text" name="gfsCOde" placeholder="{{'GFS Code'| translate}}" class="form-control field"
+                    [(ngModel)]="searchFilters.GFSCode">
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form">
+                <label>{{'Identity Type' | translate}}</label>
+                <angular2-multiselect name="officialIdType" id="singleSelect" class="redBorderOfficialId"
+                    [data]="pageConfig?.listOfValues?.generateInvoicesIdentityType"
+                    [(ngModel)]="searchFilters.officialIdType" [settings]="getIdentityTypesSetting()"
+                    (click)="event('officialIdType',searchFilters.officialIdType)">
+                </angular2-multiselect>
+            </div>
+
+            <div class="form-group col col-lg-3 col-12 custom-form ">
+                <label class="label">{{'Identity Number'| translate}}</label>
+                <input type="text" name="identityNo" placeholder="{{'Identity Number'| translate}}"
+                    class="form-control field"
+                    [ngClass]="{'redBorder':(formSubmitted==true && searchFilters.officialId=='' && reset != true)}"
+                    [(ngModel)]="searchFilters.officialId">
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form ">
+                <label class="label">{{'Description English'| translate}}</label>&nbsp;&nbsp;<span
+                    *ngIf="greaterFLagEn==true" style="font-size: 12px; color: red;">({{'Only 32 character allowed' |
+                    translate}})</span>
+                <input type="text" name="descEng" placeholder="{{'Description English'| translate}}"
+                    class="form-control field" [(ngModel)]="searchFilters.descriptionEn" maxlength="32"
+                    (keyup)="onKeyPress(searchFilters.descriptionEn)">
+
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form ">
+                <label class="label">{{'Description Arabic'| translate}}</label>&nbsp;&nbsp;<span
+                    *ngIf="greaterFLagAr==true" style="font-size: 12px; color: red;">({{'Only 32 character allowed' |
+                    translate}})</span>
+                <input type="text" name="descArb" placeholder="{{'Description Arabic'| translate}}"
+                    class="form-control field" [(ngModel)]="searchFilters.descriptionAr" maxlength="32"
+                    (keyup)="onKeyPresss(searchFilters.descriptionAr)">
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form ">
+                <label class="label">{{'Amount'| translate}}</label>
+                <input type="text" name="amount" placeholder="{{'Amount'| translate}}" class="form-control field"
+                    [ngClass]="{'redBorder':(formSubmitted==true && searchFilters.amount=='' && reset != true)}"
+                    [(ngModel)]="searchFilters.amount">
+            </div>
+            <div class="form-group col col-lg-3 col-12 custom-form ">
+                <label class="label">{{'Expiry Date'| translate}}</label>
+                <app-dateTimepicker id="container" class="date" [generateInvoiceFlag]="generateInvoiceFlag"
+                    [reset]="reset" [fromDateFlag]="fromDateFlag"
+                    [bsConfig]="{ showWeekNumbers: false,dateInputFormat:'MM/DD/YYYY', monthLabel: 'MMM' }"
+                    (dateSelected)="bsValueChange($event)">
+                </app-dateTimepicker>
+            </div>
+
+        </div>
+        <div class=" d-flex">
+            <button type="button" class="btn btn-block btn-light  col-lg-1 left-alignment col applyBtnn"
+                (click)="search()" [disabled]="permissionFlag==true">
+                <div class="applyBtnn-label">{{'Generate Invoice' | translate}}</div>
+            </button>
+            <button type="button" class="btn btn-block btn-light  col-lg-1 left-alignment col cancelBtnn"
+                (click)="resetForm()">
+                <div class="cancelBtnn-label">{{'Reset' | translate}}</div>
+            </button>
+        </div>
+    </div>
+    <div>
+        <!-- 
+        <div class="row additionalFIlter-list" *ngIf="additionalFilter==true || billNumber != null">
+            <div class="form-group col col-lg-10 col-12">
+                <div class="tags-container">
+                    <div class="row transs"><label class="result-trx">{{'Results' | translate}}</label></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="wrapper-main" *ngIf="billNumber !=null">
+            <div class="alert alert-success" role="alert">
+                <div class="reject-label">{{'Invoice generated with number :' | translate}}&nbsp;{{billNumber}}</div>
+            </div>
+        </div>
+
+        <div class="wrapper-main noRecords-Todisplay" *ngIf="showNoRecords">
+            <section class="no-records">
+                <img class="mb-3" src="assets/icons/icon-no-record.svg">
+                <div style="clear:both;"></div>
+                <span>{{"No records to display" | translate}}</span>
+            </section>
+        </div>
+ -->
+
+
+        <div class="wrapper-main noRecords-Todisplay" *ngIf="serviceNotResponded">
+            <section class="no-records">
+                <div style="clear:both;"></div>
+                <span>{{"Not available at the moment" | translate}}</span>
+            </section>
+        </div>

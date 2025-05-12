@@ -1,0 +1,26 @@
+<dx-data-grid [hidden]="showNoDetailRecords" *ngIf="dataSource" [dataSource]="dataSource" [showBorders]="true"
+    [columnAutoWidth]="true" [columns]="columns" (onFocusedCellChanging)="onFocusedCellChanging($event)"
+    (onCellDblClick)="onCellDetailDblClick($event)">
+    <!-- For Detail Grid scrolling -->
+    <dxo-scrolling [useNative]="false" [scrollByContent]="true" [scrollByThumb]="true">
+    </dxo-scrolling>
+
+</dx-data-grid>
+<div class="noRecords-Todisplay" *ngIf="showNoDetailRecords">
+    <section class="no-detailsRecords">
+        <img class="mb-3" src="assets/icons/icon-no-record.svg">
+        <div style="clear:both;"></div>
+        <span>{{"No records to display" | translate}}</span>
+    </section>
+</div>
+
+<div class="no-detailsRecords" *ngIf="serviceNotRespond">
+    <section class="no-detailsRecords">
+        {{"Not available at the moment"}}
+    </section>
+</div>
+<div class="no-detailsRecords" *ngIf="loading == true && !serviceNotRespond && !showNoDetailRecords">
+    <section class="no-detailsRecords" style="font-size: 18px;">
+        {{"Loading..." | translate}}
+    </section>
+</div>

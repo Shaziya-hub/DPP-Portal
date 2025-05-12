@@ -1,0 +1,80 @@
+@import "../../../css/01-settings.scss";
+
+.modal-content {
+    min-height: 300px;
+}
+
+
+.modal-body {
+    overflow-y: auto;
+    height: 500px;
+
+
+}
+
+.modal-header {
+    padding: 0 10px;
+    border-radius: 6px 0px 0px 0px;
+    height: 50px;
+    align-items: inherit;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-family: $open-sans;
+    font-weight: 700;
+}
+
+.modal-title span {
+    font-size: 18px;
+    padding-left: 10px;
+    font-weight: 500;
+}
+
+.close {
+    background: transparent;
+    color: inherit;
+    min-width: 10px;
+    padding: 0px;
+    height: auto;
+
+    &:focus-visible {
+        outline: 0;
+    }
+
+    span {
+        font-size: 28px;
+        color: $milkwhite;
+    }
+}
+
+.nav {
+    padding-left: 18px;
+    margin-top: 2px;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: $cyan-blue;
+    box-shadow: 0px 2px 2px $shadow-black;
+    color: $white;
+    border: 1px solid $dark-cyan-blue;
+    border-bottom: none;
+    font-weight: 500;
+
+}
+
+.nav-tabs .nav-link {
+    background-color: $white;
+    color: $dark-cyan-blue;
+    border: 1px solid $paleblue;
+    margin-right: 1px;
+}
+
+button.btn.btn-primary {
+    border-radius: 4px;
+    background: #2A235F;
+}
+
+.margin16 {
+    margin: 16px 0px
+}

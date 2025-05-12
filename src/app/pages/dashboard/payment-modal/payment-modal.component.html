@@ -1,0 +1,64 @@
+<div id="model-container">
+    <div class="modal-header">
+        <h3 class="modal-title">{{(chartHeading |translate)}}</h3>
+        <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true"><img src="assets/icons/icon-close-new.png"></span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <div class="toggle-row"
+                    *ngIf="chartId == 'chart0' || chartId == 'chart1' || chartId == 'chart2' || chartId == 'chart3'">
+                    <label class="switch">
+                        <input id="toggele-button-value" type="checkbox" [checked]="totalAmt"
+                            (change)="onChangeToggle($event)">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div [ngClass]="chartId=='lineChart' || chartId == 'google-chart'?'col-md-12':'col-md-6 col-sm-12 col-12' ">
+                <div class="chartBox" *ngIf="chartId !='google-chart';else googlechart">
+                    <canvas id="chart"></canvas>
+                </div>
+            </div>
+            <!-- [ngStyle]="legendCount<7?{'display':'grid','align-content': 'center'}:{}" -->
+            <div class="col-md-6  centerLegend">
+
+                <div class="legend-container">
+
+                </div>
+            </div>
+        </div>
+        <ng-template #googlechart>{{(chartData.title | translate)}}
+            <div class="row">
+                <div class='col-md-6 col-sm-12 col-12' id="modalGaugeChart">
+                    <google-chart [type]="googleChart?.type" [data]="googleChart?.data" [options]="googleChart.options">
+                    </google-chart>
+                </div>
+                <div class="col-md-4 col-sm-12 col-12 centerLegend">
+                    <div class="customLegend">
+                        <table>
+                            <tr>
+                                <td><span class="colorBox bg-success"></span></td>
+                                <td class="labelValue">{{'Success' | translate}}</td>
+                                <td class="valueLabel">{{(+chartData.successPmtCnt).toLocaleString()}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><span class="colorBox bg-danger"></span></td>
+                                <td class="labelValue">{{'Failed' | translate}}</td>
+                                <td class="valueLabel">{{(+chartData.failurePmtCnt).toLocaleString()}}</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>
